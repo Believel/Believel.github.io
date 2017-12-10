@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Angular," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1、angularJS前台传list数组，后台springMVC接收数组资料来源：http://www.cnblogs.com/nelson-hu/p/6512962.html12345678910111213141516171819202122232425262728293031323334353637        $scope.userScopeList = [              &amp;">
+<meta name="keywords" content="Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="有关angularJS问题总结">
+<meta property="og:url" content="http://yoursite.com/2017/07/06/有关angularJS问题总结/index.html">
+<meta property="og:site_name" content="Believel">
+<meta property="og:description" content="1、angularJS前台传list数组，后台springMVC接收数组资料来源：http://www.cnblogs.com/nelson-hu/p/6512962.html12345678910111213141516171819202122232425262728293031323334353637        $scope.userScopeList = [              &amp;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-10T12:21:16.966Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="有关angularJS问题总结">
+<meta name="twitter:description" content="1、angularJS前台传list数组，后台springMVC接收数组资料来源：http://www.cnblogs.com/nelson-hu/p/6512962.html12345678910111213141516171819202122232425262728293031323334353637        $scope.userScopeList = [              &amp;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/06/有关angularJS问题总结/"/>
+
+
+
+
+
+  <title>有关angularJS问题总结 | Believel</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Believel</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">学无止境，聚沙成塔</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/06/有关angularJS问题总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="珈润">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/zpp.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Believel">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">有关angularJS问题总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-06T14:14:07+08:00">
+                2017-07-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Angular/" itemprop="url" rel="index">
+                    <span itemprop="name">Angular</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/06/有关angularJS问题总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/07/06/有关angularJS问题总结/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1、angularJS前台传list数组，后台springMVC接收数组<br>资料来源：<a href="http://www.cnblogs.com/nelson-hu/p/6512962.html" target="_blank" rel="noopener">http://www.cnblogs.com/nelson-hu/p/6512962.html</a><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">        $scope.userScopeList = [</span><br><span class="line">              &#123;</span><br><span class="line">    <span class="string">"ID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"RoleID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"MenuID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"BtnID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"CreateUserID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"CreateDate"</span>: <span class="string">"2017-05-23T07:26:18.403Z"</span>,</span><br><span class="line">    <span class="string">"UpdateUserID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"UpdateDate"</span>: <span class="string">"2017-05-23T07:26:18.403Z"</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"ID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"RoleID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"MenuID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"BtnID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"CreateUserID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"CreateDate"</span>: <span class="string">"2017-05-23T07:26:18.403Z"</span>,</span><br><span class="line">    <span class="string">"UpdateUserID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"UpdateDate"</span>: <span class="string">"2017-05-23T07:26:18.403Z"</span></span><br><span class="line">  &#125;</span><br><span class="line">        ];</span><br><span class="line">        <span class="keyword">var</span> fd = <span class="keyword">new</span> FormData();<span class="comment">//// 使用angularJS的FormData封装要传送的数据</span></span><br><span class="line">        <span class="keyword">var</span> newJson = angular.toJson($scope.userScopeList);<span class="comment">////把对象(集合)转换为json串</span></span><br><span class="line">        <span class="built_in">console</span>.log(newJson);</span><br><span class="line">        fd.append(<span class="string">'newJson'</span>, newJson);<span class="comment">////参数放入formData中</span></span><br><span class="line">        <span class="comment">////使用post方法 传送formdata对象</span></span><br><span class="line">        $http.post(<span class="string">'http://192.168.0.202/api/authority/Authority/AddAuthorityList'</span>, fd, &#123;</span><br><span class="line">            transformRequest: angular.identity, <span class="comment">//使用angular传参认证</span></span><br><span class="line">            headers: &#123;</span><br><span class="line">                headers : &#123; <span class="string">'Content-Type'</span>: <span class="string">'application/x-www-form-urlencoded; charset=UTF-8'</span> &#125;,<span class="comment">////设置请求头</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">            alert(<span class="number">1</span>);</span><br><span class="line">            <span class="built_in">console</span>.log(res);</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>2、 $scope.$watch()只能监视$scope上的视图模型成员，也可以监视方法的返回值<br>watch函数其实是有三个变量的，第一个参数是需要监视的对象，第二个参数是在监视对象发生变化时需要调用的函数，实际上watch还有第三个参数，它在默认情况下是false。<br>当第三个参数是false时，其实watch函数监视的是数组的地址，而数组的内容的变化不会影响数组地址的变化，所以watch函数失灵了。 如果监视数组的内容改变的话，第三个参数传true即可。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">例如：</span><br><span class="line">$scope.items=[  </span><br><span class="line">&#123;<span class="attr">a</span>:<span class="number">1</span>&#125;,  </span><br><span class="line">&#123;<span class="attr">a</span>:<span class="number">2</span>&#125;  </span><br><span class="line">&#123;<span class="attr">a</span>:<span class="number">3</span>&#125;];  </span><br><span class="line">$scope.$watch(<span class="string">'items'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;...&#125;,<span class="literal">true</span>);</span><br></pre></td></tr></table></figure></p>
+<p> $watch 监听多个变量<br> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//当count或page变化时，都会执行这个匿名函数  </span></span><br><span class="line">$scope.count=<span class="number">1</span>;  </span><br><span class="line">$scope.page=<span class="number">1</span>;  </span><br><span class="line">$scope.$watch(<span class="string">'count + page'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">   <span class="comment">//</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p> $watch 函数的返回结果<br> 方法1：监视对象为“函数名()”的字符串，记得加“()”!<br> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//未完成的任务个数  </span></span><br><span class="line">$scope.unDoneCount = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  </span><br><span class="line">    <span class="keyword">var</span> count = <span class="number">0</span>;  </span><br><span class="line">    angular.forEach($scope.todoList, <span class="function"><span class="keyword">function</span>(<span class="params">todo</span>) </span>&#123;  </span><br><span class="line">        count += todo.done ? <span class="number">0</span> : <span class="number">1</span>;  </span><br><span class="line">    &#125;);  </span><br><span class="line">    <span class="keyword">return</span> count;  </span><br><span class="line">&#125;;  </span><br><span class="line"><span class="comment">//单选影响全选部分  </span></span><br><span class="line">$scope.$watch(<span class="string">'unDoneCount()'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">nv</span>) </span>&#123;  </span><br><span class="line">    $scope.isDoneAll = nv ? <span class="literal">false</span> : <span class="literal">true</span>;  </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p> 方法2：在监视对象中设置为匿名函数，返回要监视的函数的返回值<br> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$scope.$watch(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">    <span class="keyword">return</span> $scope.unDoneCount();<span class="comment">//不要忘了(),要执行的啊~  </span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">nv</span>) </span>&#123;  </span><br><span class="line">    $scope.isDoneAll = nv ? <span class="literal">false</span> : <span class="literal">true</span>;  </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>3、 JQuery框架一定要在angularJS之前加载<br>资料来源：<a href="http://blog.csdn.net/aitangyong/article/details/48131575" target="_blank" rel="noopener">http://blog.csdn.net/aitangyong/article/details/48131575</a><br>（1）如果我们的web页面只引入angulrjs框架(不引入jQuery框架)，那么我们使用过程中可能会遇到如下错误：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Error</span>: [jqLite:nosel] Looking up elements via selectors is not supported by jqLite!</span><br></pre></td></tr></table></figure></p>
+<p>这是因为angular.element()这个API并不能支持类似jquery的选择器，也就是说angular.element()并不支持selector.最好引入JQuery框架，因为JQuery框架选择元素实在是太方便可。如果我们确实不想使用JQUery，那么可以使用HTML5中的document.querySelector(),这个API是支持选择器的<br>（2）如果页面中使用了jQuery和angular，那么一定要先加载jQuery框架，然后再加载angular<br>下面的代码我们先加载angular后加载jquery，当点击injector的按钮的时候，会报错:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">TypeError</span>: $(...).injector is not a <span class="function"><span class="keyword">function</span></span></span><br></pre></td></tr></table></figure></p>
+<p>如果我们先加载jQuery后加载angular，那么就不会有问题。这是因为如果angular加载的时候没有找到jQuery框架，那么会使用它自带的jqlite，这样angular就不能将injector()、scope()等方法注入到jQuery对象中。</p>
+<h1 id="angularJS知识进一步学习笔记"><a href="#angularJS知识进一步学习笔记" class="headerlink" title="angularJS知识进一步学习笔记"></a>angularJS知识进一步学习笔记</h1><h3 id="sce"><a href="#sce" class="headerlink" title="$sce"></a>$sce</h3><p>为什么要要$sce？因为AngularJS里好些地方，比如路径默认是个字符串，不会认为是路径，从而访问不到我们需要的东西，那么我们就可以通过$sce告诉angualrJS这个路径，这样是很安全滴<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$sce.trustAs(type,name);</span><br><span class="line">$sce.trustAsUrl(value);</span><br><span class="line">$sce.trustAsHtml(value);<span class="comment">//将字符串编译成可加载的HTML</span></span><br><span class="line">$sce.trustAsResourceUrl(value);</span><br><span class="line">$sce.trustAsJs(value);</span><br></pre></td></tr></table></figure></p>
+<h3 id="parse"><a href="#parse" class="headerlink" title="$parse"></a>$parse</h3><p>作用：将一个angularJS表达式转换成一个函数<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$parse(expression)</span><br><span class="line"></span><br><span class="line">expression:需要被编译的angularJS语句</span><br><span class="line">返回值：func(context, locals)</span><br><span class="line">        context[object]:针对你要解析的语句，这个对象中含有你要解析的语句中的表达式(通常是一个scope object)</span><br><span class="line">        locals[object]: 关于context中变量的本地变量，对于覆盖context中的变量值很有用。</span><br><span class="line">        返回的函数还有下面三个特性：</span><br><span class="line"></span><br><span class="line">        literal[boolean]:表达式的顶节点是否是一个javascript字面量</span><br><span class="line">        constant[boolean]:表达式是否全部是由javascript的常量字面量组成</span><br><span class="line">        assign[func(context, local)]:可以用来在给定的上下文中修改表达式的值</span><br></pre></td></tr></table></figure></p>
+<p>案例：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-app</span>=<span class="string">"MyApp"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-controller</span>=<span class="string">"MyController"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;ParsedValue&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">"MyApp"</span>,[])</span><br><span class="line">.controller(<span class="string">"MyController"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope, $parse</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context = &#123;</span><br><span class="line">        name: <span class="string">"dreamapple"</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// 因为这个解析的语句中含有我们想要解析的表达式，</span></span><br><span class="line">    <span class="comment">// 所以要把不相关的用引号引起来，整体然后用+连接</span></span><br><span class="line">    <span class="keyword">var</span> expression = <span class="string">"'Hello ' + name"</span>;</span><br><span class="line">    <span class="keyword">var</span> parseFunc = $parse(expression);</span><br><span class="line">    $scope.ParsedValue = parseFunc(context);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="new-true"><a href="#new-true" class="headerlink" title="$new(true)"></a>$new(true)</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$rootScope.$<span class="keyword">new</span>(<span class="literal">true</span>);新创建的子范围</span><br><span class="line">$scope.$<span class="keyword">new</span>(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="compile"><a href="#compile" class="headerlink" title="$compile"></a>$compile</h3><p>讲HTML字符串或DOM编译为模板并生成模板函数，然后将其scope与模板链接在一起<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$compile(<span class="string">'&lt;li class="text-danger" ng-repeat="(name, wrong) in errors()" ng-if="wrong"&gt;&#123;&#123;name|error&#125;&#125;&lt;/li&gt;'</span>)($scope);</span><br></pre></td></tr></table></figure></p>
+<h3 id="ngModelController"><a href="#ngModelController" class="headerlink" title="ngModelController"></a>ngModelController</h3><p>是自定义指令中的link属性或者controller的第四个参数名<br>可以使用它在自定义指令中利用ngMode的controller来做双向数据绑定，沟通控制器和视图层的数据交换。</p>
+<h3 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Angular/" rel="tag"># Angular</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/15/正则表达式笔记-md/" rel="next" title="正则表达式笔记.md">
+                <i class="fa fa-chevron-left"></i> 正则表达式笔记.md
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/23/angular-dragdrop/" rel="prev" title="angular-dragdrop">
+                angular-dragdrop <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/zpp.jpg"
+                alt="珈润" />
+            
+              <p class="site-author-name" itemprop="name">珈润</p>
+              <p class="site-description motion-element" itemprop="description">前端工程师</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Believel" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#angularJS知识进一步学习笔记"><span class="nav-number">1.</span> <span class="nav-text"><a href="#angularJS&#x77E5;&#x8BC6;&#x8FDB;&#x4E00;&#x6B65;&#x5B66;&#x4E60;&#x7B14;&#x8BB0;" class="headerlink" title="angularJS&#x77E5;&#x8BC6;&#x8FDB;&#x4E00;&#x6B65;&#x5B66;&#x4E60;&#x7B14;&#x8BB0;"></a>angularJS&#x77E5;&#x8BC6;&#x8FDB;&#x4E00;&#x6B65;&#x5B66;&#x4E60;&#x7B14;&#x8BB0;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sce"><span class="nav-number">1.0.1.</span> <span class="nav-text"><a href="#sce" class="headerlink" title="$sce"></a>$sce</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#parse"><span class="nav-number">1.0.2.</span> <span class="nav-text"><a href="#parse" class="headerlink" title="$parse"></a>$parse</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#new-true"><span class="nav-number">1.0.3.</span> <span class="nav-text"><a href="#new-true" class="headerlink" title="$new(true)"></a>$new(true)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#compile"><span class="nav-number">1.0.4.</span> <span class="nav-text"><a href="#compile" class="headerlink" title="$compile"></a>$compile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ngModelController"><span class="nav-number">1.0.5.</span> <span class="nav-text"><a href="#ngModelController" class="headerlink" title="ngModelController"></a>ngModelController</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义指令"><span class="nav-number">1.0.6.</span> <span class="nav-text"><a href="#&#x81EA;&#x5B9A;&#x4E49;&#x6307;&#x4EE4;" class="headerlink" title="&#x81EA;&#x5B9A;&#x4E49;&#x6307;&#x4EE4;"></a>&#x81EA;&#x5B9A;&#x4E49;&#x6307;&#x4EE4;</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">珈润</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/07/06/有关angularJS问题总结/';
+          this.page.identifier = '2017/07/06/有关angularJS问题总结/';
+          this.page.title = '有关angularJS问题总结';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

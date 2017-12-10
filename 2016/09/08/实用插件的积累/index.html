@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="jquery,jquery插件," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="从事前端职位以来，感触最深的就是，前端的插件应有尽有，如果在项目开发的过程中合理的使用，就会达到事半功倍的效果，那么今天自己也将积累的一些插件分享出来。下面代码中的一些方法知识是我平时使用到的，可能有些没有写到，大家就自己看官方的文档吧 插件1：Nprogress(进度条)github有时候看见页面加载的时候会有一个进度条的效果，看着挺炫。大家一看究竟吧。123使用方法：首先引入包文件，css样式">
+<meta name="keywords" content="jquery,jquery插件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实用插件的积累">
+<meta property="og:url" content="http://yoursite.com/2016/09/08/实用插件的积累/index.html">
+<meta property="og:site_name" content="Believel">
+<meta property="og:description" content="从事前端职位以来，感触最深的就是，前端的插件应有尽有，如果在项目开发的过程中合理的使用，就会达到事半功倍的效果，那么今天自己也将积累的一些插件分享出来。下面代码中的一些方法知识是我平时使用到的，可能有些没有写到，大家就自己看官方的文档吧 插件1：Nprogress(进度条)github有时候看见页面加载的时候会有一个进度条的效果，看着挺炫。大家一看究竟吧。123使用方法：首先引入包文件，css样式">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-10T12:27:27.678Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="实用插件的积累">
+<meta name="twitter:description" content="从事前端职位以来，感触最深的就是，前端的插件应有尽有，如果在项目开发的过程中合理的使用，就会达到事半功倍的效果，那么今天自己也将积累的一些插件分享出来。下面代码中的一些方法知识是我平时使用到的，可能有些没有写到，大家就自己看官方的文档吧 插件1：Nprogress(进度条)github有时候看见页面加载的时候会有一个进度条的效果，看着挺炫。大家一看究竟吧。123使用方法：首先引入包文件，css样式">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/08/实用插件的积累/"/>
+
+
+
+
+
+  <title>实用插件的积累 | Believel</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Believel</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">学无止境，聚沙成塔</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/08/实用插件的积累/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="珈润">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/zpp.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Believel">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">实用插件的积累</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-08T20:41:07+08:00">
+                2016-09-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jquery/" itemprop="url" rel="index">
+                    <span itemprop="name">jquery</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/09/08/实用插件的积累/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/09/08/实用插件的积累/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>从事前端职位以来，感触最深的就是，前端的插件应有尽有，如果在项目开发的过程中合理的使用，就会达到事半功倍的效果，那么今天自己也将积累的一些插件分享出来。下面代码中的一些方法知识是我平时使用到的，可能有些没有写到，大家就自己看官方的文档吧</p>
+<h3 id="插件1：Nprogress-进度条"><a href="#插件1：Nprogress-进度条" class="headerlink" title="插件1：Nprogress(进度条)"></a>插件1：Nprogress(进度条)</h3><p><a href="https://github.com/rstacruz/nprogress" target="_blank" rel="noopener"><code>github</code></a><br>有时候看见页面加载的时候会有一个进度条的效果，看着挺炫。大家一看究竟吧。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">使用方法：首先引入包文件，css样式，调用下来方法</span><br><span class="line">NProgress.start();</span><br><span class="line">NProgress.done();</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h3 id="插件2：jquery-form-js-Ajax提交表单"><a href="#插件2：jquery-form-js-Ajax提交表单" class="headerlink" title="插件2：jquery.form.js(Ajax提交表单)"></a>插件2：jquery.form.js(Ajax提交表单)</h3><p><a href="http://malsup.com/jquery/form" target="_blank" rel="noopener">官方网址</a><br>1.Add a form to your page. Just a normal form, no special markup require<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form id=<span class="string">"myForm"</span> action=<span class="string">"comment.php"</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">    Name: &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"name"</span> /&gt;</span><br><span class="line">    Comment: &lt;textarea name=<span class="string">"comment"</span>&gt;&lt;/textarea&gt;</span><br><span class="line">    &lt;input <span class="built_in">type</span>=<span class="string">"submit"</span> value=<span class="string">"Submit Comment"</span> /&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure></p>
+<p> 2.Include jQuery and the Form Plugin external script files and a short script to initialize the form when the DOM is ready:<br> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">       &lt;script src=<span class="string">"http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">        &lt;script src=<span class="string">"http://malsup.github.com/jquery.form.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">             &lt;script&gt;</span><br><span class="line">                <span class="comment">// wait for the DOM to be loaded</span></span><br><span class="line">                $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="comment">// bind 'myForm' and provide a simple callback function</span></span><br><span class="line">                 $(<span class="string">'#myForm'</span>).ajaxForm(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                      alert(<span class="string">"Thank you for your comment!"</span>);</span><br><span class="line">                      &#125;);</span><br><span class="line">                 &#125;);</span><br><span class="line">        &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>head&gt;</span><br><span class="line">&lt;<span class="regexp">/html&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="插件3：bootstrap-datepicker-js（日历）"><a href="#插件3：bootstrap-datepicker-js（日历）" class="headerlink" title="插件3：bootstrap.datepicker.js（日历）"></a>插件3：bootstrap.datepicker.js（日历）</h3><p><a href="https://bootstrap-datepicker.readthedocs.io/en/stable/markup.html" target="_blank" rel="noopener">官方网址</a><br>依赖bootstrap包，注意如果下载的是bootstrap V3版本的，要引入bootstrap-datepicker3.css文件。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用方法1：（html标签）</span></span><br><span class="line"><span class="comment">//在input标签中引入下面内容 （data-date-format="yyyy-mm-dd"是改变显示的格式内容)</span></span><br><span class="line">&lt;input data-provide=<span class="string">"datepicker"</span> data-date-end-date=<span class="string">"0d"</span> data-date-format=<span class="string">"yyyy-mm-dd"</span>&gt;</span><br><span class="line"><span class="comment">// 如果要使用汉化的话，需要引入汉化的包bootstrap-datepicker.zh-CN.js</span></span><br><span class="line"><span class="comment">// 然后在input标签中添加“data-date-language="zh-CN"”</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用方法2：(js方法)</span></span><br><span class="line">  <span class="comment">// 1.首先引入包名</span></span><br><span class="line">  <span class="comment">// 2.给input标签添加一个id属性</span></span><br><span class="line">&lt;input type=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control input-sm"</span> id=<span class="string">"datepicker"</span>&gt;</span><br><span class="line">  <span class="comment">// 3.在javascript中</span></span><br><span class="line">  $(<span class="string">'#datepicker'</span>).datepicker(&#123;</span><br><span class="line">  		format:<span class="string">'yyyy-mm-dd'</span>,</span><br><span class="line">  		language:<span class="string">'zh-CN'</span></span><br><span class="line">  	&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="插件4：jquery-validate-验证表单插件"><a href="#插件4：jquery-validate-验证表单插件" class="headerlink" title="插件4：jquery-validate (验证表单插件)"></a>插件4：jquery-validate (验证表单插件)</h3><p><a href="https://github.com/DiegoLopesLima/Validate#readme" target="_blank" rel="noopener"><code>github</code></a><br>依赖jquery包，<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'表单标签'</span>).validate(&#123;</span><br><span class="line">				 onKeyup:<span class="literal">true</span>,<span class="comment">//何种条件下触发验证</span></span><br><span class="line">		        sendForm:<span class="literal">false</span>, <span class="comment">// return false 阻止表单默认提交</span></span><br><span class="line">		eachInvalidField:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="comment">// 当元素不合法时，会触发此方法</span></span><br><span class="line">		&#125;,</span><br><span class="line">		eachValidField:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="comment">// 每一个合法的表单会触发</span></span><br><span class="line">		&#125;,</span><br><span class="line">		valid:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="comment">//所有表单元素都合法才触发</span></span><br><span class="line">		&#125;</span><br><span class="line">	    ....等等</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="插件5：CKEditor-编辑器"><a href="#插件5：CKEditor-编辑器" class="headerlink" title="插件5：CKEditor(编辑器)"></a>插件5：CKEditor(编辑器)</h3><p><a href="http://ckeditor.com/download" target="_blank" rel="noopener">下载地址</a><br><a href="http://docs.ckeditor.com/#!/guide/dev_installation" target="_blank" rel="noopener">文档使用说明</a><br>简单使用说明：<br>1.引入包名ckeditor.js<br>2.在文本域中添加一个id属性，例如<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;textarea name=<span class="string">""</span> id=<span class="string">"textEditor"</span> cols=<span class="string">"30"</span> rows=<span class="string">"10"</span>&gt;&lt;/textarea&gt;</span><br></pre></td></tr></table></figure></p>
+<p>3.在js中引用一个方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CKEDITOR.replace( <span class="string">'textEditor'</span> );</span><br></pre></td></tr></table></figure></p>
+<p>这样就可以显示出来了，如果不想使用编辑器中的某些菜单选项，可以找到下载文件中的confg.js，自己修改所带的菜单项。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 默认带有的菜单项：</span></span><br><span class="line">config.toolbarGroups = [</span><br><span class="line">		&#123; <span class="attr">name</span>: <span class="string">'clipboard'</span>,   <span class="attr">groups</span>: [ <span class="string">'clipboard'</span>, <span class="string">'undo'</span> ] &#125;,</span><br><span class="line">		&#123; <span class="attr">name</span>: <span class="string">'editing'</span>,     <span class="attr">groups</span>: [ <span class="string">'find'</span>, <span class="string">'selection'</span>, <span class="string">'spellchecker'</span> ] &#125;,</span><br><span class="line">		&#123; <span class="attr">name</span>: <span class="string">'links'</span> &#125;,</span><br><span class="line">		&#123; <span class="attr">name</span>: <span class="string">'insert'</span> &#125;,</span><br><span class="line">		&#123; <span class="attr">name</span>: <span class="string">'forms'</span> &#125;,</span><br><span class="line">		&#123; <span class="attr">name</span>: <span class="string">'tools'</span> &#125;,</span><br><span class="line">		&#123; <span class="attr">name</span>: <span class="string">'document'</span>,	   <span class="attr">groups</span>: [ <span class="string">'mode'</span>, <span class="string">'document'</span>, <span class="string">'doctools'</span> ] &#125;,</span><br><span class="line">		&#123; <span class="attr">name</span>: <span class="string">'others'</span> &#125;,</span><br><span class="line">		<span class="string">'/'</span>,</span><br><span class="line">		&#123; <span class="attr">name</span>: <span class="string">'basicstyles'</span>, <span class="attr">groups</span>: [ <span class="string">'basicstyles'</span>, <span class="string">'cleanup'</span> ] &#125;,</span><br><span class="line">		&#123; <span class="attr">name</span>: <span class="string">'paragraph'</span>,   <span class="attr">groups</span>: [ <span class="string">'list'</span>, <span class="string">'indent'</span>, <span class="string">'blocks'</span>, <span class="string">'align'</span>, <span class="string">'bidi'</span> ] &#125;,</span><br><span class="line">		&#123; <span class="attr">name</span>: <span class="string">'styles'</span> &#125;,</span><br><span class="line">		&#123; <span class="attr">name</span>: <span class="string">'colors'</span> &#125;,</span><br><span class="line">		&#123; <span class="attr">name</span>: <span class="string">'about'</span> &#125;</span><br><span class="line">	];</span><br></pre></td></tr></table></figure></p>
+<h3 id="插件6：Jcrop-图片裁剪插件"><a href="#插件6：Jcrop-图片裁剪插件" class="headerlink" title="插件6：Jcrop(图片裁剪插件)"></a>插件6：Jcrop(图片裁剪插件)</h3><p><a href="http://jcrop.org/" target="_blank" rel="noopener">官网</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//首先引入相应的包</span></span><br><span class="line"><span class="comment">//css</span></span><br><span class="line">  &lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"./css/Jcrop.css"</span>&gt;</span><br><span class="line"><span class="comment">//js</span></span><br><span class="line">&lt;script src=<span class="string">"jquery.min.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=<span class="string">"Jcrop.js"</span>&gt;&lt;/script&gt;</span><br><span class="line"><span class="comment">// html</span></span><br><span class="line">  &lt;img src=<span class="string">"timg.jpg"</span> alt=<span class="string">""</span>&gt;</span><br><span class="line"><span class="comment">//js</span></span><br><span class="line">$(<span class="string">'img'</span>).Jcrop(&#123;</span><br><span class="line">  <span class="comment">// 如果需要这些属性可以传入，不需要可以不传</span></span><br><span class="line">        boxWidth: <span class="number">400</span>, <span class="comment">//最大盒子的宽度</span></span><br><span class="line">        aspectRatio: <span class="number">2</span> <span class="comment">//限制宽高的比例关系  </span></span><br><span class="line">  &#125;, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="comment">// 当Jcrop调用之后，回调函数设置一些默认的情况</span></span><br><span class="line">  <span class="comment">// console.log(this);//this指的就是你调用的对象，里面有属性可以获得图片裁剪的位置大小：this.ui.stage.width(height)</span></span><br><span class="line">   <span class="comment">// 1.例如默认显示选区位置</span></span><br><span class="line">        <span class="keyword">this</span>.newSelection();<span class="comment">//声明设置选区</span></span><br><span class="line">        <span class="keyword">this</span>.setSelect([x, y, w, h]);<span class="comment">//设置选区，前两个参数是左上角坐标值，后两个参数是宽度和高度</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">//2. 默认显示缩略图</span></span><br><span class="line">      <span class="keyword">var</span> jcrop_api = <span class="keyword">this</span>;</span><br><span class="line">      thumbnail = <span class="keyword">this</span>.initComponent(<span class="string">'Thumbnailer'</span>, &#123; <span class="attr">width</span>: <span class="number">130</span>, <span class="attr">height</span>: <span class="number">130</span> &#125;);<span class="comment">//缩略图的引入</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 一些事件说明:给图片的父元素注册事件</span></span><br><span class="line">$(img).parent().on(<span class="string">'cropmove cropend'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">selection, coords, c</span>)</span>&#123;</span><br><span class="line">      <span class="comment">//第三个参数可以拿到图片的裁剪的位置值</span></span><br><span class="line">      <span class="comment">//c.x   c.y  c.w  c.h</span></span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="插件7：imgAreaSelect-图片裁剪插件"><a href="#插件7：imgAreaSelect-图片裁剪插件" class="headerlink" title="插件7：imgAreaSelect(图片裁剪插件)"></a>插件7：imgAreaSelect(图片裁剪插件)</h3><p><a href="http://odyniec.net/projects/imgareaselect/" target="_blank" rel="noopener">官网</a><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//html</span></span><br><span class="line">  &lt;link rel=<span class="string">"stylesheet"</span> type=<span class="string">"text/css"</span> href=<span class="string">"css/imgareaselect-default.css"</span> /&gt;</span><br><span class="line">  &lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"scripts/jquery.min.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"scripts/jquery.imgareaselect.pack.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">  <span class="comment">//js</span></span><br><span class="line">  &lt;script&gt;</span><br><span class="line">  $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    $(<span class="string">'img#photo'</span>).imgAreaSelect(&#123;</span><br><span class="line">        handles: <span class="literal">true</span>,</span><br><span class="line">        onSelectEnd: someFunction</span><br><span class="line">    &#125;);</span><br><span class="line"> &#125;);</span><br><span class="line"> &lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="插件8：uploadify-图片上传插件"><a href="#插件8：uploadify-图片上传插件" class="headerlink" title="插件8：uploadify(图片上传插件)"></a>插件8：uploadify(图片上传插件)</h3><p><a href="http://www.uploadify.com/" target="_blank" rel="noopener">官网</a><br>是基于jquery的插件，有两个版本，一个是flash Version,另一个是html5 Version(收费的)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// 简单用法说明：</span><br><span class="line">// html代码</span><br><span class="line">&lt;input <span class="built_in">type</span>=<span class="string">"file"</span> id=<span class="string">"upfile"</span>&gt;</span><br><span class="line">// js代码（注意先引入jquery文件和uplodify文件）</span><br><span class="line">$(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    $(<span class="string">"#upfile"</span>).uploadify(&#123;</span><br><span class="line">        height        : 30,</span><br><span class="line">        formData      : &#123;&#125;,  //用于文件上传给后端的数据信息,相当于jquery中的data属性</span><br><span class="line">        fileObjName   ：<span class="string">'tc_avatar'</span>, // 上传时的文件的名字，相当于表单中的name属性的值</span><br><span class="line">        swf           : <span class="string">'/uploadify/uploadify.swf'</span>,// flash文件路径</span><br><span class="line">        uploader      : <span class="string">'/uploadify/uploadify.php'</span>,// 后台接口</span><br><span class="line">        width         : 120, // 宽度，自己定义</span><br><span class="line">        height        :auto,//高度，自己定义</span><br><span class="line">        buttonClass:<span class="string">'btn btn-success btn-sm'</span>,//允许将覆盖的样式修改</span><br><span class="line">        fileSizeLimit:<span class="string">'2MB'</span>,//限制上传的文件的大小</span><br><span class="line">        fileTypeExts: <span class="string">'*.gif; *.jpg; *.png'</span>,//上传文件格式的限制</span><br><span class="line">        buttonText    : <span class="string">''</span>,// 显示的文本内容</span><br><span class="line">        itemTemplate: <span class="string">'&lt;span&gt;&lt;/span&gt;'</span>,//上传文件的进度信息模板</span><br><span class="line">        onUploadSuccess: <span class="keyword">function</span>(file, data) &#123;</span><br><span class="line">           // 文件上传成功在前端处理的事情</span><br><span class="line">        &#125;</span><br><span class="line">        ...以上属性自己使用时根据需要选取</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="未完待续……"><a href="#未完待续……" class="headerlink" title="未完待续……"></a>未完待续……</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jquery/" rel="tag"># jquery</a>
+          
+            <a href="/tags/jquery插件/" rel="tag"># jquery插件</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/01/基于node开发的常见工具/" rel="next" title="基于node开发的常见工具">
+                <i class="fa fa-chevron-left"></i> 基于node开发的常见工具
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/10/常见的node模块包及使用方法/" rel="prev" title="常见的node模块包及使用方法">
+                常见的node模块包及使用方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/zpp.jpg"
+                alt="珈润" />
+            
+              <p class="site-author-name" itemprop="name">珈润</p>
+              <p class="site-description motion-element" itemprop="description">前端工程师</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Believel" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#插件1：Nprogress-进度条"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x63D2;&#x4EF6;1&#xFF1A;Nprogress-&#x8FDB;&#x5EA6;&#x6761;" class="headerlink" title="&#x63D2;&#x4EF6;1&#xFF1A;Nprogress(&#x8FDB;&#x5EA6;&#x6761;)"></a>&#x63D2;&#x4EF6;1&#xFF1A;Nprogress(&#x8FDB;&#x5EA6;&#x6761;)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插件2：jquery-form-js-Ajax提交表单"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x63D2;&#x4EF6;2&#xFF1A;jquery-form-js-Ajax&#x63D0;&#x4EA4;&#x8868;&#x5355;" class="headerlink" title="&#x63D2;&#x4EF6;2&#xFF1A;jquery.form.js(Ajax&#x63D0;&#x4EA4;&#x8868;&#x5355;)"></a>&#x63D2;&#x4EF6;2&#xFF1A;jquery.form.js(Ajax&#x63D0;&#x4EA4;&#x8868;&#x5355;)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插件3：bootstrap-datepicker-js（日历）"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x63D2;&#x4EF6;3&#xFF1A;bootstrap-datepicker-js&#xFF08;&#x65E5;&#x5386;&#xFF09;" class="headerlink" title="&#x63D2;&#x4EF6;3&#xFF1A;bootstrap.datepicker.js&#xFF08;&#x65E5;&#x5386;&#xFF09;"></a>&#x63D2;&#x4EF6;3&#xFF1A;bootstrap.datepicker.js&#xFF08;&#x65E5;&#x5386;&#xFF09;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插件4：jquery-validate-验证表单插件"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x63D2;&#x4EF6;4&#xFF1A;jquery-validate-&#x9A8C;&#x8BC1;&#x8868;&#x5355;&#x63D2;&#x4EF6;" class="headerlink" title="&#x63D2;&#x4EF6;4&#xFF1A;jquery-validate (&#x9A8C;&#x8BC1;&#x8868;&#x5355;&#x63D2;&#x4EF6;)"></a>&#x63D2;&#x4EF6;4&#xFF1A;jquery-validate (&#x9A8C;&#x8BC1;&#x8868;&#x5355;&#x63D2;&#x4EF6;)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插件5：CKEditor-编辑器"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x63D2;&#x4EF6;5&#xFF1A;CKEditor-&#x7F16;&#x8F91;&#x5668;" class="headerlink" title="&#x63D2;&#x4EF6;5&#xFF1A;CKEditor(&#x7F16;&#x8F91;&#x5668;)"></a>&#x63D2;&#x4EF6;5&#xFF1A;CKEditor(&#x7F16;&#x8F91;&#x5668;)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插件6：Jcrop-图片裁剪插件"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x63D2;&#x4EF6;6&#xFF1A;Jcrop-&#x56FE;&#x7247;&#x88C1;&#x526A;&#x63D2;&#x4EF6;" class="headerlink" title="&#x63D2;&#x4EF6;6&#xFF1A;Jcrop(&#x56FE;&#x7247;&#x88C1;&#x526A;&#x63D2;&#x4EF6;)"></a>&#x63D2;&#x4EF6;6&#xFF1A;Jcrop(&#x56FE;&#x7247;&#x88C1;&#x526A;&#x63D2;&#x4EF6;)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插件7：imgAreaSelect-图片裁剪插件"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x63D2;&#x4EF6;7&#xFF1A;imgAreaSelect-&#x56FE;&#x7247;&#x88C1;&#x526A;&#x63D2;&#x4EF6;" class="headerlink" title="&#x63D2;&#x4EF6;7&#xFF1A;imgAreaSelect(&#x56FE;&#x7247;&#x88C1;&#x526A;&#x63D2;&#x4EF6;)"></a>&#x63D2;&#x4EF6;7&#xFF1A;imgAreaSelect(&#x56FE;&#x7247;&#x88C1;&#x526A;&#x63D2;&#x4EF6;)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插件8：uploadify-图片上传插件"><span class="nav-number">8.</span> <span class="nav-text"><a href="#&#x63D2;&#x4EF6;8&#xFF1A;uploadify-&#x56FE;&#x7247;&#x4E0A;&#x4F20;&#x63D2;&#x4EF6;" class="headerlink" title="&#x63D2;&#x4EF6;8&#xFF1A;uploadify(&#x56FE;&#x7247;&#x4E0A;&#x4F20;&#x63D2;&#x4EF6;)"></a>&#x63D2;&#x4EF6;8&#xFF1A;uploadify(&#x56FE;&#x7247;&#x4E0A;&#x4F20;&#x63D2;&#x4EF6;)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未完待续……"><span class="nav-number"></span> <span class="nav-text"><a href="#&#x672A;&#x5B8C;&#x5F85;&#x7EED;&#x2026;&#x2026;" class="headerlink" title="&#x672A;&#x5B8C;&#x5F85;&#x7EED;&#x2026;&#x2026;"></a>&#x672A;&#x5B8C;&#x5F85;&#x7EED;&#x2026;&#x2026;</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">珈润</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2016/09/08/实用插件的积累/';
+          this.page.identifier = '2016/09/08/实用插件的积累/';
+          this.page.title = '实用插件的积累';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

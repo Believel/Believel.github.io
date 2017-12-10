@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="HTML5增加了大量的表单属性的同时，也增加了表单提交时的验证功能，下面自己总结了一下。 表单的自动验证1234&amp;lt;form action=&quot;&quot; method=&quot;post&quot;&amp;gt;    &amp;lt;input type=&quot;text&quot; name=&quot;text&quot; required pattern=&quot;\d&amp;#123;3&amp;#125;&quot;&amp;gt;    &amp;lt;input type=&quot;submit&quot;&amp;gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML5中表单验证">
+<meta property="og:url" content="http://yoursite.com/2016/08/17/HTML5中表单验证/index.html">
+<meta property="og:site_name" content="Believel">
+<meta property="og:description" content="HTML5增加了大量的表单属性的同时，也增加了表单提交时的验证功能，下面自己总结了一下。 表单的自动验证1234&amp;lt;form action=&quot;&quot; method=&quot;post&quot;&amp;gt;    &amp;lt;input type=&quot;text&quot; name=&quot;text&quot; required pattern=&quot;\d&amp;#123;3&amp;#125;&quot;&amp;gt;    &amp;lt;input type=&quot;submit&quot;&amp;gt;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-02-01T18:22:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML5中表单验证">
+<meta name="twitter:description" content="HTML5增加了大量的表单属性的同时，也增加了表单提交时的验证功能，下面自己总结了一下。 表单的自动验证1234&amp;lt;form action=&quot;&quot; method=&quot;post&quot;&amp;gt;    &amp;lt;input type=&quot;text&quot; name=&quot;text&quot; required pattern=&quot;\d&amp;#123;3&amp;#125;&quot;&amp;gt;    &amp;lt;input type=&quot;submit&quot;&amp;gt;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/17/HTML5中表单验证/"/>
+
+
+
+
+
+  <title>HTML5中表单验证 | Believel</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Believel</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">学无止境，聚沙成塔</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/08/17/HTML5中表单验证/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="珈润">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/zpp.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Believel">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HTML5中表单验证</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-17T12:45:29+08:00">
+                2016-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/08/17/HTML5中表单验证/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/08/17/HTML5中表单验证/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>HTML5增加了大量的表单属性的同时，也增加了表单提交时的验证功能，下面自己总结了一下。</p>
+<h2 id="表单的自动验证"><a href="#表单的自动验证" class="headerlink" title="表单的自动验证"></a>表单的自动验证</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=<span class="string">""</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"text"</span> name=<span class="string">"text"</span> required pattern=<span class="string">"\d&#123;3&#125;"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"submit"</span>&gt;</span><br><span class="line">  &lt;<span class="regexp">/form&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-required属性"><a href="#1-required属性" class="headerlink" title="1.required属性"></a>1.required属性</h3><p> 应用在大部分元素(除了隐藏元素、图片、提交按钮等)，提交时，内容为空，则提示‘请填写此字段’</p>
+<h3 id="2-pattern属性"><a href="#2-pattern属性" class="headerlink" title="2.pattern属性"></a>2.pattern属性</h3><p>通常值是正则表达式，提交时，若输入的内容不符合就会提示”请与所请求的格式保持一致”<br>注意：不同的浏览器提示信息是不同的，我的是在chrome浏览器做的验证</p>
+<h3 id="3-min和max属性"><a href="#3-min和max属性" class="headerlink" title="3.min和max属性"></a>3.min和max属性</h3><p>min与max是数值类型或者日期类型的input元素专用的属性，他们限制了在input元素中输入的数值与日期的范围</p>
+<h3 id="4-step属性"><a href="#4-step属性" class="headerlink" title="4.step属性"></a>4.step属性</h3><p>step属性控制input元素的增加或者减少<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">"number"</span> min=<span class="string">"10"</span> max=<span class="string">"100"</span> step=<span class="string">"10"</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="显示验证"><a href="#显示验证" class="headerlink" title="显示验证"></a>显示验证</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=<span class="string">""</span> onsubmit=<span class="string">"return check();"</span>&gt;</span><br><span class="line">   &lt;label <span class="keyword">for</span>=<span class="string">"email"</span>&gt;email:&lt;/label&gt;</span><br><span class="line">   &lt;input type=<span class="string">"email"</span> id=<span class="string">"email"</span> name=<span class="string">"email"</span>&gt;</span><br><span class="line">   &lt;input type=<span class="string">"submit"</span> value=<span class="string">"提交"</span>&gt;</span><br><span class="line"> &lt;<span class="regexp">/form&gt;</span></span><br><span class="line"><span class="regexp">   &lt;script&gt;</span></span><br><span class="line"><span class="regexp">   var email = document.getElementById('email'); </span></span><br><span class="line"><span class="regexp">   function check()&#123;</span></span><br><span class="line"><span class="regexp">     if(email.value == '')&#123;</span></span><br><span class="line"><span class="regexp">       alert('请输入邮箱');</span></span><br><span class="line"><span class="regexp">       return false;</span></span><br><span class="line"><span class="regexp">     &#125;else if(!email.checkValidity())&#123;</span></span><br><span class="line"><span class="regexp">       alert('请输入正确的邮箱');</span></span><br><span class="line"><span class="regexp">     &#125;else&#123;</span></span><br><span class="line"><span class="regexp">        alert('您输入的邮箱正确');</span></span><br><span class="line"><span class="regexp">     &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">   &#125;</span></span><br><span class="line"><span class="regexp"> &lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+<p>另外input元素和form元素中都有一个validity属性，它返回的是一个ValidityState对象，该对象中有一个最重要的属性valid,判断表单是否有效</p>
+<h2 id="取消验证"><a href="#取消验证" class="headerlink" title="取消验证"></a>取消验证</h2><ol>
+<li>formnovalidate属性:对input或者submit元素，中的单个取消表单验证，但是如果对submit设置了该属性也相当于对所有的表单元素取消验证了；</li>
+<li>novalidate属性:form表单属性，对所有的表单元素取消验证。</li>
+</ol>
+<h2 id="自定义错误信息"><a href="#自定义错误信息" class="headerlink" title="自定义错误信息"></a>自定义错误信息</h2><p>在HTML5中，可以使用javascript中的setCustomValidity方法来自己定义错误的提示信息<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;form onsubmit=<span class="string">"return check2();"</span>&gt;</span><br><span class="line">  &lt;label <span class="keyword">for</span>=<span class="string">"pass1"</span>&gt;密码：&lt;<span class="regexp">/label&gt;</span></span><br><span class="line"><span class="regexp">  &lt;input type="password" id="pass1" name="pass1"&gt;&lt;br&gt;</span></span><br><span class="line"><span class="regexp">  &lt;label for="pass2"&gt;重复密码：&lt;/</span>label&gt;</span><br><span class="line">  &lt;input type=<span class="string">"password"</span> id=<span class="string">"pass2"</span> name=<span class="string">"pass2"</span>&gt;&lt;br&gt;</span><br><span class="line">  &lt;label for="email"&gt;email:&lt;/label&gt;</span><br><span class="line">  &lt;input type="email" id="email" name="email"&gt;&lt;br&gt;</span><br><span class="line">  &lt;input type="submit"&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  function check2()&#123;</span><br><span class="line">      var pass1 = document.getElementById('pass1');</span><br><span class="line">      var pass2 = document.getElementById('pass2');</span><br><span class="line">      var email = document.getElementById('email');</span><br><span class="line">      if(pass1.value !== pass2.value)&#123;</span><br><span class="line">        pass2.setCustomValidity('密码不一致');</span><br><span class="line">      &#125;else&#123;</span><br><span class="line">         pass2.setCustomValidity('');</span><br><span class="line">      &#125;</span><br><span class="line">      if(!email.checkValidity())&#123;</span><br><span class="line">        email.setCustomValidity('请输入正确的email');</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  // opera是目前唯一的支持自定义错误信息的浏览器。</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/06/你必需知道的模块加载器之一CMD/" rel="next" title="你必需知道的模块加载器之一CMD">
+                <i class="fa fa-chevron-left"></i> 你必需知道的模块加载器之一CMD
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/01/基于node开发的常见工具/" rel="prev" title="基于node开发的常见工具">
+                基于node开发的常见工具 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/zpp.jpg"
+                alt="珈润" />
+            
+              <p class="site-author-name" itemprop="name">珈润</p>
+              <p class="site-description motion-element" itemprop="description">前端工程师</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Believel" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#表单的自动验证"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x8868;&#x5355;&#x7684;&#x81EA;&#x52A8;&#x9A8C;&#x8BC1;" class="headerlink" title="&#x8868;&#x5355;&#x7684;&#x81EA;&#x52A8;&#x9A8C;&#x8BC1;"></a>&#x8868;&#x5355;&#x7684;&#x81EA;&#x52A8;&#x9A8C;&#x8BC1;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-required属性"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#1-required&#x5C5E;&#x6027;" class="headerlink" title="1.required&#x5C5E;&#x6027;"></a>1.required&#x5C5E;&#x6027;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-pattern属性"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#2-pattern&#x5C5E;&#x6027;" class="headerlink" title="2.pattern&#x5C5E;&#x6027;"></a>2.pattern&#x5C5E;&#x6027;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-min和max属性"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#3-min&#x548C;max&#x5C5E;&#x6027;" class="headerlink" title="3.min&#x548C;max&#x5C5E;&#x6027;"></a>3.min&#x548C;max&#x5C5E;&#x6027;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-step属性"><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#4-step&#x5C5E;&#x6027;" class="headerlink" title="4.step&#x5C5E;&#x6027;"></a>4.step&#x5C5E;&#x6027;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#显示验证"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x663E;&#x793A;&#x9A8C;&#x8BC1;" class="headerlink" title="&#x663E;&#x793A;&#x9A8C;&#x8BC1;"></a>&#x663E;&#x793A;&#x9A8C;&#x8BC1;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#取消验证"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x53D6;&#x6D88;&#x9A8C;&#x8BC1;" class="headerlink" title="&#x53D6;&#x6D88;&#x9A8C;&#x8BC1;"></a>&#x53D6;&#x6D88;&#x9A8C;&#x8BC1;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义错误信息"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x81EA;&#x5B9A;&#x4E49;&#x9519;&#x8BEF;&#x4FE1;&#x606F;" class="headerlink" title="&#x81EA;&#x5B9A;&#x4E49;&#x9519;&#x8BEF;&#x4FE1;&#x606F;"></a>&#x81EA;&#x5B9A;&#x4E49;&#x9519;&#x8BEF;&#x4FE1;&#x606F;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">珈润</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2016/08/17/HTML5中表单验证/';
+          this.page.identifier = '2016/08/17/HTML5中表单验证/';
+          this.page.title = 'HTML5中表单验证';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
