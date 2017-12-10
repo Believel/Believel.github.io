@@ -511,98 +511,24 @@
 
       
         
-          
-            <p>源代码管理软件的介绍</p>
+          <p>源代码管理软件的介绍</p>
 <p>源代码管理软件为了解决什么问题？</p>
 <ol>
 <li>bug无法解决或者需求频繁变动，导致我们需要在源代码处于某种状态时，保存一次，以便以后使用。</li>
 <li>多人协调工作时，代码需要实时更新，保持所有人都是一个同步的状态。</li>
-<li>当多个程序员编辑同一个文件并产生覆盖问题（冲突）时，如何处理？</li>
+<li>当多个程序员编辑同一个文件并产生覆盖问题（冲突）时，如何处理？<br>如果由我们来写一个程序解决这个问题，怎么做比较好？</li>
 </ol>
-<p>如果由我们来写一个程序解决这个问题，怎么做比较好？</p>
 <p>我们写一个服务器，然后所有人把代码都传到服务器上。要编辑代码时，就下载，编辑完之后立刻上传到服务器上，供其他人在此基础上进行编辑。我要编辑那几个文件，我就给哪几个文件在服务器上做标记，对于已经标记过的文件，其他人就不允许修改。</p>
 <p>服务器上可以给每给文件一个版本号，每当有修改时，版本号就变化。当我上传时就会确认服务器上的版本号，对不上就得进行修改。</p>
 <p>但是这个思路下仍然有一些问题：</p>
-<p>太过于依赖服务器了，如果没有服务器，就没办法工作。</p>
-<p>git基本的使用步骤</p>
-<p>安装git,安装步骤都是默认的步骤</p>
-<p>☞创建一个存放项目的文件夹（例如：gitDemo）</p>
-<p>☞进入这个文件夹，选择空白处右击选择“Git Bash Here”,进入命令行的界面</p>
-<p>☞首先配置自己的用户名和邮箱，主要是为了标识</p>
-<pre><code>git config --global user.name &quot;Your Name&quot;
-git config --global user.email &quot;email@example.com&quot;
-</code></pre><ol>
-<li><p>初始化一个仓库</p>
-<p> git init</p>
-</li>
-<li><p>新建文件readme.txt（在你建的文件夹下建所需要的文件，这里是以‘readme.txt’为例）</p>
-</li>
-<li><p>把这个新增操作添加到缓存区</p>
-<p> git add readme.txt<br> git add .   //缓存文件夹下的所有的修改<br> git add –all</p>
-</li>
-<li><p>把缓存区中存储的修改，保存成第一个版本</p>
-<pre><code>git commit -m &quot;this is v0.0.1&quot;
-</code></pre></li>
-<li><p>对readme.txt做一些修改</p>
-</li>
-<li><p>把我们对readme.txt做的修改保存到缓存区。</p>
-<p> git add readme.txt（或者git add .）</p>
-</li>
-<li><p>把缓存区中存储的修改，保存成第二个版本</p>
-<p> git commit -m “this is v0.0.2”</p>
-</li>
-<li><p>回退到第一个版本</p>
-<ol>
-<li>看一下每个版本的版本号git log</li>
-<li><p>回退到第一个版本git reset –hard [第一个版本的版本号]<br>注意：如果手动删除文件夹中的内容，也要把删除后的东西后添加保存缓存中</p>
-<p>git log   //查看版本信息<br>git log –pretty=oneline //可以看到单行版本<br>git reflog<br>git status //查看状态<br>q  //是退出</p>
-</li>
-</ol>
-</li>
-</ol>
-<p>9.分支与合并</p>
-<pre><code>Git branch //查看分支
-Git branch dev //创建dev分支
-Git checkout dev//切换到dev分支
-Git checkout -b dev //创建并切换到dev分支
-</code></pre><p>在当前分支里之后，我们还可以切换到master（git checkout master）后再用git merge dev来合并</p>
-<p>在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；</p>
-<p>  建立本地分支和远程分支的关联，使用git branch –set-upstream branch-name origin/branch-name；</p>
-<p>  第一种情况：在同一个文件内操作分支与合并</p>
-<p>  第二种情况：在不同的文件操作（比较常见）</p>
-<p>10 删除文件</p>
-<pre><code>git rm 文件名
-</code></pre><p>远程仓库（使用github作为远程仓库的准备）</p>
-<p>1.首先，因为通讯是基于ssh（安全外壳协议secure Shell）的，我们要先有一对rsa加密的公钥和私钥。如果没有配置SSH key就只能clone代码不能push上去（只读），所以要先在Git里面生成SHH Key</p>
-<pre><code>$ ssh-keygen -t rsa -C &quot;youremail@example.com&quot;
-</code></pre><p>找到文件夹下面的id_rsa.pub文件，复制里面全部的内容（这里是生成的密码，以后在公司里面直接交给网管，在这里直接在git上用自己的账号模拟演示）。</p>
-<pre><code>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCuSd5lpjk+pUFFePxPQSIBWzGmasUlJWkE7GRtU0kTacu2tXamvGckSCwwVTdNjRjVdzu7n9FK6fOGB6pjgAW1tAvjnYWzATsIXqWuEqCaI+jt0MQNc+JZBuq28UvH3XW+YzCeuwL6lKp29Y/n7kiSYJ51NFFSR8KQ3kpSTgmx4x9pNkpVPfQpGQFwVMwrRf+OxCjs3QqtBxnPUCc79oEDQrGTkn2aDh1v6FJNwx9f5HEpHCRxRMzlnYRf23BPhEGAJn9QhfYc0vPMt8KPvFyCkYhvnbde3CjKG6AKlZzuTaArdTv9HpHBFCMo+rrZHXdIUYkiE6WPxTLlxt626YPr youremail@example.com
-</code></pre><p>2.在github中创建一个仓储（这里主要是用来模拟公司账号）New repository</p>
-<p>生成仓储地址之后，在setting中找到SSH and GPG keys,把电脑上生成的秘钥添加上去，创建秘钥。</p>
-<p>确定本地和github的服务器可以通信之后，就可以拉代码、push代码了。</p>
-<p>3.新建一个文件夹（准备从git上下载刚刚创建的仓储）</p>
-<p>4.进入这个文件夹，空白处右击git bash here</p>
-<p>5.输入命令：</p>
-<pre><code>git clone 仓储地址      //下载的是master分支源代码，而不是所有分支的源代码
-git clone xxx.git &quot;指定目录&quot;
-</code></pre><p>推荐用SSH的地址，而不是HTTPS，这样就不用每次输用户名密码了。</p>
-<p>6.如果对下载的项目中又添加了一些内容（也就是修改了一些内容或者增加一些功能），我们要把修改之后的项目上传到git上去，就要执行一下命令：</p>
-<pre><code>git add .
-git commit -m &apos;版本说明信息&apos;
-git push origin master
-</code></pre><p>7.如果其他人和你修改了同一个文件的代码，试图上传到服务器上，就会发生冲突，你可以先git pull下载，然后在本地合并解决冲突再推送。</p>
-<p>  从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull(origin master)抓取远程的新提交；</p>
-<p>如何 clone 非 master 分支的代码 — 切换到指定 branch分支 或者 tag版本</p>
-<p>方法1(界面操作)</p>
-<p>在github上找到分支，并点击，然后在点击“clone or download”，选择”Download Zip”这时下载的就是指定分支下面的源代码</p>
-<p>方法2(命令行操作)</p>
-<ol>
-<li>在本地使用git clone git@github.com:ustbhuangyi/vue-music.git(注意这下载的是master分支的源代码，而不是所有分支的源代码)</li>
-<li>如果要查看所有的分支使用命令git branch -a,(绿色表示当前的分支，红色表示远程的分支)</li>
-<li>如果要切换到chapter1分支命令为：git checkout chapter1,这时查看的就是chapter1分支下的源代码</li>
-</ol>
-
-          
+<p>太过于依赖服务器了，如果没有服务器，就没办法工作。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/11/01/git管理工具介绍-md/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
