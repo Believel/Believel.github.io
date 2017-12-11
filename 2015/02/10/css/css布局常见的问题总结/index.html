@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="css," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="作为从事前端的人员，页面的布局是最基本的工作之一，那么简而言之工作中就会遇到各种各样的布局问题，自己总结下来，希望会有用。 1.margin常见问题——IE6下的双边距bug这里引用张鑫旭的一张图说明问题：">
+<meta name="keywords" content="css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css布局常见的问题总结">
+<meta property="og:url" content="http://yoursite.com/2015/02/10/css/css布局常见的问题总结/index.html">
+<meta property="og:site_name" content="张珈润">
+<meta property="og:description" content="作为从事前端的人员，页面的布局是最基本的工作之一，那么简而言之工作中就会遇到各种各样的布局问题，自己总结下来，希望会有用。 1.margin常见问题——IE6下的双边距bug这里引用张鑫旭的一张图说明问题：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/IE6%E5%8F%8C%E8%BE%B9%E8%B7%9Dbug%E5%9B%BE.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/%E7%AD%89%E9%AB%98%E8%87%AA%E9%80%82%E5%BA%94.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%9A%84%E4%B8%A4%E6%A0%8F%E8%87%AA%E9%80%82%E5%BA%94.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/%E5%B7%A6%E4%B8%AD%E5%8F%B3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/%E9%AB%98%E5%BA%A6%E8%87%AA%E9%80%82%E5%BA%94.png">
+<meta property="og:updated_time" content="2017-12-11T01:43:56.598Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css布局常见的问题总结">
+<meta name="twitter:description" content="作为从事前端的人员，页面的布局是最基本的工作之一，那么简而言之工作中就会遇到各种各样的布局问题，自己总结下来，希望会有用。 1.margin常见问题——IE6下的双边距bug这里引用张鑫旭的一张图说明问题：">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/IE6%E5%8F%8C%E8%BE%B9%E8%B7%9Dbug%E5%9B%BE.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/02/10/css/css布局常见的问题总结/"/>
+
+
+
+
+
+  <title>css布局常见的问题总结 | 张珈润</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张珈润</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">学无止境，聚沙成塔</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/02/10/css/css布局常见的问题总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="珈润">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/zpp.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张珈润">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">css布局常见的问题总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-02-10T14:16:52+08:00">
+                2015-02-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/02/10/css/css布局常见的问题总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/02/10/css/css布局常见的问题总结/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>作为从事前端的人员，页面的布局是最基本的工作之一，那么简而言之工作中就会遇到各种各样的布局问题，自己总结下来，希望会有用。</p>
+<h2 id="1-margin常见问题——IE6下的双边距bug"><a href="#1-margin常见问题——IE6下的双边距bug" class="headerlink" title="1.margin常见问题——IE6下的双边距bug"></a>1.margin常见问题——IE6下的双边距bug</h2><p>这里引用张鑫旭的一张图说明问题：<br><img src="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/IE6%E5%8F%8C%E8%BE%B9%E8%B7%9Dbug%E5%9B%BE.png" alt=""><br><a id="more"></a></p>
+<ul>
+<li>产生的条件是：margin + float + block元素</li>
+<li>解决的原因：首先是inline元素或inline-block元素是不存在双边距问题的。然后，float:left等浮动属性可以让inline元素haslayout，会让inline元素表现得跟inline-block元素的特性一样，支持高宽，垂直margin和padding等，所以div class的所有样式可以用在这个display inline的元素上。</li>
+</ul>
+<h2 id="2-margin重叠问题"><a href="#2-margin重叠问题" class="headerlink" title="2.margin重叠问题"></a>2.margin重叠问题</h2><ul>
+<li>解释：垂直边距可能会发生重合</li>
+<li><a href="http://www.zhangxinxu.com/study/200908/margin-overlap.html" target="_blank" rel="noopener">解决办法</a></li>
+</ul>
+<h2 id="3-margin在流动性布局中的使用"><a href="#3-margin在流动性布局中的使用" class="headerlink" title="3.margin在流动性布局中的使用"></a>3.margin在流动性布局中的使用</h2><ul>
+<li><h3 id="1-两栏不固定布局"><a href="#1-两栏不固定布局" class="headerlink" title="1.两栏不固定布局"></a>1.两栏不固定布局</h3><ul>
+<li>左列用来导航，右列来显示内容，我们看到它们有一个共同的框，中间还有一条分隔线，左右两列高度都不固定的。</li>
+<li>这种情况下需要两列的高度保持一致，否则会出现断层的效果</li>
+<li>方案：padding补偿法</li>
+<li>方法解释：把列的padding-bottom设为一个足够大的值，再把列的margin-bottom设为一个与前面的padding-bottom正值相抵消的负值，父容器设置超出隐藏。<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">head</span>&gt;</span><br><span class="line">       &lt;meta charset="utf-8"&gt;</span><br><span class="line">       &lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">       <span class="selector-tag">body</span>&#123;</span><br><span class="line">         <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">         <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">         <span class="attribute">color</span>: <span class="number">#f00</span>;</span><br><span class="line">       &#125;</span><br><span class="line">     <span class="selector-class">.container</span>&#123;</span><br><span class="line">       <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">       <span class="attribute">width</span>: <span class="number">600px</span>;</span><br><span class="line">       <span class="attribute">border</span>: <span class="number">3px</span> solid <span class="number">#00c</span>;</span><br><span class="line">       <span class="comment">/* 关键点，让超出的部分隐藏 */</span></span><br><span class="line">       <span class="attribute">overflow</span>: hidden;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="selector-class">.left</span>&#123;</span><br><span class="line">       <span class="attribute">float</span>: left;</span><br><span class="line">       <span class="attribute">width</span>: <span class="number">150px</span>;</span><br><span class="line">       <span class="attribute">background</span>: <span class="number">#B0B0B0</span>;</span><br><span class="line">       <span class="comment">/* 障眼法设置，看起来是等高的 */</span></span><br><span class="line">       <span class="attribute">padding-bottom</span>: <span class="number">2000px</span>;</span><br><span class="line">       <span class="attribute">margin-bottom</span>: -<span class="number">2000px</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="selector-class">.right</span>&#123;</span><br><span class="line">       <span class="attribute">float</span>: left;</span><br><span class="line">       <span class="attribute">width</span>: <span class="number">450px</span>;</span><br><span class="line">       <span class="attribute">background</span>: <span class="number">#6cc</span>;</span><br><span class="line">       <span class="attribute">padding-bottom</span>: <span class="number">2000px</span>;</span><br><span class="line">       <span class="attribute">margin-bottom</span>: -<span class="number">2000px</span>;</span><br><span class="line">     &#125;</span><br><span class="line">       &lt;/style&gt;</span><br><span class="line">   &lt;/head&gt;</span><br><span class="line">   &lt;<span class="selector-tag">body</span>&gt;</span><br><span class="line">     &lt;div class="container"&gt;</span><br><span class="line">       &lt;div class="left"&gt;我是left&lt;/div&gt;</span><br><span class="line">       &lt;div class="right"&gt;</span><br><span class="line">         我是<span class="selector-tag">right</span></span><br><span class="line">         &lt;<span class="selector-tag">br</span>&gt;</span><br><span class="line">         &lt;<span class="selector-tag">br</span>&gt;</span><br><span class="line">         现在的高度比<span class="selector-tag">left</span>高，但<span class="selector-tag">left</span>用它的<span class="selector-tag">padding-bottom</span>补偿了这一部分的高度</span><br><span class="line">       &lt;/div&gt;</span><br><span class="line">       &lt;div style="clear:both;"&gt;&lt;/div&gt;</span><br><span class="line">     &lt;/div&gt;</span><br><span class="line">   &lt;/body&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/%E7%AD%89%E9%AB%98%E8%87%AA%E9%80%82%E5%BA%94.png" alt="效果图"></p>
+<ul>
+<li><h3 id="2-移动端两栏自适应布局"><a href="#2-移动端两栏自适应布局" class="headerlink" title="2.移动端两栏自适应布局"></a>2.移动端两栏自适应布局</h3><ul>
+<li>左边固定宽度，右边自适应宽度<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">head</span>&gt;</span><br><span class="line">        &lt;meta charset="utf-8"&gt;</span><br><span class="line">        &lt;meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"&gt;</span><br><span class="line">        &lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">        <span class="selector-tag">html</span>,<span class="selector-tag">body</span>&#123;</span><br><span class="line">          <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">          <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      <span class="selector-tag">body</span>&#123;</span><br><span class="line">        <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="selector-class">.main</span>&#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="selector-class">.left</span>&#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">90px</span>;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">        <span class="attribute">background-color</span>: <span class="number">#def</span>;</span><br><span class="line">        <span class="attribute">float</span>: left;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="selector-class">.right</span>&#123;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">        <span class="attribute">background</span>: red;</span><br><span class="line">        <span class="attribute">overflow</span>: hidden;</span><br><span class="line">      &#125;</span><br><span class="line">        &lt;/style&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">      &lt;<span class="selector-tag">body</span>&gt;</span><br><span class="line">      &lt;div class="main"&gt;</span><br><span class="line">        &lt;div class="left"&gt;</span><br><span class="line">          <span class="selector-tag">nihaohdefdfe</span></span><br><span class="line">          <span class="selector-tag">nihaohdefdfe</span></span><br><span class="line">          <span class="selector-tag">nihaohdefdfe</span></span><br><span class="line">          <span class="selector-tag">nihaohdefdfe</span></span><br><span class="line">          <span class="selector-tag">nihaohdefdfe</span></span><br><span class="line">          <span class="selector-tag">nihaohdefdfe</span></span><br><span class="line">          <span class="selector-tag">nihaohdefdfe</span></span><br><span class="line">          <span class="selector-tag">nihaohdefdfe</span></span><br><span class="line">          <span class="selector-tag">nihaohdefdfe</span></span><br><span class="line">          <span class="selector-tag">nihaohdefdfe</span></span><br><span class="line">          <span class="selector-tag">nihaohdefdfe</span></span><br><span class="line">          <span class="selector-tag">nihaohdefdfe</span></span><br><span class="line">          <span class="selector-tag">nihaohdefdfe</span></span><br><span class="line">          <span class="selector-tag">nihaohdefdfe</span></span><br><span class="line">          <span class="selector-tag">nihaohdefdfe</span></span><br><span class="line">          <span class="selector-tag">nihaohdefdfe</span></span><br><span class="line">          <span class="selector-tag">nihaohdefdfe</span></span><br><span class="line">          <span class="selector-tag">nihaohdefdfe</span></span><br><span class="line">          <span class="selector-tag">nihaohdefdfe</span></span><br><span class="line">          <span class="selector-tag">nihaohdefdfe</span></span><br><span class="line">          <span class="selector-tag">nihaohdefdfe</span></span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class="right"&gt;</span><br><span class="line">          <span class="selector-tag">nihaohaode</span></span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/body&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%9A%84%E4%B8%A4%E6%A0%8F%E8%87%AA%E9%80%82%E5%BA%94.png" alt="两栏自适应效果图"></p>
+<ul>
+<li><h3 id="3-宽度自适应"><a href="#3-宽度自适应" class="headerlink" title="3.宽度自适应"></a>3.宽度自适应</h3><ul>
+<li>左 中 右<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">head</span>&gt;</span><br><span class="line">    &lt;meta charset="UTF-8"&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">        <span class="selector-class">.left</span>&#123;</span><br><span class="line">            <span class="attribute">float</span>: left;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">            <span class="attribute">_margin-right</span>:-<span class="number">3px</span>;<span class="comment">/*兼容IE6下的3px的bug(使用float引起的)*/</span></span><br><span class="line">            <span class="attribute">height</span>: <span class="number">1000px</span>;</span><br><span class="line">            <span class="attribute">background-color</span>: red;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="selector-class">.right</span>&#123;</span><br><span class="line">            <span class="attribute">float</span>: right;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">            <span class="attribute">_margin-left</span>:-<span class="number">3px</span>;</span><br><span class="line">              <span class="attribute">height</span>: <span class="number">1000px</span>;</span><br><span class="line">              <span class="attribute">background-color</span>: blue;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="selector-class">.center</span>&#123;</span><br><span class="line">            <span class="attribute">margin</span>:<span class="number">0</span> <span class="number">100px</span>;</span><br><span class="line">            <span class="attribute">_margin</span>:<span class="number">0</span> <span class="number">97px</span>;</span><br><span class="line">              <span class="attribute">height</span>: <span class="number">1000px</span>;</span><br><span class="line">              <span class="attribute">background-color</span>: pink;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;<span class="selector-tag">body</span>&gt;</span><br><span class="line">    &lt;div class="left"&gt;左&lt;/div&gt;</span><br><span class="line">    &lt;div class="right"&gt;右&lt;/div&gt;</span><br><span class="line">    &lt;div class="center"&gt;中&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/%E5%B7%A6%E4%B8%AD%E5%8F%B3.png" alt="效果图"></p>
+<ul>
+<li><h3 id="4-高度自适应"><a href="#4-高度自适应" class="headerlink" title="4.高度自适应"></a>4.高度自适应</h3><ul>
+<li>运用在后台界面中</li>
+<li>上：高度固定菜单或者导航栏</li>
+<li>下：高度自适应显示内容</li>
+<li>IE7+以及chrome,firefox中利用绝对定位可以，但IE6中并不使用，在IE6中给html设定padding值并不会撑大html尺寸<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">head</span>&gt;</span><br><span class="line">  &lt;meta charset="UTF-8"&gt;</span><br><span class="line">  &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">  &lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">    <span class="selector-tag">html</span>,<span class="selector-tag">body</span>&#123;</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-tag">body</span>,<span class="selector-tag">div</span>&#123;</span><br><span class="line">      <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">      <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    *<span class="selector-tag">html</span>&#123;</span><br><span class="line">      <span class="attribute">padding-top</span>: <span class="number">100px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.top</span>&#123;</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">      <span class="attribute">position</span>: absolute;</span><br><span class="line">      <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">      <span class="attribute">background-color</span>: blue;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.con</span>&#123;</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">      <span class="attribute">position</span>: absolute;</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">      <span class="attribute">top</span>: <span class="number">100px</span>;</span><br><span class="line">      <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">      <span class="attribute">overflow</span>: auto;</span><br><span class="line">      <span class="attribute">background-color</span>: pink;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*for ie6*/</span></span><br><span class="line">     *<span class="selector-tag">html</span> <span class="selector-class">.top</span>&#123;</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">      <span class="attribute">position</span>: absolute;</span><br><span class="line">      <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">      <span class="attribute">background-color</span>: blue;</span><br><span class="line">    &#125;</span><br><span class="line">    *<span class="selector-tag">html</span> <span class="selector-class">.con</span>&#123;</span><br><span class="line">      <span class="attribute">position</span>: static;</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">      <span class="attribute">background-color</span>: pink;</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;<span class="selector-tag">body</span>&gt;</span><br><span class="line">  &lt;div class="top"&gt;&lt;/div&gt;</span><br><span class="line">  &lt;div class="con"&gt;&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/%E9%AB%98%E5%BA%A6%E8%87%AA%E9%80%82%E5%BA%94.png" alt="效果图"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css/" rel="tag"># css</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/01/10/css/css实现首字母下沉/" rel="next" title="css实现首字母下沉">
+                <i class="fa fa-chevron-left"></i> css实现首字母下沉
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/06/others/markdown基本的用法/" rel="prev" title="markdown基本的用法">
+                markdown基本的用法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/zpp.jpg"
+                alt="珈润" />
+            
+              <p class="site-author-name" itemprop="name">珈润</p>
+              <p class="site-description motion-element" itemprop="description">前端工程师</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Believel" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-margin常见问题——IE6下的双边距bug"><span class="nav-number">1.</span> <span class="nav-text"><a href="#1-margin&#x5E38;&#x89C1;&#x95EE;&#x9898;&#x2014;&#x2014;IE6&#x4E0B;&#x7684;&#x53CC;&#x8FB9;&#x8DDD;bug" class="headerlink" title="1.margin&#x5E38;&#x89C1;&#x95EE;&#x9898;&#x2014;&#x2014;IE6&#x4E0B;&#x7684;&#x53CC;&#x8FB9;&#x8DDD;bug"></a>1.margin&#x5E38;&#x89C1;&#x95EE;&#x9898;&#x2014;&#x2014;IE6&#x4E0B;&#x7684;&#x53CC;&#x8FB9;&#x8DDD;bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-margin重叠问题"><span class="nav-number">2.</span> <span class="nav-text"><a href="#2-margin&#x91CD;&#x53E0;&#x95EE;&#x9898;" class="headerlink" title="2.margin&#x91CD;&#x53E0;&#x95EE;&#x9898;"></a>2.margin&#x91CD;&#x53E0;&#x95EE;&#x9898;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-margin在流动性布局中的使用"><span class="nav-number">3.</span> <span class="nav-text"><a href="#3-margin&#x5728;&#x6D41;&#x52A8;&#x6027;&#x5E03;&#x5C40;&#x4E2D;&#x7684;&#x4F7F;&#x7528;" class="headerlink" title="3.margin&#x5728;&#x6D41;&#x52A8;&#x6027;&#x5E03;&#x5C40;&#x4E2D;&#x7684;&#x4F7F;&#x7528;"></a>3.margin&#x5728;&#x6D41;&#x52A8;&#x6027;&#x5E03;&#x5C40;&#x4E2D;&#x7684;&#x4F7F;&#x7528;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-两栏不固定布局"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#1-&#x4E24;&#x680F;&#x4E0D;&#x56FA;&#x5B9A;&#x5E03;&#x5C40;" class="headerlink" title="1.&#x4E24;&#x680F;&#x4E0D;&#x56FA;&#x5B9A;&#x5E03;&#x5C40;"></a>1.&#x4E24;&#x680F;&#x4E0D;&#x56FA;&#x5B9A;&#x5E03;&#x5C40;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-移动端两栏自适应布局"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#2-&#x79FB;&#x52A8;&#x7AEF;&#x4E24;&#x680F;&#x81EA;&#x9002;&#x5E94;&#x5E03;&#x5C40;" class="headerlink" title="2.&#x79FB;&#x52A8;&#x7AEF;&#x4E24;&#x680F;&#x81EA;&#x9002;&#x5E94;&#x5E03;&#x5C40;"></a>2.&#x79FB;&#x52A8;&#x7AEF;&#x4E24;&#x680F;&#x81EA;&#x9002;&#x5E94;&#x5E03;&#x5C40;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-宽度自适应"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#3-&#x5BBD;&#x5EA6;&#x81EA;&#x9002;&#x5E94;" class="headerlink" title="3.&#x5BBD;&#x5EA6;&#x81EA;&#x9002;&#x5E94;"></a>3.&#x5BBD;&#x5EA6;&#x81EA;&#x9002;&#x5E94;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-高度自适应"><span class="nav-number">3.4.</span> <span class="nav-text"><a href="#4-&#x9AD8;&#x5EA6;&#x81EA;&#x9002;&#x5E94;" class="headerlink" title="4.&#x9AD8;&#x5EA6;&#x81EA;&#x9002;&#x5E94;"></a>4.&#x9AD8;&#x5EA6;&#x81EA;&#x9002;&#x5E94;</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">珈润</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2015/02/10/css/css布局常见的问题总结/';
+          this.page.identifier = '2015/02/10/css/css布局常见的问题总结/';
+          this.page.title = 'css布局常见的问题总结';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

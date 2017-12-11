@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="App," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.ionic环境安装以及配置1.1. 安装ionic 与 cordova npm install -g ionic cordova npm install -g ionic 是基于cordova的封装，提供一些额外的组件以及集成了angular   npm install -g cordova 作用实现对html项目的打包     检测是否安装成功 执行命令:ionic -v cordova -">
+<meta name="keywords" content="App">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HybridApp__ionic的环境配置及使用步骤">
+<meta property="og:url" content="http://yoursite.com/2017/01/03/app/HybridApp-ionic的环境配置及使用步骤/index.html">
+<meta property="og:site_name" content="张珈润">
+<meta property="og:description" content="1.ionic环境安装以及配置1.1. 安装ionic 与 cordova npm install -g ionic cordova npm install -g ionic 是基于cordova的封装，提供一些额外的组件以及集成了angular   npm install -g cordova 作用实现对html项目的打包     检测是否安装成功 执行命令:ionic -v cordova -">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-11T01:41:07.931Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HybridApp__ionic的环境配置及使用步骤">
+<meta name="twitter:description" content="1.ionic环境安装以及配置1.1. 安装ionic 与 cordova npm install -g ionic cordova npm install -g ionic 是基于cordova的封装，提供一些额外的组件以及集成了angular   npm install -g cordova 作用实现对html项目的打包     检测是否安装成功 执行命令:ionic -v cordova -">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/03/app/HybridApp-ionic的环境配置及使用步骤/"/>
+
+
+
+
+
+  <title>HybridApp__ionic的环境配置及使用步骤 | 张珈润</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张珈润</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">学无止境，聚沙成塔</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/03/app/HybridApp-ionic的环境配置及使用步骤/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="珈润">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/zpp.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张珈润">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HybridApp__ionic的环境配置及使用步骤</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-03T17:59:06+08:00">
+                2017-01-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/App/" itemprop="url" rel="index">
+                    <span itemprop="name">App</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/01/03/app/HybridApp-ionic的环境配置及使用步骤/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/01/03/app/HybridApp-ionic的环境配置及使用步骤/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-ionic环境安装以及配置"><a href="#1-ionic环境安装以及配置" class="headerlink" title="1.ionic环境安装以及配置"></a>1.ionic环境安装以及配置</h2><h3 id="1-1-安装ionic-与-cordova"><a href="#1-1-安装ionic-与-cordova" class="headerlink" title="1.1. 安装ionic 与 cordova"></a>1.1. 安装ionic 与 cordova</h3><ul>
+<li><code>npm install -g ionic cordova</code><ul>
+<li><code>npm install -g ionic</code><ul>
+<li>是基于cordova的封装，提供一些额外的组件以及集成了angular</li>
+</ul>
+</li>
+<li><code>npm install -g cordova</code><ul>
+<li>作用实现对html项目的打包</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>检测是否安装成功<ul>
+<li>执行命令:<code>ionic -v</code></li>
+<li><code>cordova -v</code> 如果能够输出版本信息，则表示安装成功</li>
+</ul>
+</li>
+<li>安装的时候注意网络问题. 可以使用淘宝的镜像源。</li>
+<li>如果不成功多试几次。<a id="more"></a>
+<h3 id="1-2-jdk"><a href="#1-2-jdk" class="headerlink" title="1.2. jdk"></a>1.2. jdk</h3><ul>
+<li>java运行需要环境(混合app的壳需求环境)</li>
+<li>检查安装是否成功，在cmd中输入:java</li>
+<li>配置环境变量：</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>计算机·属性·-&gt;高级系统设置-&gt;环境变量-&gt;新建-&gt;<ul>
+<li>添加变量名：JAVA_HOME   变量值:  C:\Program Files\Java\jdk1.8.0_91\bin</li>
+</ul>
+</li>
+<li>还要在path中添加%JAVA_HOM%;</li>
+<li>之后检查在cmd中输入javac看是否能通过（目的：将java代码编译成二进制文件）</li>
+</ul>
+<h3 id="1-3-sdk单独下载需要科学上网-android-Studio"><a href="#1-3-sdk单独下载需要科学上网-android-Studio" class="headerlink" title="1.3. sdk单独下载需要科学上网:android Studio"></a>1.3. sdk单独下载需要科学上网:android Studio</h3><ul>
+<li>配置环境：</li>
+<li>设置ANDROID_HOME变量名,变量值是sdk的路径:C:\Users\isc(计算机名)\AppData\Local\Android\sdk</li>
+<li><p>在PATH中追加 %ANDROID_HOME%\tools;%ANDROID_HOME%\platform-tools;%ANDROID_HOME%\build-tools;</p>
+</li>
+<li><p>在命令行(cmd)中使用adb命令验证</p>
+</li>
+</ul>
+<h3 id="1-4-node-git-vs2015"><a href="#1-4-node-git-vs2015" class="headerlink" title="1.4. node,git,vs2015"></a>1.4. node,git,vs2015</h3><ul>
+<li>配置环境的目的是为了打包</li>
+</ul>
+<h2 id="2-ionic的使用"><a href="#2-ionic的使用" class="headerlink" title="2. ionic的使用"></a>2. ionic的使用</h2><h3 id="2-1-使用ionic初始化一个移动App的项目"><a href="#2-1-使用ionic初始化一个移动App的项目" class="headerlink" title="2.1.  使用ionic初始化一个移动App的项目"></a>2.1.  使用ionic初始化一个移动App的项目</h3><ul>
+<li><code>ionic start [项目名] [项目模板]</code><ul>
+<li>示例: <code>ionic start myApp sidemenu</code></li>
+<li>[项目名] 不能够是中文,并且项目默认是我们app安装后的名字</li>
+<li>[项目模板]有3种值 : blank, tabs ,sidemenu</li>
+<li>注意:项目名不能是中文，模板名称，有3个可选先项tabs 、menu、blank</li>
+</ul>
+<ul>
+<li>注意<em>整个项目所在目录不能有中文,并且项目的文件名也不能够有中文</em></li>
+<li>在www目录中写我们前端的代码。// 默认也是以index.html为入口文件。<ul>
+<li>到这一步我们就可以像往常一样进行开发了,只不过是在www目录下开发。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-添加不同平台的源码，使之能够运行与各个平台"><a href="#2-2-添加不同平台的源码，使之能够运行与各个平台" class="headerlink" title="2.2. 添加不同平台的源码，使之能够运行与各个平台"></a>2.2. 添加不同平台的源码，使之能够运行与各个平台</h3><p>  当项目完成之后，在项目文件夹中，打开cmd,执行命令：</p>
+<ul>
+<li><code>ionic platform add android</code></li>
+<li><code>ionic platform add ios</code></li>
+<li>上面两个命令人在当前项目目录生成一个platforms文件夹，文件夹中是我们ionic对应不同平台的源码。</li>
+</ul>
+<h3 id="2-3-现在就可以编译打包我们的代码"><a href="#2-3-现在就可以编译打包我们的代码" class="headerlink" title="2.3. 现在就可以编译打包我们的代码"></a>2.3. 现在就可以编译打包我们的代码</h3><ul>
+<li><code>ionic build android</code></li>
+<li>或者 : <code>ionic build ios</code></li>
+<li>最终会生成相应平台的安装包</li>
+<li>以上两个命令什么将源码生成相应平台的安装包</li>
+<li>只要是做ios开发，都需要mac系统。xcode,mac系统下也能开发安卓</li>
+</ul>
+<p><em>注意</em></p>
+<ul>
+<li>若第一次打包的话会下载一个东西在C:\Users\lenovo.gradle\wrapper\dists\gradle-2.13-all\7hsc6vr6mi3i6i5m7q9hj4ci1q</li>
+<li>看是否有gradle-2.13-all.zip(不要压缩，ionic会自己压缩)，若没有自己根据命令行中所给的连接</li>
+<li>链接，在浏览器中下载压缩包放在这个目录中，再用<code>ionic build android</code>编译一下，会自动解压的</li>
+<li>除了文件内容之后，不要有中文，即文件名不能有中文.</li>
+<li>容易丢包的问题,(下载的项目可能会有文件丢失)</li>
+</ul>
+<h3 id="2-4-在手机一键安装：用谷歌的共享手机插件-vysor-，打开开发者模式"><a href="#2-4-在手机一键安装：用谷歌的共享手机插件-vysor-，打开开发者模式" class="headerlink" title="2.4.在手机一键安装：用谷歌的共享手机插件(vysor)，打开开发者模式"></a>2.4.在手机一键安装：用谷歌的共享手机插件(vysor)，打开开发者模式</h3><ul>
+<li>在cmd中使用命令：ionic run android -l -c -s //连接手机，修改文件，自动刷新（run包含build执行代码）<pre><code>adb devices //可以查看手机是否连接在电脑上
+</code></pre></li>
+<li>小知识：<ul>
+<li>检查是不是原生App的方法：在手机设置-&gt;辅助功能-&gt;开发者模式-&gt;显示布局边界(点开)，若有<br>许多边框出现，则是原生App<br><em>注意</em><ul>
+<li>有的手机上的开发模式没有显示出来，android手机版本4.0以上都有开发者模式，可以用打开</li>
+<li>手机按键输入：<em>#</em>#7777#<em>#</em>就可以调出开发者选项了。还有一种办法就是在手机设置中找到手机<code>内核版本</code></li>
+<li>连续点击(共7次)，就可以激活开发者模式了。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="分区助手"><a href="#分区助手" class="headerlink" title="分区助手"></a>分区助手</h2><ul>
+<li><a href="http://www.disktool.cn/" target="_blank" rel="noopener">http://www.disktool.cn/</a></li>
+<li><a href="http://www.disktool.cn/jiaocheng/index.html" target="_blank" rel="noopener">http://www.disktool.cn/jiaocheng/index.html</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/App/" rel="tag"># App</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/01/app/移动App学习笔记集锦一/" rel="next" title="移动App学习笔记集锦一">
+                <i class="fa fa-chevron-left"></i> 移动App学习笔记集锦一
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/23/angular/angular-dragdrop/" rel="prev" title="angular-dragdrop">
+                angular-dragdrop <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/zpp.jpg"
+                alt="珈润" />
+            
+              <p class="site-author-name" itemprop="name">珈润</p>
+              <p class="site-description motion-element" itemprop="description">前端工程师</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Believel" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-ionic环境安装以及配置"><span class="nav-number">1.</span> <span class="nav-text"><a href="#1-ionic&#x73AF;&#x5883;&#x5B89;&#x88C5;&#x4EE5;&#x53CA;&#x914D;&#x7F6E;" class="headerlink" title="1.ionic&#x73AF;&#x5883;&#x5B89;&#x88C5;&#x4EE5;&#x53CA;&#x914D;&#x7F6E;"></a>1.ionic&#x73AF;&#x5883;&#x5B89;&#x88C5;&#x4EE5;&#x53CA;&#x914D;&#x7F6E;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-安装ionic-与-cordova"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#1-1-&#x5B89;&#x88C5;ionic-&#x4E0E;-cordova" class="headerlink" title="1.1. &#x5B89;&#x88C5;ionic &#x4E0E; cordova"></a>1.1. &#x5B89;&#x88C5;ionic &#x4E0E; cordova</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-jdk"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#1-2-jdk" class="headerlink" title="1.2. jdk"></a>1.2. jdk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-sdk单独下载需要科学上网-android-Studio"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#1-3-sdk&#x5355;&#x72EC;&#x4E0B;&#x8F7D;&#x9700;&#x8981;&#x79D1;&#x5B66;&#x4E0A;&#x7F51;-android-Studio" class="headerlink" title="1.3. sdk&#x5355;&#x72EC;&#x4E0B;&#x8F7D;&#x9700;&#x8981;&#x79D1;&#x5B66;&#x4E0A;&#x7F51;:android Studio"></a>1.3. sdk&#x5355;&#x72EC;&#x4E0B;&#x8F7D;&#x9700;&#x8981;&#x79D1;&#x5B66;&#x4E0A;&#x7F51;:android Studio</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-node-git-vs2015"><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#1-4-node-git-vs2015" class="headerlink" title="1.4. node,git,vs2015"></a>1.4. node,git,vs2015</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-ionic的使用"><span class="nav-number">2.</span> <span class="nav-text"><a href="#2-ionic&#x7684;&#x4F7F;&#x7528;" class="headerlink" title="2. ionic&#x7684;&#x4F7F;&#x7528;"></a>2. ionic&#x7684;&#x4F7F;&#x7528;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-使用ionic初始化一个移动App的项目"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#2-1-&#x4F7F;&#x7528;ionic&#x521D;&#x59CB;&#x5316;&#x4E00;&#x4E2A;&#x79FB;&#x52A8;App&#x7684;&#x9879;&#x76EE;" class="headerlink" title="2.1.  &#x4F7F;&#x7528;ionic&#x521D;&#x59CB;&#x5316;&#x4E00;&#x4E2A;&#x79FB;&#x52A8;App&#x7684;&#x9879;&#x76EE;"></a>2.1.  &#x4F7F;&#x7528;ionic&#x521D;&#x59CB;&#x5316;&#x4E00;&#x4E2A;&#x79FB;&#x52A8;App&#x7684;&#x9879;&#x76EE;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-添加不同平台的源码，使之能够运行与各个平台"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#2-2-&#x6DFB;&#x52A0;&#x4E0D;&#x540C;&#x5E73;&#x53F0;&#x7684;&#x6E90;&#x7801;&#xFF0C;&#x4F7F;&#x4E4B;&#x80FD;&#x591F;&#x8FD0;&#x884C;&#x4E0E;&#x5404;&#x4E2A;&#x5E73;&#x53F0;" class="headerlink" title="2.2. &#x6DFB;&#x52A0;&#x4E0D;&#x540C;&#x5E73;&#x53F0;&#x7684;&#x6E90;&#x7801;&#xFF0C;&#x4F7F;&#x4E4B;&#x80FD;&#x591F;&#x8FD0;&#x884C;&#x4E0E;&#x5404;&#x4E2A;&#x5E73;&#x53F0;"></a>2.2. &#x6DFB;&#x52A0;&#x4E0D;&#x540C;&#x5E73;&#x53F0;&#x7684;&#x6E90;&#x7801;&#xFF0C;&#x4F7F;&#x4E4B;&#x80FD;&#x591F;&#x8FD0;&#x884C;&#x4E0E;&#x5404;&#x4E2A;&#x5E73;&#x53F0;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-现在就可以编译打包我们的代码"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#2-3-&#x73B0;&#x5728;&#x5C31;&#x53EF;&#x4EE5;&#x7F16;&#x8BD1;&#x6253;&#x5305;&#x6211;&#x4EEC;&#x7684;&#x4EE3;&#x7801;" class="headerlink" title="2.3. &#x73B0;&#x5728;&#x5C31;&#x53EF;&#x4EE5;&#x7F16;&#x8BD1;&#x6253;&#x5305;&#x6211;&#x4EEC;&#x7684;&#x4EE3;&#x7801;"></a>2.3. &#x73B0;&#x5728;&#x5C31;&#x53EF;&#x4EE5;&#x7F16;&#x8BD1;&#x6253;&#x5305;&#x6211;&#x4EEC;&#x7684;&#x4EE3;&#x7801;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-在手机一键安装：用谷歌的共享手机插件-vysor-，打开开发者模式"><span class="nav-number">2.4.</span> <span class="nav-text"><a href="#2-4-&#x5728;&#x624B;&#x673A;&#x4E00;&#x952E;&#x5B89;&#x88C5;&#xFF1A;&#x7528;&#x8C37;&#x6B4C;&#x7684;&#x5171;&#x4EAB;&#x624B;&#x673A;&#x63D2;&#x4EF6;-vysor-&#xFF0C;&#x6253;&#x5F00;&#x5F00;&#x53D1;&#x8005;&#x6A21;&#x5F0F;" class="headerlink" title="2.4.&#x5728;&#x624B;&#x673A;&#x4E00;&#x952E;&#x5B89;&#x88C5;&#xFF1A;&#x7528;&#x8C37;&#x6B4C;&#x7684;&#x5171;&#x4EAB;&#x624B;&#x673A;&#x63D2;&#x4EF6;(vysor)&#xFF0C;&#x6253;&#x5F00;&#x5F00;&#x53D1;&#x8005;&#x6A21;&#x5F0F;"></a>2.4.&#x5728;&#x624B;&#x673A;&#x4E00;&#x952E;&#x5B89;&#x88C5;&#xFF1A;&#x7528;&#x8C37;&#x6B4C;&#x7684;&#x5171;&#x4EAB;&#x624B;&#x673A;&#x63D2;&#x4EF6;(vysor)&#xFF0C;&#x6253;&#x5F00;&#x5F00;&#x53D1;&#x8005;&#x6A21;&#x5F0F;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分区助手"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5206;&#x533A;&#x52A9;&#x624B;" class="headerlink" title="&#x5206;&#x533A;&#x52A9;&#x624B;"></a>&#x5206;&#x533A;&#x52A9;&#x624B;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">珈润</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/01/03/app/HybridApp-ionic的环境配置及使用步骤/';
+          this.page.identifier = '2017/01/03/app/HybridApp-ionic的环境配置及使用步骤/';
+          this.page.title = 'HybridApp__ionic的环境配置及使用步骤';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

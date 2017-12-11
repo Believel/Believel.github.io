@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.数组属性 1.length-&amp;gt;常用属性使用的时候应该注意：javascript很容易改变length属性的值，从而改变数组的长度。">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript中数组属性和方法的总结">
+<meta property="og:url" content="http://yoursite.com/2016/03/14/javascript/javascript中数组属性和方法的总结/index.html">
+<meta property="og:site_name" content="张珈润">
+<meta property="og:description" content="1.数组属性 1.length-&amp;gt;常用属性使用的时候应该注意：javascript很容易改变length属性的值，从而改变数组的长度。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-11T01:47:01.017Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript中数组属性和方法的总结">
+<meta name="twitter:description" content="1.数组属性 1.length-&amp;gt;常用属性使用的时候应该注意：javascript很容易改变length属性的值，从而改变数组的长度。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/03/14/javascript/javascript中数组属性和方法的总结/"/>
+
+
+
+
+
+  <title>javascript中数组属性和方法的总结 | 张珈润</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张珈润</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">学无止境，聚沙成塔</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/03/14/javascript/javascript中数组属性和方法的总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="珈润">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/zpp.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张珈润">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">javascript中数组属性和方法的总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-14T09:10:38+08:00">
+                2016-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/03/14/javascript/javascript中数组属性和方法的总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/03/14/javascript/javascript中数组属性和方法的总结/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-数组属性"><a href="#1-数组属性" class="headerlink" title="1.数组属性"></a>1.数组属性</h1><hr>
+<p>1.length-&gt;常用属性<br>使用的时候应该注意：javascript很容易改变length属性的值，从而改变数组的长度。<br><a id="more"></a></p>
+<ul>
+<li><p>对arr的length赋值会导致arr修改</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3];</span><br><span class="line">arr.length = 4;</span><br><span class="line">console.log(arr);// [1,2,3,undefined]</span><br><span class="line">console.log(arr[4]);</span><br><span class="line">arr.length = 1;</span><br><span class="line">console.log(arr);//[1]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过索引对 arr 的元素赋值会引起 arr 值得改变（正常情况），但是对 arr 的索引超过其长度时也会引起 arr 的长度发生变化</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1, 2, 3];</span><br><span class="line">arr[2] = 5;</span><br><span class="line">arr // [1, 2, 5];</span><br><span class="line"></span><br><span class="line">var arr = [1, 2, 3];</span><br><span class="line">arr[4] = 9;</span><br><span class="line">arr // [1, 2, 3, undefined, 4];</span><br></pre></td></tr></table></figure>
+<p>2.prototype返回对象类型原型的引用<br>作用：对数组功能进行扩展。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> eg:求数组中元素的最大值</span><br><span class="line">Array.prototype.max = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    var ele = this[0];</span><br><span class="line">    <span class="keyword">for</span> (var i = 0; i &lt; this.length-1; i++) &#123;</span><br><span class="line">        ele =this[i] &gt; this[i + 1] ? this[i] : this[i + 1];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> ele;</span><br><span class="line">&#125;</span><br><span class="line">console.log([1, 5, 4].max())//5</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="2-数组的方法"><a href="#2-数组的方法" class="headerlink" title="2.数组的方法"></a>2.数组的方法</h1><hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">检测数组：instanceof，isArray</span><br><span class="line">转换数组：toString，valueOf，join</span><br><span class="line">栈操作：push，pop</span><br><span class="line">队列操作：<span class="built_in">shift</span>，unshift</span><br><span class="line">排序：reverse，sort</span><br><span class="line">操作方法：concat，slice,splice</span><br><span class="line">位置方法：indexOf,lastIndexOf</span><br></pre></td></tr></table></figure>
+<p>es6中数组的方法：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from</span><br><span class="line">of</span><br><span class="line">find,findIndex</span><br><span class="line">map,filter</span><br><span class="line">includes</span><br><span class="line">reduce</span><br><span class="line">some,every</span><br></pre></td></tr></table></figure></p>
+<p>1.instanceof(返回boolean类型的值)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3];</span><br><span class="line">console.log(arr instanceof Array)// <span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
+<p>2.isArray(返回boolean类型的值)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3]</span><br><span class="line">console.log(Array.isArray(arr))//<span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
+<p>3.toString<br>作用：把数组转换成字符串，每一项用,分隔<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log([1,2,3].toString())// 1,2,3</span><br></pre></td></tr></table></figure></p>
+<p>4.valueOf<br>作用：返回数组对象本身<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log([1,2,3].valueOf())// [1,2,3]</span><br></pre></td></tr></table></figure></p>
+<p>5.join<br>作用：只有一个参数，可以选择其他字符串分隔数组项<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log([1,2,3].join(<span class="string">"-"</span>))// 1-2-3</span><br></pre></td></tr></table></figure></p>
+<p>6.push<br>作用：从尾部插入元素，返回的是新数组的长度，参数是任意的数量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,3,5,7]</span><br><span class="line">console.log(arr.push(3));//5</span><br><span class="line">console.log(arr);// [1,3,5,7,3]</span><br></pre></td></tr></table></figure></p>
+<p>7.pop<br>作用：从尾部删除元素，返回的是被删除的元素，无参数。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,3,5,7]</span><br><span class="line">console.log(arr.pop());// 7</span><br><span class="line">console.log(arr);// [1,3,5]</span><br></pre></td></tr></table></figure></p>
+<p>8.shift<br>作用：从头部删除元素，返回的是被删除的元素，无参数<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,3,5,7]</span><br><span class="line">console.log(arr.shift());//1</span><br><span class="line">console.log(arr);//[3,5,7]</span><br></pre></td></tr></table></figure></p>
+<p>9.reverse<br>作用：翻转数组，无参数。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,3,5,7]</span><br><span class="line">console.log(arr.reverse());// [7,5,3,1]</span><br><span class="line">console.log(arr);//[7,5,3,1]</span><br></pre></td></tr></table></figure></p>
+<p>10.sort<br>作用：对数组按一定的顺序排序。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">eg:无参数时，按照unicode编码比较</span><br><span class="line">var arr = [1,3,2,7]</span><br><span class="line">console.log(arr.sort());// [1,2,3,7]</span><br><span class="line">eg:有参数，传入的是一个比较的函数</span><br><span class="line">var arr = [1,3,2,7,4]</span><br><span class="line">console.log(arr.sort(<span class="keyword">function</span> (a, b) &#123;</span><br><span class="line">    <span class="built_in">return</span> a - b;</span><br><span class="line">&#125;));// [1,2,3,4,7] 按照从小到大排序</span><br><span class="line">console.log(arr);// [1,2,3,4,7]</span><br></pre></td></tr></table></figure></p>
+<p>11.concat<br>作用：把传入的参数拼接到当前的数组中去,返回一个新的数组，不改变原先的数组。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3];</span><br><span class="line">console.log(arr.concat(2, 3, 4));//[1,2,3,2,3,4]</span><br><span class="line">console.log(arr);//[1,2,3]</span><br></pre></td></tr></table></figure></p>
+<p>12.slice<br>作用：从当前的数组中截取一个新的数组，不影响原来的数组。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [2,4,6,8];</span><br><span class="line">console.log(arr.slice(0));//[2,4,6,8] 若是一个参数，就是从当前的索引一直到数组末尾的所有项</span><br><span class="line">console.log(arr.slice(1, 2));//4  第一个参数是开始的索引，第二个参数是结束的索引，返回的结果不包括结束的索引项的值</span><br><span class="line">console.log(arr);// [2,4,6,8]</span><br></pre></td></tr></table></figure></p>
+<p>13.splice<br>作用：删除或者替换当前数组的某些项，影响原先的数组。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3,4,5];</span><br><span class="line">console.log(arr.splice(0, 2));// [1,2] 第一个参数是开始的索引，第二个参数是删除的个数，返回的是删除元素组成的数组</span><br><span class="line">console.log(arr.splice(1,3,9,10,11))//[2,3,4] 第一个参数是开始的索引，第二个参数是删除的个数，其他的参数是要在删除位置插入的新元素</span><br><span class="line">console.log(arr);// [1,9,10,11,5]</span><br></pre></td></tr></table></figure></p>
+<p>14.from<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var arrayLike = &#123;</span><br><span class="line">    <span class="string">'0'</span>:<span class="string">'a'</span>,</span><br><span class="line">    <span class="string">'1'</span>:<span class="string">'b'</span>,</span><br><span class="line">    <span class="string">'2'</span>:<span class="string">'c'</span>,</span><br><span class="line">    <span class="string">'length'</span>:2</span><br><span class="line">&#125;;</span><br><span class="line">//将伪数组转化为数组</span><br><span class="line">var array = [].slice.call(arrayLike);</span><br><span class="line">console.log(array);//[a,b]</span><br><span class="line">//ES6版本</span><br><span class="line">var array = Array.from(arrayLike);</span><br><span class="line">console.log(array);//[a,b]</span><br></pre></td></tr></table></figure></p>
+<p>15.of<br>作用：将一组值，转换为数组<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">console.log(Array.of(3,2,1))//[3,2,1]</span><br><span class="line">注意：这个方法的主要目的，是弥补数组构造函数Array()的不足。因为参数个数的不同，会导致Array()的行为有差异。</span><br><span class="line">Array()//[]</span><br><span class="line">Array(3)//[,,,]</span><br><span class="line">Array(3,2,1)//[3,2,1]</span><br><span class="line">Array.of方法可以用下面的代码模拟实现：</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">ArrayOf</span></span>()&#123;</span><br><span class="line"> <span class="built_in">return</span> [].slice.call(arguments);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>16.find/findIndex<br>作用：查找：第一个符合的元素，并返回。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var array = [1, 2, 3, 4, 5];</span><br><span class="line">array.forEach(<span class="keyword">function</span> (value) &#123;</span><br><span class="line"> <span class="keyword">if</span>(value &lt;3)&#123;</span><br><span class="line"> //问题：没办法让他停下来</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;);</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">let</span> i =0; i&lt;array.length;i++)&#123;</span><br><span class="line"> <span class="keyword">if</span>(array[i] &lt; 3)&#123;</span><br><span class="line"> console.log(array[i]);</span><br><span class="line"> <span class="built_in">break</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line">   //ES6写法</span><br><span class="line">var value = array.find(<span class="keyword">function</span> (item) &#123;</span><br><span class="line"> <span class="built_in">return</span> item &lt;3;</span><br><span class="line"> &#125;);</span><br><span class="line">   //查找第一个符合元素</span><br><span class="line">var value = array.find(item=&gt;item &lt; 3);// 1 用箭头函数写也是可以的</span><br><span class="line">    //查找第一个符合元素的索引</span><br><span class="line">var value = array.findIndex(item=&gt;item &lt; 3);// 0 用箭头函数写也是可以的</span><br><span class="line">console.log(value);</span><br></pre></td></tr></table></figure></p>
+<p>17.map<br>作用：把一个数组根据一定的规则之后映射到一个新的数组中去。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var array = [1, 2, 3, 4, 5];</span><br><span class="line">var newarr = array.map(<span class="keyword">function</span> (item) &#123;</span><br><span class="line">    <span class="built_in">return</span> 10 + item;</span><br><span class="line">&#125;);</span><br><span class="line">console.log(newarr);//[10,12,13,14,15]</span><br></pre></td></tr></table></figure></p>
+<p>18.filter<br>作用：对于符合要求的数组的值，添加到一个新的数组中去。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var array = [1,2,3,4,5];</span><br><span class="line">var newarr = array.filter(<span class="keyword">function</span> (item) &#123;</span><br><span class="line">    <span class="built_in">return</span> item &lt; 3;</span><br><span class="line">&#125;);</span><br><span class="line">var newarr1 = array.filter(<span class="keyword">function</span>(item)&#123;</span><br><span class="line">    <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;)</span><br><span class="line">console.log(newarr);//[1,2]</span><br><span class="line">console.log(newarr1);//[1,2,3,4,5]</span><br></pre></td></tr></table></figure></p>
+<p>19.includes<br>作用：返回的是一个布尔值，表示某个数组是否包含给定的值，与字符串中includes方法类似。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var array = [1,2,3,4,5];</span><br><span class="line">console.log(array.includes(3));//<span class="literal">true</span></span><br><span class="line">console.log(array.includes(6));//<span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<p>20.reduce<br>作用：通过一定的规则，实现积累的过程。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var array = [1, 2, 3, 4, 5];</span><br><span class="line">var finalValue = array.reduce(<span class="keyword">function</span> (sum, now) &#123;</span><br><span class="line">    //sum:每次的累加和  now是每次要累加的数值</span><br><span class="line">    <span class="built_in">return</span> sum + now;</span><br><span class="line">&#125;, 0);//这个0是加的初值</span><br><span class="line">console.log(finalValue); //15</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>some<br>作用：遍历数组，在每一项元素后面触发一个回调函数，通过判断，返回一个布尔值。只要有一个满足判断的就返回true<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var todos =[</span><br><span class="line">      &#123;id:1,name:<span class="string">'吃饭'</span>,completed:<span class="literal">true</span>&#125;,</span><br><span class="line">      &#123;id:2,name:<span class="string">'睡觉'</span>,completed:<span class="literal">true</span>&#125;,</span><br><span class="line">      &#123;id:3,name:<span class="string">'学习'</span>,completed:<span class="literal">true</span>&#125;,</span><br><span class="line">      &#123;id:4,name:<span class="string">'学习'</span>,completed:<span class="literal">false</span>&#125;</span><br><span class="line">      ]</span><br><span class="line">    var result = todos.some(<span class="keyword">function</span>(item)&#123;</span><br><span class="line">      <span class="keyword">if</span>(!item.completed)&#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">true</span>  // 遇到了返回<span class="literal">true</span>就会停止遍历</span><br><span class="line">      &#125;  </span><br><span class="line">    &#125;)</span><br><span class="line">    console.log(result)//<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>22.every<br>作用：遍历数组，在每一项元素后面触发一个回调函数，通过判断，返回一个布尔值。只要有一项不满足判断，就返回false<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var todos =[</span><br><span class="line">      &#123;id:1,name:<span class="string">'吃饭'</span>,completed:<span class="literal">true</span>&#125;,</span><br><span class="line">      &#123;id:2,name:<span class="string">'睡觉'</span>,completed:<span class="literal">true</span>&#125;,</span><br><span class="line">      &#123;id:3,name:<span class="string">'学习'</span>,completed:<span class="literal">true</span>&#125;,</span><br><span class="line">      &#123;id:4,name:<span class="string">'学习'</span>,completed:<span class="literal">true</span>&#125;</span><br><span class="line">      ]</span><br><span class="line">    var result = todos.every(<span class="keyword">function</span>(item)&#123;</span><br><span class="line">      //有一项不满足判断就返回一个<span class="literal">false</span></span><br><span class="line">      <span class="keyword">if</span>(!item.completed)&#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    console.log(result)//<span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/08/javascript/面试题-如何解析一个url地址/" rel="next" title="如何解析一个url地址?">
+                <i class="fa fa-chevron-left"></i> 如何解析一个url地址?
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/14/javascript/javascript中字符串的属性和方法/" rel="prev" title="javascript中字符串的属性和方法">
+                javascript中字符串的属性和方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/zpp.jpg"
+                alt="珈润" />
+            
+              <p class="site-author-name" itemprop="name">珈润</p>
+              <p class="site-description motion-element" itemprop="description">前端工程师</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Believel" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-数组属性"><span class="nav-number">1.</span> <span class="nav-text"><a href="#1-&#x6570;&#x7EC4;&#x5C5E;&#x6027;" class="headerlink" title="1.&#x6570;&#x7EC4;&#x5C5E;&#x6027;"></a>1.&#x6570;&#x7EC4;&#x5C5E;&#x6027;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-数组的方法"><span class="nav-number">2.</span> <span class="nav-text"><a href="#2-&#x6570;&#x7EC4;&#x7684;&#x65B9;&#x6CD5;" class="headerlink" title="2.&#x6570;&#x7EC4;&#x7684;&#x65B9;&#x6CD5;"></a>2.&#x6570;&#x7EC4;&#x7684;&#x65B9;&#x6CD5;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">珈润</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2016/03/14/javascript/javascript中数组属性和方法的总结/';
+          this.page.identifier = '2016/03/14/javascript/javascript中数组属性和方法的总结/';
+          this.page.title = 'javascript中数组属性和方法的总结';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

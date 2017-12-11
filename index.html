@@ -88,13 +88,13 @@
 
 <meta name="description" content="前端工程师">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Believel">
+<meta property="og:title" content="张珈润">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Believel">
+<meta property="og:site_name" content="张珈润">
 <meta property="og:description" content="前端工程师">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Believel">
+<meta name="twitter:title" content="张珈润">
 <meta name="twitter:description" content="前端工程师">
 
 
@@ -131,7 +131,7 @@
 
 
 
-  <title>Believel</title>
+  <title>张珈润</title>
   
 
 
@@ -162,7 +162,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Believel</span>
+        <span class="site-title">张珈润</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -269,7 +269,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/03/webpack小记/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/03/AutomatedBuildingTools/webpack小记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="珈润">
@@ -278,7 +278,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Believel">
+      <meta itemprop="name" content="张珈润">
     </span>
 
     
@@ -288,7 +288,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/03/webpack小记/" itemprop="url">webpack小记</a></h1>
+                <a class="post-title-link" href="/2017/11/03/AutomatedBuildingTools/webpack小记/" itemprop="url">webpack小记</a></h1>
         
 
         <div class="post-meta">
@@ -311,152 +311,27 @@
           </span>
 
           
-
-          
+            <span class="post-category" >
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/03/webpack小记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/03/webpack小记/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="getStart"><a href="#getStart" class="headerlink" title="getStart"></a>getStart</h2><ol>
-<li>命令：<code>npm start</code></li>
-<li>命令： <code>npm run server</code> 即可在本地的8080端口查看结果</li>
-</ol>
-<h2 id="Source-Maps"><a href="#Source-Maps" class="headerlink" title="Source Maps"></a>Source Maps</h2><p><img src="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/sourceMap.png" alt="Source Maps参数图解"></p>
-<h2 id="使用webpack构建本地服务器"><a href="#使用webpack构建本地服务器" class="headerlink" title="使用webpack构建本地服务器"></a>使用webpack构建本地服务器</h2><p>想不想让你的浏览器监听你的代码的修改，并自动刷新显示修改后的结果，其实Webpack提供一个可选的本地开发服务器，这个本地服务器基于node.js构建，可以实现你想要的这些功能，不过它是一个单独的组件，在webpack中进行配置之前需要单独安装它作为项目依赖<br><img src="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/devServer.png" alt="devServer启动本地服务器"></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev webpack-dev-server</span><br></pre></td></tr></table></figure>
-<h2 id="loaders"><a href="#loaders" class="headerlink" title="loaders"></a>loaders</h2><p>通过使用不同的loader，webpack有能力调用外部的脚本或工具，实现对不同格式的文件的处理，比如说分析转换scss为css，或者把下一代的JS文件（ES6，ES7)转换为现代浏览器兼容的JS文件，对React的开发而言，合适的Loaders可以把React的中用到的JSX文件转换为JS文件。<br>Loaders需要单独安装并且需要在webpack.config.js中的modules关键字下进行配置，Loaders的配置包括以下几方面：</p>
-<ol>
-<li>test：一个用以匹配loaders所处理文件的拓展名的正则表达式（必须）</li>
-<li>loader：loader的名称（必须）</li>
-<li>include/exclude:手动添加必须处理的文件（文件夹）或屏蔽不需要处理的文件（文件夹）（可选）；</li>
-<li>query：为loaders提供额外的设置选项（可选）</li>
-</ol>
-<h2 id="babel"><a href="#babel" class="headerlink" title="babel"></a>babel</h2><p>Babel其实是几个模块化的包，其核心功能位于称为babel-core的npm包中，webpack可以把其不同的包整合在一起使用，对于每一个你需要的功能或拓展，你都需要安装单独的包（用得最多的是解析Es6的babel-preset-es2015包和解析JSX的babel-preset-react包）<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react</span><br></pre></td></tr></table></figure></p>
-<h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><p>webpack提供两个工具处理样式表，css-loader 和 style-loader，二者处理的任务不同，css-loader使你能够使用类似@import 和 url(…)的方法实现 require()的功能,style-loader将所有的计算后的样式加入页面中，二者组合在一起使你能够把样式表嵌入webpack打包后的JS文件中。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev style-loader css-loader</span><br></pre></td></tr></table></figure></p>
-<h2 id="CSS-modules"><a href="#CSS-modules" class="headerlink" title="CSS modules"></a>CSS modules</h2><p>CSS modules 的技术就意在把JS的模块化思想带入CSS中来，通过CSS模块，所有的类名，动画名默认都只作用于当前模块。Webpack从一开始就对CSS模块化提供了支持，在CSS loader中进行配置后，你所需要做的一切就是把”modules“传递到所需要的地方，然后就可以直接把CSS的类名传递到组件的代码中，且这样做只对当前组件有效，不必担心在不同的模块中使用相同的类名造成冲突。</p>
-<h2 id="CSS预处理器"><a href="#CSS预处理器" class="headerlink" title="CSS预处理器"></a>CSS预处理器</h2><h2 id="插件（Plugins）"><a href="#插件（Plugins）" class="headerlink" title="插件（Plugins）"></a>插件（Plugins）</h2>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/23/angular-dragdrop/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="珈润">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/zpp.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Believel">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/23/angular-dragdrop/" itemprop="url">angular-dragdrop</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+              <span class="post-meta-divider">|</span>
             
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">分类于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-23T10:33:47+08:00">
-                2017-08-23
-              </time>
-            
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/自动化构建工具/" itemprop="url" rel="index">
+                    <span itemprop="name">自动化构建工具</span>
+                  </a>
+                </span>
 
-            
-
-            
-          </span>
-
+                
+                
+              
+            </span>
           
 
           
@@ -466,9 +341,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/08/23/angular-dragdrop/#comments" itemprop="discussionUrl">
+                <a href="/2017/11/03/AutomatedBuildingTools/webpack小记/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/23/angular-dragdrop/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/11/03/AutomatedBuildingTools/webpack小记/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -497,10 +372,16 @@
 
       
         
-          
-            <h2 id="angular-dragdrop-API学习"><a href="#angular-dragdrop-API学习" class="headerlink" title="angular-dragdrop  API学习"></a>angular-dragdrop  API学习</h2><h3 id="1-Angular-Draggable-options"><a href="#1-Angular-Draggable-options" class="headerlink" title="1. Angular Draggable options"></a>1. Angular Draggable options</h3><h4 id="jqyoui-draggable"><a href="#jqyoui-draggable" class="headerlink" title="jqyoui-draggable"></a>jqyoui-draggable</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type: <span class="built_in">Object</span></span><br><span class="line">jqyoui-draggable = <span class="string">"&#123; index: 0, placeholder: true, animate: true, onStart: 'startCallback'&#125;"</span></span><br></pre></td></tr></table></figure>
-<h4 id="data-jqyoui-options"><a href="#data-jqyoui-options" class="headerlink" title="data-jqyoui-options"></a>data-jqyoui-options</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type: object</span><br><span class="line"><span class="comment">//参数的值是jquery-ui的draggable的值</span></span><br><span class="line">data-jqyoui-options=<span class="string">"&#123;revert:'invalid', helper； 'clone', appendTo: 'body', zIndex: 350....&#125;"</span></span><br></pre></td></tr></table></figure>
-          
+          <h2 id="getStart"><a href="#getStart" class="headerlink" title="getStart"></a>getStart</h2><ol>
+<li>命令：<code>npm start</code></li>
+<li>命令： <code>npm run server</code> 即可在本地的8080端口查看结果
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/03/AutomatedBuildingTools/webpack小记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -547,7 +428,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/06/有关angularJS问题总结/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/06/angular/有关angularJS问题总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="珈润">
@@ -556,7 +437,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Believel">
+      <meta itemprop="name" content="张珈润">
     </span>
 
     
@@ -566,7 +447,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/06/有关angularJS问题总结/" itemprop="url">有关angularJS问题总结</a></h1>
+                <a class="post-title-link" href="/2017/07/06/angular/有关angularJS问题总结/" itemprop="url">有关angularJS问题总结</a></h1>
         
 
         <div class="post-meta">
@@ -619,9 +500,144 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/07/06/有关angularJS问题总结/#comments" itemprop="discussionUrl">
+                <a href="/2017/07/06/angular/有关angularJS问题总结/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/07/06/有关angularJS问题总结/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/07/06/angular/有关angularJS问题总结/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于工作中在用到angular1.x时开发项目，工作中难免会遇到各种各样的问题，所以自己积累下来，希望能帮助其他人。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/06/angular/有关angularJS问题总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/22/jquery/jqueryUI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="珈润">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/zpp.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张珈润">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/22/jquery/jqueryUI/" itemprop="url">jqueryUI</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-22T10:12:24+08:00">
+                2017-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/22/jquery/jqueryUI/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/04/22/jquery/jqueryUI/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -651,22 +667,23 @@
       
         
           
-            <p>1、angularJS前台传list数组，后台springMVC接收数组<br>资料来源：<a href="http://www.cnblogs.com/nelson-hu/p/6512962.html" target="_blank" rel="noopener">http://www.cnblogs.com/nelson-hu/p/6512962.html</a><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">        $scope.userScopeList = [</span><br><span class="line">              &#123;</span><br><span class="line">    <span class="string">"ID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"RoleID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"MenuID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"BtnID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"CreateUserID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"CreateDate"</span>: <span class="string">"2017-05-23T07:26:18.403Z"</span>,</span><br><span class="line">    <span class="string">"UpdateUserID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"UpdateDate"</span>: <span class="string">"2017-05-23T07:26:18.403Z"</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"ID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"RoleID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"MenuID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"BtnID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"CreateUserID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"CreateDate"</span>: <span class="string">"2017-05-23T07:26:18.403Z"</span>,</span><br><span class="line">    <span class="string">"UpdateUserID"</span>: <span class="string">"string"</span>,</span><br><span class="line">    <span class="string">"UpdateDate"</span>: <span class="string">"2017-05-23T07:26:18.403Z"</span></span><br><span class="line">  &#125;</span><br><span class="line">        ];</span><br><span class="line">        <span class="keyword">var</span> fd = <span class="keyword">new</span> FormData();<span class="comment">//// 使用angularJS的FormData封装要传送的数据</span></span><br><span class="line">        <span class="keyword">var</span> newJson = angular.toJson($scope.userScopeList);<span class="comment">////把对象(集合)转换为json串</span></span><br><span class="line">        <span class="built_in">console</span>.log(newJson);</span><br><span class="line">        fd.append(<span class="string">'newJson'</span>, newJson);<span class="comment">////参数放入formData中</span></span><br><span class="line">        <span class="comment">////使用post方法 传送formdata对象</span></span><br><span class="line">        $http.post(<span class="string">'http://192.168.0.202/api/authority/Authority/AddAuthorityList'</span>, fd, &#123;</span><br><span class="line">            transformRequest: angular.identity, <span class="comment">//使用angular传参认证</span></span><br><span class="line">            headers: &#123;</span><br><span class="line">                headers : &#123; <span class="string">'Content-Type'</span>: <span class="string">'application/x-www-form-urlencoded; charset=UTF-8'</span> &#125;,<span class="comment">////设置请求头</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">            alert(<span class="number">1</span>);</span><br><span class="line">            <span class="built_in">console</span>.log(res);</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure></p>
-<p>2、 $scope.$watch()只能监视$scope上的视图模型成员，也可以监视方法的返回值<br>watch函数其实是有三个变量的，第一个参数是需要监视的对象，第二个参数是在监视对象发生变化时需要调用的函数，实际上watch还有第三个参数，它在默认情况下是false。<br>当第三个参数是false时，其实watch函数监视的是数组的地址，而数组的内容的变化不会影响数组地址的变化，所以watch函数失灵了。 如果监视数组的内容改变的话，第三个参数传true即可。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">例如：</span><br><span class="line">$scope.items=[  </span><br><span class="line">&#123;<span class="attr">a</span>:<span class="number">1</span>&#125;,  </span><br><span class="line">&#123;<span class="attr">a</span>:<span class="number">2</span>&#125;  </span><br><span class="line">&#123;<span class="attr">a</span>:<span class="number">3</span>&#125;];  </span><br><span class="line">$scope.$watch(<span class="string">'items'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;...&#125;,<span class="literal">true</span>);</span><br></pre></td></tr></table></figure></p>
-<p> $watch 监听多个变量<br> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//当count或page变化时，都会执行这个匿名函数  </span></span><br><span class="line">$scope.count=<span class="number">1</span>;  </span><br><span class="line">$scope.page=<span class="number">1</span>;  </span><br><span class="line">$scope.$watch(<span class="string">'count + page'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">   <span class="comment">//</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p> $watch 函数的返回结果<br> 方法1：监视对象为“函数名()”的字符串，记得加“()”!<br> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//未完成的任务个数  </span></span><br><span class="line">$scope.unDoneCount = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  </span><br><span class="line">    <span class="keyword">var</span> count = <span class="number">0</span>;  </span><br><span class="line">    angular.forEach($scope.todoList, <span class="function"><span class="keyword">function</span>(<span class="params">todo</span>) </span>&#123;  </span><br><span class="line">        count += todo.done ? <span class="number">0</span> : <span class="number">1</span>;  </span><br><span class="line">    &#125;);  </span><br><span class="line">    <span class="keyword">return</span> count;  </span><br><span class="line">&#125;;  </span><br><span class="line"><span class="comment">//单选影响全选部分  </span></span><br><span class="line">$scope.$watch(<span class="string">'unDoneCount()'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">nv</span>) </span>&#123;  </span><br><span class="line">    $scope.isDoneAll = nv ? <span class="literal">false</span> : <span class="literal">true</span>;  </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p> 方法2：在监视对象中设置为匿名函数，返回要监视的函数的返回值<br> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$scope.$watch(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">    <span class="keyword">return</span> $scope.unDoneCount();<span class="comment">//不要忘了(),要执行的啊~  </span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">nv</span>) </span>&#123;  </span><br><span class="line">    $scope.isDoneAll = nv ? <span class="literal">false</span> : <span class="literal">true</span>;  </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>3、 JQuery框架一定要在angularJS之前加载<br>资料来源：<a href="http://blog.csdn.net/aitangyong/article/details/48131575" target="_blank" rel="noopener">http://blog.csdn.net/aitangyong/article/details/48131575</a><br>（1）如果我们的web页面只引入angulrjs框架(不引入jQuery框架)，那么我们使用过程中可能会遇到如下错误：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Error</span>: [jqLite:nosel] Looking up elements via selectors is not supported by jqLite!</span><br></pre></td></tr></table></figure></p>
-<p>这是因为angular.element()这个API并不能支持类似jquery的选择器，也就是说angular.element()并不支持selector.最好引入JQuery框架，因为JQuery框架选择元素实在是太方便可。如果我们确实不想使用JQUery，那么可以使用HTML5中的document.querySelector(),这个API是支持选择器的<br>（2）如果页面中使用了jQuery和angular，那么一定要先加载jQuery框架，然后再加载angular<br>下面的代码我们先加载angular后加载jquery，当点击injector的按钮的时候，会报错:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">TypeError</span>: $(...).injector is not a <span class="function"><span class="keyword">function</span></span></span><br></pre></td></tr></table></figure></p>
-<p>如果我们先加载jQuery后加载angular，那么就不会有问题。这是因为如果angular加载的时候没有找到jQuery框架，那么会使用它自带的jqlite，这样angular就不能将injector()、scope()等方法注入到jQuery对象中。</p>
-<h1 id="angularJS知识进一步学习笔记"><a href="#angularJS知识进一步学习笔记" class="headerlink" title="angularJS知识进一步学习笔记"></a>angularJS知识进一步学习笔记</h1><h3 id="sce"><a href="#sce" class="headerlink" title="$sce"></a>$sce</h3><p>为什么要要$sce？因为AngularJS里好些地方，比如路径默认是个字符串，不会认为是路径，从而访问不到我们需要的东西，那么我们就可以通过$sce告诉angualrJS这个路径，这样是很安全滴<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$sce.trustAs(type,name);</span><br><span class="line">$sce.trustAsUrl(value);</span><br><span class="line">$sce.trustAsHtml(value);<span class="comment">//将字符串编译成可加载的HTML</span></span><br><span class="line">$sce.trustAsResourceUrl(value);</span><br><span class="line">$sce.trustAsJs(value);</span><br></pre></td></tr></table></figure></p>
-<h3 id="parse"><a href="#parse" class="headerlink" title="$parse"></a>$parse</h3><p>作用：将一个angularJS表达式转换成一个函数<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$parse(expression)</span><br><span class="line"></span><br><span class="line">expression:需要被编译的angularJS语句</span><br><span class="line">返回值：func(context, locals)</span><br><span class="line">        context[object]:针对你要解析的语句，这个对象中含有你要解析的语句中的表达式(通常是一个scope object)</span><br><span class="line">        locals[object]: 关于context中变量的本地变量，对于覆盖context中的变量值很有用。</span><br><span class="line">        返回的函数还有下面三个特性：</span><br><span class="line"></span><br><span class="line">        literal[boolean]:表达式的顶节点是否是一个javascript字面量</span><br><span class="line">        constant[boolean]:表达式是否全部是由javascript的常量字面量组成</span><br><span class="line">        assign[func(context, local)]:可以用来在给定的上下文中修改表达式的值</span><br></pre></td></tr></table></figure></p>
-<p>案例：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-app</span>=<span class="string">"MyApp"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-controller</span>=<span class="string">"MyController"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;ParsedValue&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">"MyApp"</span>,[])</span><br><span class="line">.controller(<span class="string">"MyController"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope, $parse</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context = &#123;</span><br><span class="line">        name: <span class="string">"dreamapple"</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// 因为这个解析的语句中含有我们想要解析的表达式，</span></span><br><span class="line">    <span class="comment">// 所以要把不相关的用引号引起来，整体然后用+连接</span></span><br><span class="line">    <span class="keyword">var</span> expression = <span class="string">"'Hello ' + name"</span>;</span><br><span class="line">    <span class="keyword">var</span> parseFunc = $parse(expression);</span><br><span class="line">    $scope.ParsedValue = parseFunc(context);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="new-true"><a href="#new-true" class="headerlink" title="$new(true)"></a>$new(true)</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$rootScope.$<span class="keyword">new</span>(<span class="literal">true</span>);新创建的子范围</span><br><span class="line">$scope.$<span class="keyword">new</span>(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="compile"><a href="#compile" class="headerlink" title="$compile"></a>$compile</h3><p>讲HTML字符串或DOM编译为模板并生成模板函数，然后将其scope与模板链接在一起<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$compile(<span class="string">'&lt;li class="text-danger" ng-repeat="(name, wrong) in errors()" ng-if="wrong"&gt;&#123;&#123;name|error&#125;&#125;&lt;/li&gt;'</span>)($scope);</span><br></pre></td></tr></table></figure></p>
-<h3 id="ngModelController"><a href="#ngModelController" class="headerlink" title="ngModelController"></a>ngModelController</h3><p>是自定义指令中的link属性或者controller的第四个参数名<br>可以使用它在自定义指令中利用ngMode的controller来做双向数据绑定，沟通控制器和视图层的数据交换。</p>
-<h3 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h3>
+            <h1 id="angular-dragdrop"><a href="#angular-dragdrop" class="headerlink" title="angular dragdrop"></a>angular dragdrop</h1><p>beforeDrop : 是一个promise对象， 在交换之前选文信息，适用于弹出信息窗口。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = angular.module(<span class="string">'app'</span>, [<span class="string">'ngDragDrop'</span>]);</span><br><span class="line"> app.controller(<span class="string">'oneCtrl'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope, $q</span>)</span>&#123;</span><br><span class="line">     $scope.list1 = &#123;</span><br><span class="line">       title : <span class="string">'Drag and Drop with default confirmation'</span></span><br><span class="line">     &#125;;</span><br><span class="line">     $scope.list2 = &#123;&#125;;</span><br><span class="line">     $scope.beforeDrop = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">         <span class="keyword">var</span> deferred = $q.defer();</span><br><span class="line">         <span class="keyword">if</span>(confirm(<span class="string">'are you sure?'</span>))&#123;</span><br><span class="line">           deferred.resolve();</span><br><span class="line">         &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">           deferred.reject();</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> deferred.promise;</span><br><span class="line">     &#125;;</span><br><span class="line"></span><br><span class="line"> &#125; )</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-sm-6"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"btn btn-primary"</span> <span class="attr">data-drag</span>=<span class="string">"true"</span> <span class="attr">ng-model</span> = <span class="string">"list1"</span> <span class="attr">jqyoui-draggable</span> = <span class="string">"&#123;animate: true&#125;"</span> <span class="attr">ng-hide</span> = <span class="string">" !list1.title"</span>&gt;</span>&#123;&#123;list1.title&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-sm-6"</span> <span class="attr">style</span>=<span class="string">"border:1px solid #ccc;height: 50px"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">data-drop</span>=<span class="string">"true"</span> <span class="attr">ng-model</span>=<span class="string">"list2"</span> <span class="attr">jqyoui-droppable</span>=<span class="string">"&#123;beforeDrop : 'beforeDrop'&#125;"</span> <span class="attr">ng-bind</span>=<span class="string">"list2.title ? 'dropSuceess' : 'Drop hree'"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="jqueryUI-draggable-API"><a href="#jqueryUI-draggable-API" class="headerlink" title="jqueryUI-draggable API"></a>jqueryUI-draggable API</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'selector'</span>).draggable(&#123;</span><br><span class="line">      addClasses : <span class="literal">false</span>, <span class="comment">//阻止 ui-draggable class被添加。</span></span><br><span class="line">      appebdTo : <span class="string">''</span>,<span class="comment">//当拖拽时，draggable要追加到哪一个元素。</span></span><br><span class="line">      axis :  <span class="string">"x"</span>     , <span class="comment">//   约束在水平轴 (x) 或垂直轴 (y) 上拖拽。可能的值："x", "y"。</span></span><br><span class="line">      cancel : <span class="string">'.title'</span>       , <span class="comment">//防止从指定的元素上开始拖拽。</span></span><br><span class="line">      containment :<span class="string">"parent"</span>            , <span class="comment">// 约束在指定元素或区域的边界内拖拽。 支持多个类型 。String：可能的值："parent"、"document"、"window"。</span></span><br><span class="line">      cursor : <span class="string">'crosshair'</span>, <span class="comment">// 拖拽操作期间的 CSS 光标。</span></span><br><span class="line">      disabled : <span class="literal">true</span> ,<span class="comment">// 设置为true，禁止该draggale</span></span><br><span class="line">      helper : <span class="string">'clone'</span>, <span class="comment">// 允许一个 helper 元素用于拖拽显示。如果设置为 "clone"，元素将被克隆，且克隆将被拖拽。</span></span><br><span class="line">      opacity :<span class="string">'.5'</span>,<span class="comment">// 当被拖拽时助手（helper）的不透明度。</span></span><br><span class="line">      revert : <span class="literal">true</span>, <span class="comment">// 当拖拽停止时，元素是否还原到它的开始位置。如果设置为 true，元素总会还原。</span></span><br><span class="line">      scroll : <span class="literal">true</span>, <span class="comment">//   如果设置为 true，当拖拽时容器会自动滚动。</span></span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="jqueryUI-droppable-API"><a href="#jqueryUI-droppable-API" class="headerlink" title="jqueryUI-droppable API"></a>jqueryUI-droppable API</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'selector'</span>).droppable(&#123;</span><br><span class="line">        accept : <span class="string">'.selector'</span>,  <span class="comment">// 控制哪个可拖拽（draggable）元素可被 droppable 接受。</span></span><br><span class="line">        activeClass : <span class="string">'ui-state-highlight'</span>, <span class="comment">// 如果指定了该选项，当一个可接受的 draggable 被拖拽时，class 将被添加到 droppable</span></span><br><span class="line">        addClasses : <span class="literal">false</span>, <span class="comment">// 如果设置为 false，将防止 ui-droppable class 被添加。</span></span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="ES6学习"><a href="#ES6学习" class="headerlink" title="ES6学习"></a>ES6学习</h1><h2 id="ES6运行环境的搭建"><a href="#ES6运行环境的搭建" class="headerlink" title="ES6运行环境的搭建"></a>ES6运行环境的搭建</h2><p>摘录资源: <a href="http://blog.csdn.net/liuhe688/article/details/51212393" target="_blank" rel="noopener">http://blog.csdn.net/liuhe688/article/details/51212393</a><br>1.<code>npm install -g babel-cli</code></p>
+<ol>
+<li>创建一 个存放ES6代码的文件夹（例如 es6）和一个存放解析后的ES5的文件夹(例如js),在使用命令初始化一个package.json文件:命令：npm init -y</li>
+<li>安装 ES6转码规则包：<code>npm install babel-preset-es2015 --save-dev</code></li>
+<li>在es6文件夹中编写代码，编写之后</li>
+<li><p>在命令行中使用： <code>babel es6/test.es6 --out-file js/test.js --presets es2015</code>  编译</p>
+<pre><code>`babel es6 --out-dir js --presets es2015` 对整个es6目录的文件进行编译
+</code></pre><h2 id="记录点"><a href="#记录点" class="headerlink" title="记录点"></a>记录点</h2><ol>
+<li>ES5规定，函数只能在顶级作用域和函数作用域下声明，不能在块级作用域下声明。</li>
+</ol>
+</li>
+</ol>
+
           
         
       
@@ -714,7 +731,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/15/正则表达式笔记-md/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/15/javascript/正则表达式笔记-md/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="珈润">
@@ -723,7 +740,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Believel">
+      <meta itemprop="name" content="张珈润">
     </span>
 
     
@@ -733,7 +750,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/06/15/正则表达式笔记-md/" itemprop="url">正则表达式笔记.md</a></h1>
+                <a class="post-title-link" href="/2017/02/15/javascript/正则表达式笔记-md/" itemprop="url">正则表达式笔记.md</a></h1>
         
 
         <div class="post-meta">
@@ -745,8 +762,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-15T08:50:50+08:00">
-                2017-06-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-15T08:50:50+08:00">
+                2017-02-15
               </time>
             
 
@@ -786,9 +803,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/06/15/正则表达式笔记-md/#comments" itemprop="discussionUrl">
+                <a href="/2017/02/15/javascript/正则表达式笔记-md/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/15/正则表达式笔记-md/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/02/15/javascript/正则表达式笔记-md/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -867,7 +884,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/22/jqueryUI/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/23/angular/angular-dragdrop/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="珈润">
@@ -876,7 +893,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Believel">
+      <meta itemprop="name" content="张珈润">
     </span>
 
     
@@ -886,7 +903,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/22/jqueryUI/" itemprop="url">jqueryUI</a></h1>
+                <a class="post-title-link" href="/2017/01/23/angular/angular-dragdrop/" itemprop="url">angular-dragdrop</a></h1>
         
 
         <div class="post-meta">
@@ -898,8 +915,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-22T10:12:24+08:00">
-                2017-04-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-23T10:33:47+08:00">
+                2017-01-23
               </time>
             
 
@@ -917,9 +934,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/22/jqueryUI/#comments" itemprop="discussionUrl">
+                <a href="/2017/01/23/angular/angular-dragdrop/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/04/22/jqueryUI/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/01/23/angular/angular-dragdrop/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -949,22 +966,8 @@
       
         
           
-            <h1 id="angular-dragdrop"><a href="#angular-dragdrop" class="headerlink" title="angular dragdrop"></a>angular dragdrop</h1><p>beforeDrop : 是一个promise对象， 在交换之前选文信息，适用于弹出信息窗口。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = angular.module(<span class="string">'app'</span>, [<span class="string">'ngDragDrop'</span>]);</span><br><span class="line"> app.controller(<span class="string">'oneCtrl'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope, $q</span>)</span>&#123;</span><br><span class="line">     $scope.list1 = &#123;</span><br><span class="line">       title : <span class="string">'Drag and Drop with default confirmation'</span></span><br><span class="line">     &#125;;</span><br><span class="line">     $scope.list2 = &#123;&#125;;</span><br><span class="line">     $scope.beforeDrop = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">         <span class="keyword">var</span> deferred = $q.defer();</span><br><span class="line">         <span class="keyword">if</span>(confirm(<span class="string">'are you sure?'</span>))&#123;</span><br><span class="line">           deferred.resolve();</span><br><span class="line">         &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">           deferred.reject();</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> deferred.promise;</span><br><span class="line">     &#125;;</span><br><span class="line"></span><br><span class="line"> &#125; )</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-sm-6"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"btn btn-primary"</span> <span class="attr">data-drag</span>=<span class="string">"true"</span> <span class="attr">ng-model</span> = <span class="string">"list1"</span> <span class="attr">jqyoui-draggable</span> = <span class="string">"&#123;animate: true&#125;"</span> <span class="attr">ng-hide</span> = <span class="string">" !list1.title"</span>&gt;</span>&#123;&#123;list1.title&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      </span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-sm-6"</span> <span class="attr">style</span>=<span class="string">"border:1px solid #ccc;height: 50px"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">data-drop</span>=<span class="string">"true"</span> <span class="attr">ng-model</span>=<span class="string">"list2"</span> <span class="attr">jqyoui-droppable</span>=<span class="string">"&#123;beforeDrop : 'beforeDrop'&#125;"</span> <span class="attr">ng-bind</span>=<span class="string">"list2.title ? 'dropSuceess' : 'Drop hree'"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="jqueryUI-draggable-API"><a href="#jqueryUI-draggable-API" class="headerlink" title="jqueryUI-draggable API"></a>jqueryUI-draggable API</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'selector'</span>).draggable(&#123;</span><br><span class="line">      addClasses : <span class="literal">false</span>, <span class="comment">//阻止 ui-draggable class被添加。</span></span><br><span class="line">      appebdTo : <span class="string">''</span>,<span class="comment">//当拖拽时，draggable要追加到哪一个元素。</span></span><br><span class="line">      axis :  <span class="string">"x"</span>     , <span class="comment">//   约束在水平轴 (x) 或垂直轴 (y) 上拖拽。可能的值："x", "y"。</span></span><br><span class="line">      cancel : <span class="string">'.title'</span>       , <span class="comment">//防止从指定的元素上开始拖拽。</span></span><br><span class="line">      containment :<span class="string">"parent"</span>            , <span class="comment">// 约束在指定元素或区域的边界内拖拽。 支持多个类型 。String：可能的值："parent"、"document"、"window"。</span></span><br><span class="line">      cursor : <span class="string">'crosshair'</span>, <span class="comment">// 拖拽操作期间的 CSS 光标。</span></span><br><span class="line">      disabled : <span class="literal">true</span> ,<span class="comment">// 设置为true，禁止该draggale</span></span><br><span class="line">      helper : <span class="string">'clone'</span>, <span class="comment">// 允许一个 helper 元素用于拖拽显示。如果设置为 "clone"，元素将被克隆，且克隆将被拖拽。</span></span><br><span class="line">      opacity :<span class="string">'.5'</span>,<span class="comment">// 当被拖拽时助手（helper）的不透明度。</span></span><br><span class="line">      revert : <span class="literal">true</span>, <span class="comment">// 当拖拽停止时，元素是否还原到它的开始位置。如果设置为 true，元素总会还原。</span></span><br><span class="line">      scroll : <span class="literal">true</span>, <span class="comment">//   如果设置为 true，当拖拽时容器会自动滚动。</span></span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
-<h1 id="jqueryUI-droppable-API"><a href="#jqueryUI-droppable-API" class="headerlink" title="jqueryUI-droppable API"></a>jqueryUI-droppable API</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'selector'</span>).droppable(&#123;</span><br><span class="line">        accept : <span class="string">'.selector'</span>,  <span class="comment">// 控制哪个可拖拽（draggable）元素可被 droppable 接受。</span></span><br><span class="line">        activeClass : <span class="string">'ui-state-highlight'</span>, <span class="comment">// 如果指定了该选项，当一个可接受的 draggable 被拖拽时，class 将被添加到 droppable</span></span><br><span class="line">        addClasses : <span class="literal">false</span>, <span class="comment">// 如果设置为 false，将防止 ui-droppable class 被添加。</span></span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
-<h1 id="ES6学习"><a href="#ES6学习" class="headerlink" title="ES6学习"></a>ES6学习</h1><h2 id="ES6运行环境的搭建"><a href="#ES6运行环境的搭建" class="headerlink" title="ES6运行环境的搭建"></a>ES6运行环境的搭建</h2><p>摘录资源: <a href="http://blog.csdn.net/liuhe688/article/details/51212393" target="_blank" rel="noopener">http://blog.csdn.net/liuhe688/article/details/51212393</a><br>1.<code>npm install -g babel-cli</code></p>
-<ol>
-<li>创建一 个存放ES6代码的文件夹（例如 es6）和一个存放解析后的ES5的文件夹(例如js),在使用命令初始化一个package.json文件:命令：npm init -y</li>
-<li>安装 ES6转码规则包：<code>npm install babel-preset-es2015 --save-dev</code></li>
-<li>在es6文件夹中编写代码，编写之后</li>
-<li><p>在命令行中使用： <code>babel es6/test.es6 --out-file js/test.js --presets es2015</code>  编译</p>
-<pre><code>`babel es6 --out-dir js --presets es2015` 对整个es6目录的文件进行编译
-</code></pre><h2 id="记录点"><a href="#记录点" class="headerlink" title="记录点"></a>记录点</h2><ol>
-<li>ES5规定，函数只能在顶级作用域和函数作用域下声明，不能在块级作用域下声明。</li>
-</ol>
-</li>
-</ol>
+            <h2 id="angular-dragdrop-API学习"><a href="#angular-dragdrop-API学习" class="headerlink" title="angular-dragdrop  API学习"></a>angular-dragdrop  API学习</h2><h3 id="1-Angular-Draggable-options"><a href="#1-Angular-Draggable-options" class="headerlink" title="1. Angular Draggable options"></a>1. Angular Draggable options</h3><h4 id="jqyoui-draggable"><a href="#jqyoui-draggable" class="headerlink" title="jqyoui-draggable"></a>jqyoui-draggable</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type: <span class="built_in">Object</span></span><br><span class="line">jqyoui-draggable = <span class="string">"&#123; index: 0, placeholder: true, animate: true, onStart: 'startCallback'&#125;"</span></span><br></pre></td></tr></table></figure>
+<h4 id="data-jqyoui-options"><a href="#data-jqyoui-options" class="headerlink" title="data-jqyoui-options"></a>data-jqyoui-options</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type: object</span><br><span class="line"><span class="comment">//参数的值是jquery-ui的draggable的值</span></span><br><span class="line">data-jqyoui-options=<span class="string">"&#123;revert:'invalid', helper； 'clone', appendTo: 'body', zIndex: 350....&#125;"</span></span><br></pre></td></tr></table></figure>
 
           
         
@@ -1013,7 +1016,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/03/HybridApp-ionic的环境配置及使用步骤/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/03/app/HybridApp-ionic的环境配置及使用步骤/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="珈润">
@@ -1022,7 +1025,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Believel">
+      <meta itemprop="name" content="张珈润">
     </span>
 
     
@@ -1032,7 +1035,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/01/03/HybridApp-ionic的环境配置及使用步骤/" itemprop="url">HybridApp__ionic的环境配置及使用步骤</a></h1>
+                <a class="post-title-link" href="/2017/01/03/app/HybridApp-ionic的环境配置及使用步骤/" itemprop="url">HybridApp__ionic的环境配置及使用步骤</a></h1>
         
 
         <div class="post-meta">
@@ -1055,234 +1058,6 @@
           </span>
 
           
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/01/03/HybridApp-ionic的环境配置及使用步骤/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/01/03/HybridApp-ionic的环境配置及使用步骤/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-ionic环境安装以及配置"><a href="#1-ionic环境安装以及配置" class="headerlink" title="1.ionic环境安装以及配置"></a>1.ionic环境安装以及配置</h2><h3 id="1-1-安装ionic-与-cordova"><a href="#1-1-安装ionic-与-cordova" class="headerlink" title="1.1. 安装ionic 与 cordova"></a>1.1. 安装ionic 与 cordova</h3><ul>
-<li><code>npm install -g ionic cordova</code><ul>
-<li><code>npm install -g ionic</code> <ul>
-<li>是基于cordova的封装，提供一些额外的组件以及集成了angular</li>
-</ul>
-</li>
-<li><code>npm install -g cordova</code><ul>
-<li>作用实现对html项目的打包</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>检测是否安装成功<ul>
-<li>执行命令:<code>ionic -v</code></li>
-<li><code>cordova -v</code> 如果能够输出版本信息，则表示安装成功</li>
-</ul>
-</li>
-<li>安装的时候注意网络问题. 可以使用淘宝的镜像源。</li>
-<li>如果不成功多试几次。</li>
-</ul>
-<h3 id="1-2-jdk"><a href="#1-2-jdk" class="headerlink" title="1.2. jdk"></a>1.2. jdk</h3><ul>
-<li>java运行需要环境(混合app的壳需求环境)</li>
-<li>检查安装是否成功，在cmd中输入:java</li>
-<li>配置环境变量：<ul>
-<li>计算机·属性·-&gt;高级系统设置-&gt;环境变量-&gt;新建-&gt;<ul>
-<li>添加变量名：JAVA_HOME   变量值:  C:\Program Files\Java\jdk1.8.0_91\bin</li>
-</ul>
-</li>
-<li>还要在path中添加%JAVA_HOM%;</li>
-<li>之后检查在cmd中输入javac看是否能通过（目的：将java代码编译成二进制文件）</li>
-</ul>
-</li>
-</ul>
-<h3 id="1-3-sdk单独下载需要科学上网-android-Studio"><a href="#1-3-sdk单独下载需要科学上网-android-Studio" class="headerlink" title="1.3. sdk单独下载需要科学上网:android Studio"></a>1.3. sdk单独下载需要科学上网:android Studio</h3><ul>
-<li>配置环境：</li>
-<li>设置ANDROID_HOME变量名,变量值是sdk的路径:C:\Users\isc(计算机名)\AppData\Local\Android\sdk</li>
-<li><p>在PATH中追加 %ANDROID_HOME%\tools;%ANDROID_HOME%\platform-tools;%ANDROID_HOME%\build-tools;</p>
-</li>
-<li><p>在命令行(cmd)中使用adb命令验证</p>
-</li>
-</ul>
-<h3 id="1-4-node-git-vs2015"><a href="#1-4-node-git-vs2015" class="headerlink" title="1.4. node,git,vs2015"></a>1.4. node,git,vs2015</h3><ul>
-<li>配置环境的目的是为了打包</li>
-</ul>
-<h2 id="2-ionic的使用"><a href="#2-ionic的使用" class="headerlink" title="2. ionic的使用"></a>2. ionic的使用</h2><h3 id="2-1-使用ionic初始化一个移动App的项目"><a href="#2-1-使用ionic初始化一个移动App的项目" class="headerlink" title="2.1.  使用ionic初始化一个移动App的项目"></a>2.1.  使用ionic初始化一个移动App的项目</h3><ul>
-<li><code>ionic start [项目名] [项目模板]</code><ul>
-<li>示例: <code>ionic start myApp sidemenu</code></li>
-<li>[项目名] 不能够是中文,并且项目默认是我们app安装后的名字</li>
-<li>[项目模板]有3种值 : blank, tabs ,sidemenu</li>
-<li>注意:项目名不能是中文，模板名称，有3个可选先项tabs 、menu、blank</li>
-</ul>
-<ul>
-<li>注意<em>整个项目所在目录不能有中文,并且项目的文件名也不能够有中文</em></li>
-<li>在www目录中写我们前端的代码。// 默认也是以index.html为入口文件。<ul>
-<li>到这一步我们就可以像往常一样进行开发了,只不过是在www目录下开发。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-2-添加不同平台的源码，使之能够运行与各个平台"><a href="#2-2-添加不同平台的源码，使之能够运行与各个平台" class="headerlink" title="2.2. 添加不同平台的源码，使之能够运行与各个平台"></a>2.2. 添加不同平台的源码，使之能够运行与各个平台</h3><p>  当项目完成之后，在项目文件夹中，打开cmd,执行命令：</p>
-<ul>
-<li><code>ionic platform add android</code></li>
-<li><code>ionic platform add ios</code></li>
-<li>上面两个命令人在当前项目目录生成一个platforms文件夹，文件夹中是我们ionic对应不同平台的源码。</li>
-</ul>
-<h3 id="2-3-现在就可以编译打包我们的代码"><a href="#2-3-现在就可以编译打包我们的代码" class="headerlink" title="2.3. 现在就可以编译打包我们的代码"></a>2.3. 现在就可以编译打包我们的代码</h3><ul>
-<li><code>ionic build android</code></li>
-<li>或者 : <code>ionic build ios</code></li>
-<li>最终会生成相应平台的安装包</li>
-<li>以上两个命令什么将源码生成相应平台的安装包</li>
-<li>只要是做ios开发，都需要mac系统。xcode,mac系统下也能开发安卓</li>
-</ul>
-<p><em>注意</em></p>
-<ul>
-<li>若第一次打包的话会下载一个东西在C:\Users\lenovo.gradle\wrapper\dists\gradle-2.13-all\7hsc6vr6mi3i6i5m7q9hj4ci1q</li>
-<li>看是否有gradle-2.13-all.zip(不要压缩，ionic会自己压缩)，若没有自己根据命令行中所给的连接</li>
-<li>链接，在浏览器中下载压缩包放在这个目录中，再用<code>ionic build android</code>编译一下，会自动解压的</li>
-<li>除了文件内容之后，不要有中文，即文件名不能有中文.</li>
-<li>容易丢包的问题,(下载的项目可能会有文件丢失)</li>
-</ul>
-<h3 id="2-4-在手机一键安装：用谷歌的共享手机插件-vysor-，打开开发者模式"><a href="#2-4-在手机一键安装：用谷歌的共享手机插件-vysor-，打开开发者模式" class="headerlink" title="2.4.在手机一键安装：用谷歌的共享手机插件(vysor)，打开开发者模式"></a>2.4.在手机一键安装：用谷歌的共享手机插件(vysor)，打开开发者模式</h3><ul>
-<li>在cmd中使用命令：ionic run android -l -c -s //连接手机，修改文件，自动刷新（run包含build执行代码）<pre><code>adb devices //可以查看手机是否连接在电脑上
-</code></pre></li>
-<li>小知识：<ul>
-<li>检查是不是原生App的方法：在手机设置-&gt;辅助功能-&gt;开发者模式-&gt;显示布局边界(点开)，若有<br>许多边框出现，则是原生App<br><em>注意</em><ul>
-<li>有的手机上的开发模式没有显示出来，android手机版本4.0以上都有开发者模式，可以用打开</li>
-<li>手机按键输入：<em>#</em>#7777#<em>#</em>就可以调出开发者选项了。还有一种办法就是在手机设置中找到手机<code>内核版本</code></li>
-<li>连续点击(共7次)，就可以激活开发者模式了。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="分区助手"><a href="#分区助手" class="headerlink" title="分区助手"></a>分区助手</h2><ul>
-<li><a href="http://www.disktool.cn/" target="_blank" rel="noopener">http://www.disktool.cn/</a></li>
-<li><a href="http://www.disktool.cn/jiaocheng/index.html" target="_blank" rel="noopener">http://www.disktool.cn/jiaocheng/index.html</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/01/移动App学习笔记集锦一/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="珈润">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/zpp.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Believel">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/01/01/移动App学习笔记集锦一/" itemprop="url">移动App学习笔记集锦一</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-01T18:40:06+08:00">
-                2017-01-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
             <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
@@ -1295,8 +1070,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/移动端/" itemprop="url" rel="index">
-                    <span itemprop="name">移动端</span>
+                  <a href="/categories/App/" itemprop="url" rel="index">
+                    <span itemprop="name">App</span>
                   </a>
                 </span>
 
@@ -1313,9 +1088,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/01/01/移动App学习笔记集锦一/#comments" itemprop="discussionUrl">
+                <a href="/2017/01/03/app/HybridApp-ionic的环境配置及使用步骤/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/01/01/移动App学习笔记集锦一/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/01/03/app/HybridApp-ionic的环境配置及使用步骤/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1344,19 +1119,28 @@
 
       
         
-          <h2 id="1-现在app开发方类型有几种？"><a href="#1-现在app开发方类型有几种？" class="headerlink" title="1.现在app开发方类型有几种？"></a>1.现在app开发方类型有几种？</h2><ul>
-<li><p>混合app,原生app: android-java ios-objective-c:swift</p>
+          <h2 id="1-ionic环境安装以及配置"><a href="#1-ionic环境安装以及配置" class="headerlink" title="1.ionic环境安装以及配置"></a>1.ionic环境安装以及配置</h2><h3 id="1-1-安装ionic-与-cordova"><a href="#1-1-安装ionic-与-cordova" class="headerlink" title="1.1. 安装ionic 与 cordova"></a>1.1. 安装ionic 与 cordova</h3><ul>
+<li><code>npm install -g ionic cordova</code><ul>
+<li><code>npm install -g ionic</code><ul>
+<li>是基于cordova的封装，提供一些额外的组件以及集成了angular</li>
+</ul>
 </li>
-<li><p>WebApp:就是在浏览器中运行的web应用(比如用angular做的单页应用就叫做webapp,页面功能复杂了，不再是纯粹的展示文字，图片)</p>
+<li><code>npm install -g cordova</code><ul>
+<li>作用实现对html项目的打包</li>
+</ul>
 </li>
-<li><p>NativeApp:用java(android)或Object-C(ios),C# 开发window phone(软件太少)等原生语言开发的应用</p>
+</ul>
 </li>
-<li><p>HybridApp:就是外面是原生的壳，里面是webapp应用，兼具2者的优势</p>
-<ul>
-<li>apk是安卓安装包的后缀
+<li>检测是否安装成功<ul>
+<li>执行命令:<code>ionic -v</code></li>
+<li><code>cordova -v</code> 如果能够输出版本信息，则表示安装成功</li>
+</ul>
+</li>
+<li>安装的时候注意网络问题. 可以使用淘宝的镜像源。</li>
+<li>如果不成功多试几次。
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/01/01/移动App学习笔记集锦一/#more" rel="contents">
+            <a class="btn" href="/2017/01/03/app/HybridApp-ionic的环境配置及使用步骤/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1407,7 +1191,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/15/双向数据绑定的原理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/01/app/移动App学习笔记集锦一/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="珈润">
@@ -1416,7 +1200,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Believel">
+      <meta itemprop="name" content="张珈润">
     </span>
 
     
@@ -1426,7 +1210,173 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/10/15/双向数据绑定的原理/" itemprop="url">双向数据绑定的原理</a></h1>
+                <a class="post-title-link" href="/2017/01/01/app/移动App学习笔记集锦一/" itemprop="url">移动App学习笔记集锦一</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-01T18:40:06+08:00">
+                2017-01-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/App/" itemprop="url" rel="index">
+                    <span itemprop="name">App</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/01/01/app/移动App学习笔记集锦一/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/01/01/app/移动App学习笔记集锦一/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="1-现在app开发方类型有几种？"><a href="#1-现在app开发方类型有几种？" class="headerlink" title="1.现在app开发方类型有几种？"></a>1.现在app开发方类型有几种？</h2><ul>
+<li><p>混合app,原生app: android-java ios-objective-c:swift</p>
+</li>
+<li><p>WebApp:就是在浏览器中运行的web应用(比如用angular做的单页应用就叫做webapp,页面功能复杂了，不再是纯粹的展示文字，图片)</p>
+</li>
+<li><p>NativeApp:用java(android)或Object-C(ios),C# 开发window phone(软件太少)等原生语言开发的应用</p>
+</li>
+<li><p>HybridApp:就是外面是原生的壳，里面是webapp应用，兼具2者的优势</p>
+<ul>
+<li>apk是安卓安装包的后缀
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/01/01/app/移动App学习笔记集锦一/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/15/javascript/双向数据绑定的原理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="珈润">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/zpp.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张珈润">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/10/15/javascript/双向数据绑定的原理/" itemprop="url">双向数据绑定的原理</a></h1>
         
 
         <div class="post-meta">
@@ -1479,9 +1429,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/10/15/双向数据绑定的原理/#comments" itemprop="discussionUrl">
+                <a href="/2016/10/15/javascript/双向数据绑定的原理/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/10/15/双向数据绑定的原理/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2016/10/15/javascript/双向数据绑定的原理/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1514,7 +1464,7 @@
 <li><p>在MVC模式下数据绑定是指将模型数据与视图模板之间建立一种关联关系，这种关联关系分成两种情况，一种是将相应的模型数据展示视图模板的对应位置，另一种是将视图模板上的数据变化反应到数据模型上，综合上述两种情况即所谓双向数据绑定。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/10/15/双向数据绑定的原理/#more" rel="contents">
+            <a class="btn" href="/2016/10/15/javascript/双向数据绑定的原理/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1565,7 +1515,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/12/原生app-react-native开发环境以及项目搭建总结/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/12/app/原生app-react-native开发环境以及项目搭建总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="珈润">
@@ -1574,7 +1524,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Believel">
+      <meta itemprop="name" content="张珈润">
     </span>
 
     
@@ -1584,7 +1534,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/10/12/原生app-react-native开发环境以及项目搭建总结/" itemprop="url">原生app__react-native开发环境以及项目搭建总结</a></h1>
+                <a class="post-title-link" href="/2016/10/12/app/原生app-react-native开发环境以及项目搭建总结/" itemprop="url">原生app__react-native开发环境以及项目搭建总结</a></h1>
         
 
         <div class="post-meta">
@@ -1619,8 +1569,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/移动端/" itemprop="url" rel="index">
-                    <span itemprop="name">移动端</span>
+                  <a href="/categories/App/" itemprop="url" rel="index">
+                    <span itemprop="name">App</span>
                   </a>
                 </span>
 
@@ -1637,9 +1587,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/10/12/原生app-react-native开发环境以及项目搭建总结/#comments" itemprop="discussionUrl">
+                <a href="/2016/10/12/app/原生app-react-native开发环境以及项目搭建总结/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/10/12/原生app-react-native开发环境以及项目搭建总结/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2016/10/12/app/原生app-react-native开发环境以及项目搭建总结/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1668,49 +1618,19 @@
 
       
         
-          
-            <h1 id="1-react-native"><a href="#1-react-native" class="headerlink" title="1. react-native"></a>1. react-native</h1><p><a href="http://reactnative.cn/" target="_blank" rel="noopener">学习官网</a><br><a href="http://react-china.org/" target="_blank" rel="noopener">中文官网</a></p>
+          <h1 id="1-react-native"><a href="#1-react-native" class="headerlink" title="1. react-native"></a>1. react-native</h1><p><a href="http://reactnative.cn/" target="_blank" rel="noopener">学习官网</a><br><a href="http://react-china.org/" target="_blank" rel="noopener">中文官网</a></p>
 <h2 id="1-1-需要的开发环境"><a href="#1-1-需要的开发环境" class="headerlink" title="1.1 需要的开发环境"></a>1.1 需要的开发环境</h2><ul>
 <li>开发出来是原生的App</li>
 <li>jdk,sdk,node git</li>
 <li>python : 环境变量: C:\Python27</li>
-<li>还要求sdk中折build-tools是23.0.1版本。</li>
-</ul>
-<h2 id="1-2-安装react-native-cli"><a href="#1-2-安装react-native-cli" class="headerlink" title="1.2 安装react-native-cli"></a>1.2 安装react-native-cli</h2><ul>
-<li>命令：<code>npm install -g react-native-cli</code></li>
-<li>使用时直接使用react-native 不要加-cli</li>
-<li>查看版本: <code>react-native --version</code></li>
-</ul>
-<h2 id="1-3-初始化一个基本的项目结构"><a href="#1-3-初始化一个基本的项目结构" class="headerlink" title="1.3 初始化一个基本的项目结构"></a>1.3 初始化一个基本的项目结构</h2><ul>
-<li>命令：<code>react-native init testApp</code></li>
-<li>这里的testApp是项目目录名。（这个过程比较耗时）</li>
-<li>项目中会用一个index.android.js这是android平台对应的入口文件</li>
-<li>还有一个index.ios.js 这是ios平台对应的入口文件</li>
-</ul>
-<h2 id="1-4-运行"><a href="#1-4-运行" class="headerlink" title="1.4 运行"></a>1.4 运行</h2><ul>
-<li><code>react-native run-android</code></li>
-<li><code>react-native run-ios</code></li>
-<li>在testApp这个目录执行命令</li>
-</ul>
-<h2 id="图片Image组件"><a href="#图片Image组件" class="headerlink" title="图片Image组件"></a>图片Image组件</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- 使用本地图片</span><br><span class="line">    <span class="string">`&lt;Image source=&#123;require('./tmp/sc.jpg')&#125;/&gt;`</span></span><br><span class="line">- 如果指定的是一个网络图片，一定要指定宽高</span><br><span class="line">    <span class="string">`&lt;Image source=&#123;&#123;uri:'http://www.jpg'&#125;&#125; style=&#123;&#123;width:200,height:400&#125;&#125;/&gt;`</span></span><br><span class="line">- 可以当作背景图使用:</span><br><span class="line">     要使用双标签的形式</span><br><span class="line">     <span class="string">`&lt;Image source=&#123;&#123;uri:'http://xxx.jpg'&#125;&#125;&gt;&lt;Text&gt;我是小明&lt;/Text&gt;&lt;/Image&gt;`</span></span><br><span class="line"></span><br><span class="line">- 这样：sc2.android.jpg</span><br><span class="line">    * 如果在文件名与后缀中间加上.android,那么这个文件是由android平台使用</span><br><span class="line">    * 使用时不需要加上.android,直接使用sc2.jpg</span><br><span class="line">    * 如果是ios也是如此类比</span><br></pre></td></tr></table></figure>
-<h2 id="TextInput"><a href="#TextInput" class="headerlink" title="TextInput"></a>TextInput</h2><ul>
-<li>onChangeText事件</li>
-</ul>
-<h2 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h2><ul>
-<li>所有的样式都是用style属性，这些样式名基本上是遵循了web上的CSS的命名，<br>只是按照JS的语法要求使用了驼峰命名法，例如将background-color改为backgroundColor。</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from <span class="string">'react'</span>;</span><br><span class="line">import &#123; AppRegistry, StyleSheet, Text, View &#125; from <span class="string">'react-native'</span>;</span><br><span class="line">class LotsOfStyles extends Component &#123;</span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;View&gt;</span><br><span class="line">        &lt;Text style=&#123;styles.red&#125;&gt;just red&lt;/Text&gt;</span><br><span class="line">        &lt;Text style=&#123;styles.bigblue&#125;&gt;just bigblue&lt;/Text&gt;</span><br><span class="line">        &lt;Text style=&#123;[styles.bigblue, styles.red]&#125;&gt;bigblue, <span class="keyword">then</span> red&lt;/Text&gt;</span><br><span class="line">        &lt;Text style=&#123;[styles.red, styles.bigblue]&#125;&gt;red, <span class="keyword">then</span> bigblue&lt;/Text&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">//像素不用加，驼峰命名法</span><br><span class="line">const styles = StyleSheet.create(&#123;</span><br><span class="line">  bigblue: &#123;</span><br><span class="line">    color: <span class="string">'blue'</span>,</span><br><span class="line">    fontWeight: <span class="string">'bold'</span>,</span><br><span class="line">    fontSize: 30,</span><br><span class="line">  &#125;,</span><br><span class="line">  red: &#123;</span><br><span class="line">    color: <span class="string">'red'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line">AppRegistry.registerComponent(<span class="string">'LotsOfStyles'</span>, () =&gt; LotsOfStyles);</span><br></pre></td></tr></table></figure>
-<h2 id="ListView组件"><a href="#ListView组件" class="headerlink" title="ListView组件"></a>ListView组件</h2><ul>
-<li><p>ListView组件用于显示一个垂直的滚动列表，其中的元素之间结构近似而仅数据不同。</p>
-</li>
-<li><p>ListView更适于长列表数据，且元素个数可以增删。和ScrollView不同的是，ListView并不立即渲染所有元素，而是优先渲染屏幕上可见的元素。</p>
-</li>
-<li><p>ListView组件必须的两个属性是dataSource和renderRow。dataSource是列表的数据源，而renderRow则逐个解析数据源中的数据，然后返回一个设定好格式的组件来渲染。</p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from <span class="string">'react'</span>;</span><br><span class="line">import &#123;</span><br><span class="line">  AppRegistry,</span><br><span class="line">  StyleSheet,</span><br><span class="line">  Text,</span><br><span class="line">  View,</span><br><span class="line">  ListView</span><br><span class="line">&#125; from <span class="string">'react-native'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default class testApp extends Component &#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span></span>() &#123;</span><br><span class="line">    super()</span><br><span class="line">    const ds = new ListView.dataSource(&#123;rowHasChanged:(r1,r2)=&gt;&#123;r1!==r2&#125;&#125;)</span><br><span class="line">    this.state = &#123;</span><br><span class="line">      dataSource:ds.cloneWithRows([<span class="string">'小明'</span>,<span class="string">'小红'</span>,<span class="string">'Tom'</span>,<span class="string">'Joke'</span>,<span class="string">'Lily'</span>])</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;View&gt;</span><br><span class="line">        &lt;ListView</span><br><span class="line">        dataSource =&#123;this.state.dataSource&#125;</span><br><span class="line">        renderRow= &#123;this.renderRow&#125;</span><br><span class="line">         /&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  renderRow(rowData)&#123;</span><br><span class="line">      <span class="built_in">return</span> (</span><br><span class="line">        &lt;Text&gt;&#123;rowData&#125;&lt;/Text&gt;</span><br><span class="line">        )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">AppRegistry.registerComponent(<span class="string">'testApp'</span>, () =&gt; testApp);</span><br></pre></td></tr></table></figure>
-
-          
+<li>还要求sdk中折build-tools是23.0.1版本。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/10/12/app/原生app-react-native开发环境以及项目搭建总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1757,7 +1677,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/10/reactJS开始学习一/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/10/react/reactJS开始学习一/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="珈润">
@@ -1766,7 +1686,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Believel">
+      <meta itemprop="name" content="张珈润">
     </span>
 
     
@@ -1776,7 +1696,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/10/10/reactJS开始学习一/" itemprop="url">reactJS开始学习一</a></h1>
+                <a class="post-title-link" href="/2016/10/10/react/reactJS开始学习一/" itemprop="url">reactJS开始学习一</a></h1>
         
 
         <div class="post-meta">
@@ -1799,6 +1719,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -1807,9 +1749,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/10/10/reactJS开始学习一/#comments" itemprop="discussionUrl">
+                <a href="/2016/10/10/react/reactJS开始学习一/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/10/10/reactJS开始学习一/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2016/10/10/react/reactJS开始学习一/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1838,70 +1780,20 @@
 
       
         
-          
-            <h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><ul>
+          <h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><ul>
 <li><code>npm install react --save</code><ul>
 <li>创建组件</li>
 </ul>
 </li>
 <li><code>npm install react-dom --save</code><ul>
-<li>将组件渲染到dom上</li>
-</ul>
-</li>
-</ul>
-<h2 id="使用helloworld"><a href="#使用helloworld" class="headerlink" title="使用helloworld"></a>使用helloworld</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 1.引入react react-dom</span><br><span class="line">var React = require(&apos;react&apos;)</span><br><span class="line">var ReactDom = require(&apos;react-dom&apos;)</span><br><span class="line"></span><br><span class="line">// 2.创建一个helloworld组件</span><br><span class="line">var HelloWorld = React.createClass(&#123;</span><br><span class="line"></span><br><span class="line">  // 这个render的方法里必需返回一个组件</span><br><span class="line">  render:function()&#123;</span><br><span class="line">    console.log(111111)</span><br><span class="line">    //..</span><br><span class="line">    // 返回组件, 我们是把这里的div当成组件</span><br><span class="line">    return &lt;div&gt;世界你好&lt;/div&gt;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 3.渲染组件到页面上去</span><br><span class="line">// 第一个参数，是我们需要渲染的组件</span><br><span class="line">ReactDom.render(</span><br><span class="line">  &lt;HelloWorld /&gt;,  // 这里也可以写成双标签</span><br><span class="line">  // 第二个参数，是组件要被渲染到的位置的dom元素的对象</span><br><span class="line">  document.getElementById(&apos;box&apos;)</span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
-<p><em>注意</em> React组件中的标签必需写在闭合标签(单双标签都可以)<br><em>注意</em> 不能在标签使用有js关键字的属性，如class,如果要用写成className</p>
-<h2 id="操作样式"><a href="#操作样式" class="headerlink" title="操作样式"></a>操作样式</h2><ul>
-<li>1.使用className方式 className指的是class</li>
-<li>2.使用内联的方式<ul>
-<li>在当前标签上加上style属性，值为一个js对象：</li>
-<li><div style="{tmpStyle}"></div></li>
-<li>这个tmpStyle里就是以key,value表示样式,把有-的属性名改成驼峰写法</li>
-</ul>
-</li>
-</ul>
-<h3 id="this-state"><a href="#this-state" class="headerlink" title="this.state"></a>this.state</h3><h3 id="注册事件"><a href="#注册事件" class="headerlink" title="注册事件"></a>注册事件</h3><ul>
-<li>在组件上使用  on事件名 来注册事件,事件名改成驼峰写法</li>
-<li>如: <div onclick="{this.xxxx}"></div></li>
-<li>onChange </li>
-</ul>
-<h3 id="this-state-1"><a href="#this-state-1" class="headerlink" title="this.state"></a>this.state</h3><ul>
-<li>我们只能够通过this.state改变组件中的内容，而不能通过编辑组件内容改变this.state<br>如: 如果给input value设置this.state属性值 就不可编辑。<br>只能通过改变this.state的属性值来改变input的value</li>
-</ul>
-<h3 id="获取dom对象-this-refs与ref属性"><a href="#获取dom对象-this-refs与ref属性" class="headerlink" title="获取dom对象 this.refs与ref属性"></a>获取dom对象 this.refs与ref属性</h3><ul>
-<li>在组件中的属性上使用ref属性，给一个如: <div ref="tmp"></div><br>最终react会帮助我们自动获取这组件对应的dom对象(原生)，存储到this.refs上,且key<br>ref指向的值. this.refs.tmp</li>
-</ul>
-<h3 id="组件之间的嵌套"><a href="#组件之间的嵌套" class="headerlink" title="组件之间的嵌套"></a>组件之间的嵌套</h3><ul>
-<li>直接在一个组件内部，以标签形式使用别一个组件。</li>
-<li>在单独的模块中创建一个组件，并把这个组件暴露出去。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 在userinfo.jsx里只创建组件，导出组件</span><br><span class="line">// 在index.jsx中引入userinfo.jsx组件，并渲染到页面上去</span><br><span class="line">var React = require(&apos;react&apos;)</span><br><span class="line"></span><br><span class="line">// 创建个人信息组件</span><br><span class="line">var UserInfo = React.createClass(&#123;</span><br><span class="line">  render:function()&#123;</span><br><span class="line">    console.log(&apos;---&apos;)</span><br><span class="line">    console.log(this)</span><br><span class="line">    console.log(&apos;---&apos;)</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;我是&#123;this.props.name&#125;，我&#123;this.props.age&#125;岁了&lt;/div&gt;</span><br><span class="line">      )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">// 导出组件</span><br><span class="line">module.exports = UserInfo</span><br></pre></td></tr></table></figure>
-<ul>
-<li>再另一个文件中引入创建的组件</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">// 1.引入依赖的包</span><br><span class="line">var React = require(&apos;react&apos;)</span><br><span class="line">var ReactDOM = require(&apos;react-dom&apos;)</span><br><span class="line"></span><br><span class="line">// 2.引入依赖的组件,用户的信息标签组件userinfo.jsx</span><br><span class="line">var UserInfo = require(&apos;./userinfo.jsx&apos;)</span><br><span class="line"></span><br><span class="line">// 3.创建自已的组件，并在组件中使用userinfo.jsx组件</span><br><span class="line">var Index  = React.createClass(&#123;</span><br><span class="line"></span><br><span class="line">  render:function()&#123;</span><br><span class="line">    var arr = [</span><br><span class="line">    &#123;id:1,name:&apos;小明&apos;,age:18&#125;,</span><br><span class="line">    &#123;id:2,name:&apos;小红&apos;,age:28&#125;,</span><br><span class="line">    &#123;id:3,name:&apos;小月&apos;,age:38&#125;,</span><br><span class="line">    &#123;id:4,name:&apos;小黑&apos;,age:48&#125;,</span><br><span class="line">    &#123;id:5,name:&apos;小白&apos;,age:8&#125;,</span><br><span class="line">    ]</span><br><span class="line">    var arr2 = [</span><br><span class="line">   &lt;UserInfo key=&quot;1&quot; name=&quot;小明和小红&quot; age=&quot;18&quot; /&gt;,</span><br><span class="line">   &lt;UserInfo key=&quot;2&quot;  name=&quot;小红&quot; age=&quot;18&quot; /&gt;,</span><br><span class="line">   &lt;UserInfo key=&quot;3&quot; name=&quot;小强&quot; age=&quot;18&quot; /&gt;,</span><br><span class="line">   &lt;UserInfo key=&quot;4&quot; name=&quot;小红和小强&quot; age=&quot;18&quot; /&gt;,</span><br><span class="line">    ]</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &#123;</span><br><span class="line">          // 组件标签中的属性会被添加到组件里的对象的props属性中</span><br><span class="line">        &#125;</span><br><span class="line">        &#123;</span><br><span class="line">          // arr2</span><br><span class="line">        &#125;</span><br><span class="line">        &#123;</span><br><span class="line">          arr.map(function(item)&#123;</span><br><span class="line">            return &lt;UserInfo key=&#123;item.id&#125; name=&#123;item.name&#125; age=&#123;item.age&#125; s=&quot;&#123;item.name&#125;&quot;  /&gt;</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 4.渲染组件</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Index /&gt;,</span><br><span class="line">  document.getElementById(&apos;box&apos;)</span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
-<h3 id="组件之间的值传递"><a href="#组件之间的值传递" class="headerlink" title="组件之间的值传递:"></a>组件之间的值传递:</h3><ul>
-<li><p>组件内部可以接收到组件所在标签的属性值:<br>通过this.props接收,它包含的该组件所在标签的所有的属性值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var UserInfo = React.createClass(&#123;</span><br><span class="line"> render:function()&#123;</span><br><span class="line">   this.props 这里就是所有属性值。</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;)</span><br><span class="line">&lt;UserInfo key=&#123;item.id&#125; name=&#123;item.name&#125; age=&#123;item.age&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul>
-<li>直接改变this.props.属性值 不会使得组件重新渲染</li>
-<li>this.state</li>
-<li>必须要调用this.setState({}),才能重新渲染组件，</li>
-<li>父组件重新渲染，子组件也会跟着渲染</li>
-</ul>
-<h3 id="使用es6写法"><a href="#使用es6写法" class="headerlink" title="使用es6写法"></a>使用es6写法</h3><ul>
-<li><p>使用再安装：<code>npm install babel-preset-es2015</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">  var Hello = React.createClass(&#123;</span><br><span class="line">  getInitialState() &#123;</span><br><span class="line">      return &#123; liked: false &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  render: function() &#123;</span><br><span class="line">      console.log(this.state.liked);</span><br><span class="line">      return(</span><br><span class="line">          &lt;div&gt;</span><br><span class="line">              &lt;h1 style=&#123;style&#125;&gt;Hello world&lt;/h1&gt;</span><br><span class="line">              &lt;br/&gt;</span><br><span class="line">              &lt;image/&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">      )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">  export default class Hello extends Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">      super(props);</span><br><span class="line"></span><br><span class="line">      this.state = &#123; count: &apos;es6&apos;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">      return (</span><br><span class="line">          &lt;div&gt;</span><br><span class="line">              &lt;h1 style=&#123;style&#125;&gt;Hello world&#123;this.state.count&#125;&lt;/h1&gt;</span><br><span class="line">              &lt;br/&gt;</span><br><span class="line">              &lt;image/&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">      )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p>// 可以在组件中的属性中直接使用的事件<br><a href="http://reactjs.cn/react/docs/events.html" target="_blank" rel="noopener">React支持的事件</a><br><a href="http://reactjs.cn/react/docs/tags-and-attributes.html" target="_blank" rel="noopener">React支持的标签和属性</a></p>
-<p>#- 转换语法<br>babel-loader,<br>babel-core,<br>babel-preset-react,<br>babel-preset-es2015,</p>
-<p>#–网页<br>react<br>react-dom</p>
-
-          
+<li>将组件渲染到dom上
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/10/10/react/reactJS开始学习一/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2000,7 +1892,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2011,7 +1903,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

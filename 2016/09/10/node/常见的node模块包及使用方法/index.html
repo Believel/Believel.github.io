@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="node," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="最近在学习nodeJS相关的知识，自己结合学习中总结了一些node的一些常用模块以及用法。 1.node介绍 Node是基于chromeV8解析引擎之上构建的一个javascript运行的环境，或者说平台 在node中，可以使用javascript语言进行编程 Node能解析和执行javascript(ECMAscript)代码 Node是一个平台，让javascript可以脱离浏览器环境运行 N">
+<meta name="keywords" content="node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常见的node模块包及使用方法">
+<meta property="og:url" content="http://yoursite.com/2016/09/10/node/常见的node模块包及使用方法/index.html">
+<meta property="og:site_name" content="张珈润">
+<meta property="og:description" content="最近在学习nodeJS相关的知识，自己结合学习中总结了一些node的一些常用模块以及用法。 1.node介绍 Node是基于chromeV8解析引擎之上构建的一个javascript运行的环境，或者说平台 在node中，可以使用javascript语言进行编程 Node能解析和执行javascript(ECMAscript)代码 Node是一个平台，让javascript可以脱离浏览器环境运行 N">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-10T12:09:34.397Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常见的node模块包及使用方法">
+<meta name="twitter:description" content="最近在学习nodeJS相关的知识，自己结合学习中总结了一些node的一些常用模块以及用法。 1.node介绍 Node是基于chromeV8解析引擎之上构建的一个javascript运行的环境，或者说平台 在node中，可以使用javascript语言进行编程 Node能解析和执行javascript(ECMAscript)代码 Node是一个平台，让javascript可以脱离浏览器环境运行 N">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/10/node/常见的node模块包及使用方法/"/>
+
+
+
+
+
+  <title>常见的node模块包及使用方法 | 张珈润</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张珈润</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">学无止境，聚沙成塔</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/10/node/常见的node模块包及使用方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="珈润">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/zpp.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张珈润">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">常见的node模块包及使用方法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-10T17:51:33+08:00">
+                2016-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/09/10/node/常见的node模块包及使用方法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/09/10/node/常见的node模块包及使用方法/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在学习nodeJS相关的知识，自己结合学习中总结了一些node的一些常用模块以及用法。</p>
+<h2 id="1-node介绍"><a href="#1-node介绍" class="headerlink" title="1.node介绍"></a>1.node介绍</h2><ul>
+<li>Node是基于chromeV8解析引擎之上构建的一个javascript运行的环境，或者说平台</li>
+<li>在node中，可以使用javascript语言进行编程</li>
+<li>Node能解析和执行javascript(ECMAscript)代码</li>
+<li>Node是一个平台，让javascript可以脱离浏览器环境运行</li>
+<li>Node自身使用C++语言写出了很多系统级别相关的API,暴露了一些javascript环境API<a id="more"></a>
+<h3 id="1-1node的特点"><a href="#1-1node的特点" class="headerlink" title="1.1node的特点"></a>1.1node的特点</h3></li>
+<li>Single Thead:单线程</li>
+<li>Event-driven:事件驱动</li>
+<li>Non-blocking I/O model:非阻塞IO模型<ul>
+<li>文件IO、网络IO基本上都是异步的</li>
+</ul>
+</li>
+<li>所以在Node中会看到各种各样的花式回调</li>
+</ul>
+<h2 id="2-nodeAPI简介"><a href="#2-nodeAPI简介" class="headerlink" title="2.nodeAPI简介"></a>2.nodeAPI简介</h2><ol>
+<li>const request = require(‘request’)// 这个第三方提供的发请求的模块</li>
+<li>const cheerio = require(‘cheerio’)// node版的jquery,模拟了jquery的一些方法，帮助我们操作html字符串</li>
+<li><p>const fs = require(‘fs’)          //文件模块</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">request(<span class="string">'http://www.cnblogs.com/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">res,result</span>)</span>&#123;</span><br><span class="line">     <span class="comment">//console.log(res.body);</span></span><br><span class="line">   <span class="comment">// load 是根据html字符串得到，一个dom对象!!!!</span></span><br><span class="line">    <span class="keyword">let</span> $ = cheerio.load(res.body)</span><br><span class="line">    <span class="keyword">let</span> $post_item = $(<span class="string">'.post_item'</span>)</span><br><span class="line">    <span class="comment">// 我们一个标题对应一个文本文件，存储起来</span></span><br><span class="line">    $post_item.each(<span class="function"><span class="keyword">function</span>(<span class="params">index, item</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> $a = $(item).find(<span class="string">'.titlelnk'</span>)</span><br><span class="line">    fs.writeFile(__dirname+<span class="string">'/data/'</span>+$a.text(),$a.text(),<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'完成'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>const mongoose = require(‘mongoose’)// 这个npm模块是用来操作mongodb数据库的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>)</span><br><span class="line"><span class="comment">// 1.建桥， 建立连接</span></span><br><span class="line"><span class="keyword">const</span> db = mongoose.connect(<span class="string">'mongodb://tmp:123123@127.0.0.1:27017/tmp'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//约束数据库的结构</span></span><br><span class="line"><span class="keyword">const</span> UserSchema = <span class="keyword">new</span>  mongoose.Schema(&#123;</span><br><span class="line">  name:<span class="built_in">String</span>,</span><br><span class="line">  completed:<span class="built_in">Boolean</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 得到了一个数据表                  // 这里的todo对应todos数据表</span></span><br><span class="line"><span class="keyword">const</span> Todo = mongoose.model(<span class="string">'todo'</span>,UserSchema)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建要存储的数据对象</span></span><br><span class="line"><span class="keyword">const</span> td = <span class="keyword">new</span> Todo(&#123;</span><br><span class="line">  name:<span class="string">'吃饭'</span>,</span><br><span class="line">  completed:<span class="literal">true</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 存储</span></span><br><span class="line"><span class="comment">// td.save()</span></span><br><span class="line">Todo.findOne(&#123;&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(result)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>var mysql      = require(‘mysql’);//用来连接mysql数据库的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> connection = mysql.createConnection(&#123;</span><br><span class="line">  host     : <span class="string">'localhost'</span>,</span><br><span class="line">  user     : <span class="string">'root'</span>,</span><br><span class="line">  password : <span class="string">'143720'</span>,</span><br><span class="line">  database : <span class="string">'studyit'</span>,</span><br><span class="line">  port     : <span class="string">'3309'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>var express = require(‘express’);//node框架-express</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> router = express.Router();<span class="comment">//子路由</span></span><br><span class="line"><span class="comment">// 导出</span></span><br><span class="line"><span class="built_in">module</span>.exports = router;</span><br><span class="line"><span class="comment">// 设置路由</span></span><br><span class="line">router.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// res.send('hello nodejs');</span></span><br><span class="line">  res.render(<span class="string">'dashboard/index'</span>,&#123;<span class="attr">name</span>:<span class="string">'itcast'</span>&#125;);<span class="comment">//渲染指定页面</span></span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>var path = require(‘path’);//path模块</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> rootPath = path.join(__dirname,<span class="string">'../'</span>);<span class="comment">//__dirname:E:\www\project\day2\projectDemo\controllers</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>var multer  = require(‘multer’) // nodejs的中间件，用于处理 multipart/form-data 类型的表单数据, 它主要用于上传文件.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 允许处理上传文件的路径和文件名</span></span><br><span class="line"><span class="keyword">var</span> storage = multer.diskStorage(&#123;</span><br><span class="line">  <span class="comment">//上传文件的存放位置处理</span></span><br><span class="line">  destination: <span class="function"><span class="keyword">function</span> (<span class="params">req, file, cb</span>) </span>&#123;</span><br><span class="line">    cb(<span class="literal">null</span>, rootPath+<span class="string">'/uploads/avatars'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//上传文件后的文件名字处理</span></span><br><span class="line">  filename: <span class="function"><span class="keyword">function</span> (<span class="params">req, file, cb</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// console.log(file);//&#123; fieldname: 'tc_avatar',</span></span><br><span class="line">              <span class="comment">//    originalname: 'b.png',</span></span><br><span class="line">             <span class="comment">//   encoding: '7bit',</span></span><br><span class="line">            <span class="comment">//    mimetype: 'application/octet-stream' &#125;</span></span><br><span class="line">  <span class="keyword">var</span> originalname = file.originalname;</span><br><span class="line">  <span class="keyword">var</span> lastIndex = originalname.lastIndexOf(<span class="string">'.'</span>);</span><br><span class="line">  <span class="keyword">var</span> filename = originalname.slice(<span class="number">0</span>, lastIndex);<span class="comment">//b</span></span><br><span class="line">  <span class="keyword">var</span> fileExt = originalname.slice(lastIndex);<span class="comment">//.jpg</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 原始名 + Date.now() + 原始后缀</span></span><br><span class="line">    cb(<span class="literal">null</span>, filename + <span class="string">'-'</span> + <span class="built_in">Date</span>.now()+fileExt)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">var</span> upload = multer(&#123; <span class="attr">storage</span>: storage &#125;);</span><br><span class="line">router.post(<span class="string">'/upfile'</span>,upload.single(<span class="string">'tc_avatar(上传的文件名)'</span>),<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//此时上传成功的文件会返回前台信息，即在req.file里面</span></span><br><span class="line">        res.json(req.file);</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>var bodyParser = require(‘body-parser’);//中间件方法</p>
+</li>
+<li>var cookieParser = require(‘cookie-parser’)//cookie的中间件</li>
+<li>var session = require(‘express-session’) // session的中间件</li>
+<li>var express = require(‘express’)<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"><span class="comment">// 设置模板引擎</span></span><br><span class="line"><span class="comment">// 指定模板引擎放在那里了？</span></span><br><span class="line">app.set(<span class="string">'views'</span>,__dirname+<span class="string">'/views'</span>);</span><br><span class="line"><span class="comment">// 指定使用哪个模板引擎</span></span><br><span class="line">app.set(<span class="string">'view engine'</span>,<span class="string">'xtpl'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用cookie的中间件，此中间件就会在响应（res）的时候设置cookie方法</span></span><br><span class="line">app.use(cookieParser());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用session的中间件</span></span><br><span class="line"><span class="comment">// 在req中添加一个属性</span></span><br><span class="line">app.use(session(&#123;</span><br><span class="line">  secret: <span class="string">'keyboard cat'</span>,</span><br><span class="line">  resave: <span class="literal">false</span>,</span><br><span class="line">  cookie:&#123;<span class="attr">maxAge</span>:<span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>*<span class="number">1000</span>&#125;</span><br><span class="line">&#125;))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解析application/x-www-form-urlencoded</span></span><br><span class="line">app.use(bodyParser.urlencoded(&#123;<span class="attr">extend</span>:<span class="literal">false</span>&#125;));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置目录 ,加载静态资源</span></span><br><span class="line">app.use(<span class="string">'/'</span>,express.static(<span class="string">'public'</span>));</span><br><span class="line">app.use(<span class="string">'/'</span>,express.static(<span class="string">'uploads'</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加载子路由</span></span><br><span class="line"><span class="keyword">var</span> index = <span class="built_in">require</span>(<span class="string">'./controllers/index'</span>);</span><br><span class="line"><span class="comment">// 挂载子路由</span></span><br><span class="line">app.use(<span class="string">'/'</span>,index);</span><br><span class="line"><span class="comment">// 监听端口</span></span><br><span class="line">app.listen(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>13.const fs = require(‘fs’)//文件模块<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//读取文件</span></span><br><span class="line">fs.readFile(<span class="string">'./REAME.md'</span>,<span class="function"><span class="keyword">function</span> (<span class="params">err,data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)&#123;</span><br><span class="line">        <span class="comment">//抛出错误信息</span></span><br><span class="line">        <span class="keyword">throw</span> err</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//打印文件信息</span></span><br><span class="line">    <span class="built_in">console</span>.log(data.toString())</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//写入文件</span></span><br><span class="line">fs.writeFile(<span class="string">'./a.txt'</span>,<span class="string">'hello world'</span>,<span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)&#123;</span><br><span class="line">        <span class="keyword">throw</span> err</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'文件写入成功'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>14.const utility = require(‘utility’)//加密工具<br>15.const gm = require(‘gm’) // 图片转换工具</p>
+<ul>
+<li>首先要下载安装GraphicsMagick或者ImageMagick，并配置环境变量，之后检测：命令行中输入gm</li>
+<li>安装：npm install gm</li>
+<li>使用：<a href="https://www.npmjs.com/package/gm" target="_blank" rel="noopener">npm工具网址</a></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 图片创建  path:图片的路径      NewPath写入的新的路径</span></span><br><span class="line">gm(path)</span><br><span class="line">.crop(w,h,x,y)</span><br><span class="line">.write(Newpath,<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!err) <span class="built_in">console</span>.log(<span class="string">'done'</span>)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"># node</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/08/jquery/实用插件的积累/" rel="next" title="实用插件的积累">
+                <i class="fa fa-chevron-left"></i> 实用插件的积累
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/14/javascript/cookie和seesion的区别/" rel="prev" title="cookie和seesion的区别">
+                cookie和seesion的区别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/zpp.jpg"
+                alt="珈润" />
+            
+              <p class="site-author-name" itemprop="name">珈润</p>
+              <p class="site-description motion-element" itemprop="description">前端工程师</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Believel" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-node介绍"><span class="nav-number">1.</span> <span class="nav-text"><a href="#1-node&#x4ECB;&#x7ECD;" class="headerlink" title="1.node&#x4ECB;&#x7ECD;"></a>1.node&#x4ECB;&#x7ECD;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1node的特点"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#1-1node&#x7684;&#x7279;&#x70B9;" class="headerlink" title="1.1node&#x7684;&#x7279;&#x70B9;"></a>1.1node&#x7684;&#x7279;&#x70B9;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-nodeAPI简介"><span class="nav-number">2.</span> <span class="nav-text"><a href="#2-nodeAPI&#x7B80;&#x4ECB;" class="headerlink" title="2.nodeAPI&#x7B80;&#x4ECB;"></a>2.nodeAPI&#x7B80;&#x4ECB;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">珈润</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2016/09/10/node/常见的node模块包及使用方法/';
+          this.page.identifier = '2016/09/10/node/常见的node模块包及使用方法/';
+          this.page.title = '常见的node模块包及使用方法';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
