@@ -153,6 +153,7 @@
   <div class="container sidebar-position-left 
   page-home">
     <div class="headband"></div>
+    <a href="https://github.com/Believel"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
@@ -394,7 +395,9 @@
     
 
     
-
+    <div>
+      
+    </div>
     <footer class="post-footer">
       
 
@@ -551,7 +554,9 @@
     
 
     
-
+    <div>
+      
+    </div>
     <footer class="post-footer">
       
 
@@ -666,25 +671,14 @@
 
       
         
-          
-            <h1 id="angular-dragdrop"><a href="#angular-dragdrop" class="headerlink" title="angular dragdrop"></a>angular dragdrop</h1><p>beforeDrop : 是一个promise对象， 在交换之前选文信息，适用于弹出信息窗口。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = angular.module(<span class="string">'app'</span>, [<span class="string">'ngDragDrop'</span>]);</span><br><span class="line"> app.controller(<span class="string">'oneCtrl'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope, $q</span>)</span>&#123;</span><br><span class="line">     $scope.list1 = &#123;</span><br><span class="line">       title : <span class="string">'Drag and Drop with default confirmation'</span></span><br><span class="line">     &#125;;</span><br><span class="line">     $scope.list2 = &#123;&#125;;</span><br><span class="line">     $scope.beforeDrop = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">         <span class="keyword">var</span> deferred = $q.defer();</span><br><span class="line">         <span class="keyword">if</span>(confirm(<span class="string">'are you sure?'</span>))&#123;</span><br><span class="line">           deferred.resolve();</span><br><span class="line">         &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">           deferred.reject();</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> deferred.promise;</span><br><span class="line">     &#125;;</span><br><span class="line"></span><br><span class="line"> &#125; )</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-sm-6"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"btn btn-primary"</span> <span class="attr">data-drag</span>=<span class="string">"true"</span> <span class="attr">ng-model</span> = <span class="string">"list1"</span> <span class="attr">jqyoui-draggable</span> = <span class="string">"&#123;animate: true&#125;"</span> <span class="attr">ng-hide</span> = <span class="string">" !list1.title"</span>&gt;</span>&#123;&#123;list1.title&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-sm-6"</span> <span class="attr">style</span>=<span class="string">"border:1px solid #ccc;height: 50px"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">data-drop</span>=<span class="string">"true"</span> <span class="attr">ng-model</span>=<span class="string">"list2"</span> <span class="attr">jqyoui-droppable</span>=<span class="string">"&#123;beforeDrop : 'beforeDrop'&#125;"</span> <span class="attr">ng-bind</span>=<span class="string">"list2.title ? 'dropSuceess' : 'Drop hree'"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="jqueryUI-draggable-API"><a href="#jqueryUI-draggable-API" class="headerlink" title="jqueryUI-draggable API"></a>jqueryUI-draggable API</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'selector'</span>).draggable(&#123;</span><br><span class="line">      addClasses : <span class="literal">false</span>, <span class="comment">//阻止 ui-draggable class被添加。</span></span><br><span class="line">      appebdTo : <span class="string">''</span>,<span class="comment">//当拖拽时，draggable要追加到哪一个元素。</span></span><br><span class="line">      axis :  <span class="string">"x"</span>     , <span class="comment">//   约束在水平轴 (x) 或垂直轴 (y) 上拖拽。可能的值："x", "y"。</span></span><br><span class="line">      cancel : <span class="string">'.title'</span>       , <span class="comment">//防止从指定的元素上开始拖拽。</span></span><br><span class="line">      containment :<span class="string">"parent"</span>            , <span class="comment">// 约束在指定元素或区域的边界内拖拽。 支持多个类型 。String：可能的值："parent"、"document"、"window"。</span></span><br><span class="line">      cursor : <span class="string">'crosshair'</span>, <span class="comment">// 拖拽操作期间的 CSS 光标。</span></span><br><span class="line">      disabled : <span class="literal">true</span> ,<span class="comment">// 设置为true，禁止该draggale</span></span><br><span class="line">      helper : <span class="string">'clone'</span>, <span class="comment">// 允许一个 helper 元素用于拖拽显示。如果设置为 "clone"，元素将被克隆，且克隆将被拖拽。</span></span><br><span class="line">      opacity :<span class="string">'.5'</span>,<span class="comment">// 当被拖拽时助手（helper）的不透明度。</span></span><br><span class="line">      revert : <span class="literal">true</span>, <span class="comment">// 当拖拽停止时，元素是否还原到它的开始位置。如果设置为 true，元素总会还原。</span></span><br><span class="line">      scroll : <span class="literal">true</span>, <span class="comment">//   如果设置为 true，当拖拽时容器会自动滚动。</span></span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
-<h1 id="jqueryUI-droppable-API"><a href="#jqueryUI-droppable-API" class="headerlink" title="jqueryUI-droppable API"></a>jqueryUI-droppable API</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'selector'</span>).droppable(&#123;</span><br><span class="line">        accept : <span class="string">'.selector'</span>,  <span class="comment">// 控制哪个可拖拽（draggable）元素可被 droppable 接受。</span></span><br><span class="line">        activeClass : <span class="string">'ui-state-highlight'</span>, <span class="comment">// 如果指定了该选项，当一个可接受的 draggable 被拖拽时，class 将被添加到 droppable</span></span><br><span class="line">        addClasses : <span class="literal">false</span>, <span class="comment">// 如果设置为 false，将防止 ui-droppable class 被添加。</span></span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
-<h1 id="ES6学习"><a href="#ES6学习" class="headerlink" title="ES6学习"></a>ES6学习</h1><h2 id="ES6运行环境的搭建"><a href="#ES6运行环境的搭建" class="headerlink" title="ES6运行环境的搭建"></a>ES6运行环境的搭建</h2><p>摘录资源: <a href="http://blog.csdn.net/liuhe688/article/details/51212393" target="_blank" rel="noopener">http://blog.csdn.net/liuhe688/article/details/51212393</a><br>1.<code>npm install -g babel-cli</code></p>
-<ol>
-<li>创建一 个存放ES6代码的文件夹（例如 es6）和一个存放解析后的ES5的文件夹(例如js),在使用命令初始化一个package.json文件:命令：npm init -y</li>
-<li>安装 ES6转码规则包：<code>npm install babel-preset-es2015 --save-dev</code></li>
-<li>在es6文件夹中编写代码，编写之后</li>
-<li><p>在命令行中使用： <code>babel es6/test.es6 --out-file js/test.js --presets es2015</code>  编译</p>
-<pre><code>`babel es6 --out-dir js --presets es2015` 对整个es6目录的文件进行编译
-</code></pre><h2 id="记录点"><a href="#记录点" class="headerlink" title="记录点"></a>记录点</h2><ol>
-<li>ES5规定，函数只能在顶级作用域和函数作用域下声明，不能在块级作用域下声明。</li>
-</ol>
-</li>
-</ol>
-
-          
+          <h1 id="angular-dragdrop"><a href="#angular-dragdrop" class="headerlink" title="angular dragdrop"></a>angular dragdrop</h1><p>beforeDrop : 是一个promise对象， 在交换之前选文信息，适用于弹出信息窗口。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = angular.module(<span class="string">'app'</span>, [<span class="string">'ngDragDrop'</span>]);</span><br><span class="line"> app.controller(<span class="string">'oneCtrl'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope, $q</span>)</span>&#123;</span><br><span class="line">     $scope.list1 = &#123;</span><br><span class="line">       title : <span class="string">'Drag and Drop with default confirmation'</span></span><br><span class="line">     &#125;;</span><br><span class="line">     $scope.list2 = &#123;&#125;;</span><br><span class="line">     $scope.beforeDrop = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">         <span class="keyword">var</span> deferred = $q.defer();</span><br><span class="line">         <span class="keyword">if</span>(confirm(<span class="string">'are you sure?'</span>))&#123;</span><br><span class="line">           deferred.resolve();</span><br><span class="line">         &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">           deferred.reject();</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> deferred.promise;</span><br><span class="line">     &#125;;</span><br><span class="line"></span><br><span class="line"> &#125; )</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/22/jquery/jqueryUI/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -697,7 +691,9 @@
     
 
     
-
+    <div>
+      
+    </div>
     <footer class="post-footer">
       
 
@@ -850,7 +846,9 @@
     
 
     
-
+    <div>
+      
+    </div>
     <footer class="post-footer">
       
 
@@ -982,7 +980,9 @@
     
 
     
-
+    <div>
+      
+    </div>
     <footer class="post-footer">
       
 
@@ -1157,7 +1157,9 @@
     
 
     
-
+    <div>
+      
+    </div>
     <footer class="post-footer">
       
 
@@ -1323,7 +1325,9 @@
     
 
     
-
+    <div>
+      
+    </div>
     <footer class="post-footer">
       
 
@@ -1481,7 +1485,9 @@
     
 
     
-
+    <div>
+      
+    </div>
     <footer class="post-footer">
       
 
@@ -1643,7 +1649,9 @@
     
 
     
-
+    <div>
+      
+    </div>
     <footer class="post-footer">
       
 
@@ -1806,7 +1814,9 @@
     
 
     
-
+    <div>
+      
+    </div>
     <footer class="post-footer">
       
 
@@ -1919,7 +1929,25 @@
                 <span class="links-of-author-item">
                   <a href="https://github.com/Believel" target="_blank" title="GitHub">
                     
-                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://gitee.com/zjrzpp" target="_blank" title="Gitee">
+                    
+                      <i class="fa fa-fw fa-github-alt"></i>Gitee</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://my.csdn.net/my/mycsdn" target="_blank" title="CSDN">
+                    
+                      <i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.jianshu.com/users/17853cbbfec9/timeline" target="_blank" title="简书">
+                    
+                      <i class="fa fa-fw fa-heartbeat"></i>简书</a>
                 </span>
               
             
@@ -1929,6 +1957,44 @@
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zhangxinxu.com/" title="张鑫旭" target="_blank">张鑫旭</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ruanyifeng.com/blog/" title="阮一峰" target="_blank">阮一峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.alloyteam.com/nav/" title="Web前端导航" target="_blank">Web前端导航</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.36zhen.com/t?id=3448" title="前端书籍资料" target="_blank">前端书籍资料</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ife.baidu.com/" title="百度前端技术学院" target="_blank">百度前端技术学院</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wf.uisdc.com/cn/" title="google前端开发基础" target="_blank">google前端开发基础</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.uisdc.com/" title="优设" target="_blank">优设</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           
@@ -1950,7 +2016,8 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2017</span>
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -1960,6 +2027,12 @@
 </div>
 
 
+  <div class="powered-by">
+  <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+  </span>
+  </div>
+<!--
   <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
@@ -1971,6 +2044,7 @@
   <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
 
 
+-->
 
 
         
@@ -2174,5 +2248,7 @@
 
   
 
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
 </body>
 </html>
