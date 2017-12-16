@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Angular," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;工作中使用angular1.x已经有很长一段时间了，但是有些angular上重要的难点，自己觉得是时候详细总结一下，一是对自己的总结，二是看自己那些还不熟悉。angular1.x中一大难点部分就是自定义指令，接下来我尽可能详细的对angular中的directive做总结。">
+<meta name="keywords" content="Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="angular之directive详解一">
+<meta property="og:url" content="http://yoursite.com/2017/12/14/angular/angular之directive详解一/index.html">
+<meta property="og:site_name" content="张珈润">
+<meta property="og:description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;工作中使用angular1.x已经有很长一段时间了，但是有些angular上重要的难点，自己觉得是时候详细总结一下，一是对自己的总结，二是看自己那些还不熟悉。angular1.x中一大难点部分就是自定义指令，接下来我尽可能详细的对angular中的directive做总结。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/directive/replace1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/directive/replace2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/directive/scopeTrue.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/directive/scopeFalse.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/directive/scopeObject.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/directive/transclude1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/directive/transclude2.png">
+<meta property="og:updated_time" content="2017-12-15T08:19:02.221Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="angular之directive详解一">
+<meta name="twitter:description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;工作中使用angular1.x已经有很长一段时间了，但是有些angular上重要的难点，自己觉得是时候详细总结一下，一是对自己的总结，二是看自己那些还不熟悉。angular1.x中一大难点部分就是自定义指令，接下来我尽可能详细的对angular中的directive做总结。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/directive/replace1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/14/angular/angular之directive详解一/"/>
+
+
+
+
+
+  <title>angular之directive详解一 | 张珈润</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/Believel"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张珈润</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">学无止境，聚沙成塔</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/14/angular/angular之directive详解一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="珈润">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/zpp.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张珈润">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">angular之directive详解一</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T16:05:07+08:00">
+                2017-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Angular/" itemprop="url" rel="index">
+                    <span itemprop="name">Angular</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/14/angular/angular之directive详解一/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/12/14/angular/angular之directive详解一/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;工作中使用angular1.x已经有很长一段时间了，但是有些angular上重要的难点，自己觉得是时候详细总结一下，一是对自己的总结，二是看自己那些还不熟悉。<code>angular1.x</code>中一大难点部分就是自定义指令，接下来我尽可能详细的对angular中的<code>directive</code>做总结。</p>
+<hr>
+<a id="more"></a>
+<h2 id="如何定义一个自定义指令"><a href="#如何定义一个自定义指令" class="headerlink" title="如何定义一个自定义指令"></a>如何定义一个自定义指令</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'app'</span>, [])</span><br><span class="line">      <span class="comment">// 参数1： 指令名字(驼峰命名法) &#123;String&#125;</span></span><br><span class="line">      <span class="comment">// 参数2： 指令的回调函数      &#123;Function&#125;, 这个函数一般返回的是一个对象， 也可以返回一个函数</span></span><br><span class="line">      .directive(<span class="string">'myDirective'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          <span class="comment">// 这里书写参数配置项</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="directive中第二个参数中返回对象的配置项"><a href="#directive中第二个参数中返回对象的配置项" class="headerlink" title="directive中第二个参数中返回对象的配置项"></a>directive中第二个参数中返回对象的配置项</h2><p>大致有如下参数项：</p>
+<ul>
+<li><a href="#restrict">restrict</a></li>
+<li><a href="#priority">priority</a></li>
+<li><a href="#terminal">terminal</a></li>
+<li><a href="#template">template</a></li>
+<li><a href="#templateUrl">templateUrl</a></li>
+<li><a href="#replace">replace</a></li>
+<li><a href="#scope">scope</a></li>
+<li><a href="#transclude">transclude</a><br>… 其他参数在&lt;二&gt;</li>
+</ul>
+<h3 id="restrict"><a href="#restrict" class="headerlink" title="restrict"></a><a name="restrict">restrict</a></h3><ul>
+<li>作用：在DOM视图中的应用形式</li>
+<li>取值: <code>EACM</code>,不是必填项</li>
+<li><p>js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'app'</span>, [])</span><br><span class="line">      .directive(<span class="string">'myDirective'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          restrict: <span class="string">'EACM'</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- E:(元素) --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">my-directive</span>&gt;</span><span class="tag">&lt;/<span class="name">my-directive</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- A:(属性 默认值) --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">my-directive</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- C:(类名) --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"my-directive"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- M:(注释) --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">--directive:my-directive</span> <span class="attr">expression--</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>demo<br><a href="http://zjrzpp.gitee.io/directivecase/#!/restrict" target="_blank" rel="noopener">http://zjrzpp.gitee.io/directivecase/#!/restrict</a></p>
+</li>
+</ul>
+<h3 id="priority"><a href="#priority" class="headerlink" title="priority"></a><a name="priority">priority</a></h3><ul>
+<li>作用：优先级</li>
+<li>取值： Number，例如1000</li>
+<li><p>js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'app'</span>, [])</span><br><span class="line">      .directive(<span class="string">'myDirective'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          restrict: <span class="string">'EACM'</span>,</span><br><span class="line">          priority: <span class="number">1000</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>demo<br><a href="http://zjrzpp.gitee.io/directivecase/#!/priority" target="_blank" rel="noopener">http://zjrzpp.gitee.io/directivecase/#!/priority</a></p>
+</li>
+</ul>
+<h3 id="terminal"><a href="#terminal" class="headerlink" title="terminal"></a><a name="terminal">terminal</a></h3><ul>
+<li>作用：告诉angularJS是否停止运行<code>当前元素</code>上比本指令优先级更低的指令，但与当前指令优先级同级的指令或者更高的指令还是会被执行的</li>
+<li>取值：Boolean值</li>
+<li><p>js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'app'</span>, [])</span><br><span class="line">        .directive(<span class="string">'myDirective1'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict: <span class="string">'A'</span>,</span><br><span class="line">            priority: <span class="number">1</span>,</span><br><span class="line">            link: <span class="function"><span class="keyword">function</span>(<span class="params">scope</span>) </span>&#123;</span><br><span class="line">              <span class="built_in">console</span>.log(<span class="string">'myDirective11111'</span>)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        .directive(<span class="string">'myDirective2'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict: <span class="string">'A'</span>,</span><br><span class="line">            priority:<span class="number">2</span>,</span><br><span class="line">            terminal: <span class="literal">true</span>,</span><br><span class="line">            link: <span class="function"><span class="keyword">function</span>(<span class="params">scope, el</span>) </span>&#123;</span><br><span class="line">              <span class="built_in">console</span>.log(<span class="string">'myDirective222222'</span>)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        .directive(<span class="string">'myDirective3'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict: <span class="string">'A'</span>,</span><br><span class="line">            priority:<span class="number">5</span>,</span><br><span class="line">            link: <span class="function"><span class="keyword">function</span>(<span class="params">scope, el</span>) </span>&#123;</span><br><span class="line">              <span class="built_in">console</span>.log(<span class="string">'myDirective33333'</span>)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">my-directive1</span> <span class="attr">my-directive2</span> <span class="attr">my-directive3</span>&gt;</span></span><br><span class="line">  angularJS!!!</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>result</p>
+<ul>
+<li>1.当<code>terminal = true</code>时，控制台会打印<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">myDirective222222</span><br><span class="line">myDirective33333</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>也就是说优先级比它低的没有执行，阻止了</p>
+<ul>
+<li>2.当<code>terminal = false</code>时，控制台会打印<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">myDirective11111</span><br><span class="line">myDirective222222</span><br><span class="line">myDirective33333</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>也就是说执行顺序是由低到高<code>myDirective1 -&gt; myDirective2 -&gt; myDirective3</code></p>
+</li>
+<li>demo<br><a href="http://zjrzpp.gitee.io/directivecase/#!/terminal" target="_blank" rel="noopener">http://zjrzpp.gitee.io/directivecase/#!/terminal</a><h3 id="template"><a href="#template" class="headerlink" title="template"></a><a name="template">template</a></h3></li>
+<li>作用：展示在页面上的模板字符串</li>
+<li>取值：String或者 Funtion</li>
+<li>注意： template返回的模板中，DOM结构中必须存在一个根节点</li>
+<li><p>js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'app'</span>, [])</span><br><span class="line">      .directive(<span class="string">'myDirective1'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          restrict: <span class="string">'EA'</span>,</span><br><span class="line">          template: <span class="string">'&lt;p style="color:red;"&gt;hello&lt;/p&gt;'</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>demo<br><a href="http://zjrzpp.gitee.io/directivecase/#!/template" target="_blank" rel="noopener">http://zjrzpp.gitee.io/directivecase/#!/template</a></p>
+</li>
+</ul>
+<h3 id="templateUrl"><a href="#templateUrl" class="headerlink" title="templateUrl"></a><a name="templateUrl">templateUrl</a></h3><ul>
+<li>作用：通过url地址把模板展示在页面上</li>
+<li>取值：String(文件路径)或者Funtion</li>
+<li><p>js</p>
+<ul>
+<li>下面模板地址是在本地写的模板，一般项目中的模板都是存在后台，异步获取，这就意味着会编译或者链接，所以会用到angular中的缓存模板<code>$templateCache</code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">  angular.module(<span class="string">'app'</span>, [])</span><br><span class="line">        .directive(<span class="string">'myDirective1'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict: <span class="string">'EA'</span>,</span><br><span class="line">            templateUrl: <span class="string">'template.html'</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>ng-template<span class="string">" id="</span>template.html<span class="string">"&gt;</span></span><br><span class="line"><span class="string">   &lt;p&gt;This is the content of the template&lt;/p&gt;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>demo<br><a href="http://zjrzpp.gitee.io/directivecase/#!/templateUrl" target="_blank" rel="noopener">http://zjrzpp.gitee.io/directivecase/#!/templateUrl</a></p>
+<h3 id="replace"><a href="#replace" class="headerlink" title="replace"></a><a name="replace">replace</a></h3></li>
+<li>作用：false: 模板的内容将会被插入到视图中应用指令元素的内部; true: 则表示替代，即插入到视图中时，应用指令的html元素将被删除，取而代之的是html模板。</li>
+<li>取值：Boolean</li>
+<li><p>js</p>
+<ul>
+<li><p>replace: true</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">  angular.module(<span class="string">'app'</span>, [])</span><br><span class="line">        .directive(<span class="string">'myDirective1'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict: <span class="string">'EA'</span>,</span><br><span class="line">            replace: <span class="literal">true</span>,</span><br><span class="line">            templateUrl: <span class="string">'template.html'</span>,</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>ng-template<span class="string">" id="</span>template.html<span class="string">"&gt;</span></span><br><span class="line"><span class="string">   &lt;p&gt;This is the content of the template&lt;/p&gt;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p>result: <img src="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/directive/replace1.png" alt="replace1"></p>
+</li>
+<li>replace: false<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">  angular.module(<span class="string">'app'</span>, [])</span><br><span class="line">        .directive(<span class="string">'myDirective1'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict: <span class="string">'EA'</span>,</span><br><span class="line">            replace: <span class="literal">false</span>,</span><br><span class="line">            templateUrl: <span class="string">'template.html'</span>,</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>ng-template<span class="string">" id="</span>template.html<span class="string">"&gt;</span></span><br><span class="line"><span class="string">   &lt;p&gt;This is the content of the template&lt;/p&gt;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>result: <img src="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/directive/replace2.png" alt="replace2"></p>
+</li>
+<li>demo<br><a href="http://zjrzpp.gitee.io/directivecase/#!/replace" target="_blank" rel="noopener">http://zjrzpp.gitee.io/directivecase/#!/replace</a></li>
+</ul>
+<h3 id="scope"><a href="#scope" class="headerlink" title="scope"></a><a name="scope">scope</a></h3><ul>
+<li><p>作用：</p>
+<ul>
+<li><p>Boolean:默认是false,即该指令并不会创建新的作用域，改指令内部或外部的作用域是一样的; true: 会继承父作用域并创建一个新的作用域对象</p>
+<ul>
+<li><p>true</p>
+<ul>
+<li><p>js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">  angular.module(<span class="string">'app'</span>, [])</span><br><span class="line">        .controller(<span class="string">'mainCtrl'</span>, [<span class="string">'$scope'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>)</span>&#123;</span><br><span class="line">          $scope.mainData = <span class="string">'我是main里内容'</span></span><br><span class="line"></span><br><span class="line">        &#125;])</span><br><span class="line">        .directive(<span class="string">'myDirective1'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict: <span class="string">'EA'</span>,</span><br><span class="line">            scope: <span class="literal">true</span>,</span><br><span class="line">            templateUrl: <span class="string">'submain.html'</span>,</span><br><span class="line">            controller: <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>) </span>&#123;</span><br><span class="line">                $scope.submain = <span class="string">'我是指令自己的内容'</span></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>ng-template<span class="string">" id="</span>submain.html<span class="string">"&gt;</span></span><br><span class="line"><span class="string">    &lt;p&gt;我能拿到父级的数据：&#123;&#123;mainData&#125;&#125;&lt;/p&gt;</span></span><br><span class="line"><span class="string">    &lt;p&gt;我自己的数据： &#123;&#123;submain&#125;&#125;&lt;/p&gt;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-controller</span>=<span class="string">"mainCtrl"</span>&gt;</span></span><br><span class="line">    父级自己的内容：&#123;&#123;mainData&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">my-directive1</span>&gt;</span><span class="tag">&lt;/<span class="name">my-directive1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">br</span>&gt;</span></span><br><span class="line">    我是父级我可以访问指令里面的内容吗：&#123;&#123;submain&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>result<br><img src="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/directive/scopeTrue.png" alt="true"></p>
+</li>
+<li>demo<br><a href="http://zjrzpp.gitee.io/directivecase/#!/scope1" target="_blank" rel="noopener">http://zjrzpp.gitee.io/directivecase/#!/scope1</a></li>
+</ul>
+</li>
+<li><p>false</p>
+<ul>
+<li><p>js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">  angular.module(<span class="string">'app'</span>, [])</span><br><span class="line">        .controller(<span class="string">'mainCtrl'</span>, [<span class="string">'$scope'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>)</span>&#123;</span><br><span class="line">          $scope.mainData = <span class="string">'我是main里内容'</span></span><br><span class="line"></span><br><span class="line">        &#125;])</span><br><span class="line">        .directive(<span class="string">'myDirective1'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict: <span class="string">'EA'</span>,</span><br><span class="line">            scope: <span class="literal">false</span>,</span><br><span class="line">            templateUrl: <span class="string">'submain.html'</span>,</span><br><span class="line">            controller: <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>) </span>&#123;</span><br><span class="line">                $scope.submain = <span class="string">'我是指令自己的内容'</span></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>ng-template<span class="string">" id="</span>submain.html<span class="string">"&gt;</span></span><br><span class="line"><span class="string">    &lt;p&gt;我能拿到父级的数据：&#123;&#123;mainData&#125;&#125;&lt;/p&gt;</span></span><br><span class="line"><span class="string">    &lt;p&gt;我自己的数据： &#123;&#123;submain&#125;&#125;&lt;/p&gt;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-controller</span>=<span class="string">"mainCtrl"</span>&gt;</span></span><br><span class="line">    父级自己的内容：&#123;&#123;mainData&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">my-directive1</span>&gt;</span><span class="tag">&lt;/<span class="name">my-directive1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">br</span>&gt;</span></span><br><span class="line">    我是父级我可以访问指令里面的内容吗：&#123;&#123;submain&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>result<br><img src="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/directive/scopeFalse.png" alt="false"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Object:隔离作用域，也就是隔离模板与外界作用域，但是也是可以访问外面的值，取值如下：</p>
+<ul>
+<li>@ 本地作用域属性</li>
+<li>= 双向绑定</li>
+<li>&amp; 父级作用域绑定</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>第一种使用方式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">  angular.module(<span class="string">'app'</span>, [])</span><br><span class="line">        .controller(<span class="string">'mainCtrl'</span>, [<span class="string">'$scope'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>)</span>&#123;</span><br><span class="line">          $scope.mainData = <span class="string">'parent'</span></span><br><span class="line">          $scope.mainModel = <span class="string">'aa'</span></span><br><span class="line">          $scope.getMsg = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'方法执行了'</span>)</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">        &#125;])</span><br><span class="line">        .directive(<span class="string">'myDirective1'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict: <span class="string">'EA'</span>,</span><br><span class="line">            scope: &#123;</span><br><span class="line">              myChild: <span class="string">'@'</span>,  <span class="comment">// 储存与myChild相关联的字符串</span></span><br><span class="line">              myModel: <span class="string">'='</span>, <span class="comment">// 将myModel指定对象或者变量绑定</span></span><br><span class="line">              myFun: <span class="string">'&amp;'</span>   <span class="comment">// 将外部方法传递给这个方法</span></span><br><span class="line">            &#125;,</span><br><span class="line">            templateUrl: <span class="string">'submain.html'</span>,</span><br><span class="line">            controller: <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>ng-template<span class="string">" id="</span>submain.html<span class="string">"&gt;</span></span><br><span class="line"><span class="string">    &lt;p&gt;通过隔离作用域拿到父级变量值：&#123;&#123;myChild&#125;&#125;&lt;/p&gt;</span></span><br><span class="line"><span class="string">    &lt;input type="</span>text<span class="string">" ng-model="</span>myModel<span class="string">"&gt;</span></span><br><span class="line"><span class="string">    &lt;button class="</span>btn<span class="string">" type="</span>button<span class="string">" ng-click="</span>myFun()<span class="string">"&gt;提交&lt;/button&gt;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-controller</span>=<span class="string">"mainCtrl"</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">ng-model</span>=<span class="string">"mainModel"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">my-directive1</span> <span class="attr">my-child</span>=<span class="string">"&#123;&#123;mainData&#125;&#125;"</span> <span class="attr">my-model</span>=<span class="string">"mainModel"</span> <span class="attr">my-fun</span>=<span class="string">"getMsg()"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-directive1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>result: <img src="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/directive/scopeObject.png" alt="obejct"><br>注意：定义传参时采用的是驼峰命名法</p>
+<ul>
+<li>第二种采用别名方式   </li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">  angular.module(<span class="string">'app'</span>, [])</span><br><span class="line">        .controller(<span class="string">'mainCtrl'</span>, [<span class="string">'$scope'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>)</span>&#123;</span><br><span class="line">          $scope.mainData = <span class="string">'parent'</span></span><br><span class="line">          $scope.mainModel = <span class="string">'aa'</span></span><br><span class="line">          $scope.getMsg = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'方法执行了'</span>)</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">        &#125;])</span><br><span class="line">        .directive(<span class="string">'myDirective1'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict: <span class="string">'EA'</span>,</span><br><span class="line">            scope: &#123;</span><br><span class="line">              <span class="comment">// myChild: '@',  // 储存与myChild相关联的字符串</span></span><br><span class="line">              <span class="comment">// myModel: '=', // 将myModel指定对象或者变量绑定</span></span><br><span class="line">              <span class="comment">// myFun: '&amp;'   // 将外部方法传递给这个方法</span></span><br><span class="line">              a: <span class="string">'@myChild'</span>,</span><br><span class="line">              b: <span class="string">'=myModel'</span>,</span><br><span class="line">              c: <span class="string">'&amp;myFun'</span></span><br><span class="line">            &#125;,</span><br><span class="line">            templateUrl: <span class="string">'submain.html'</span>,</span><br><span class="line">            controller: <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">  &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">  &lt;script type="text/</span>ng-template<span class="string">" id="</span>submain.html<span class="string">"&gt;</span></span><br><span class="line"><span class="string">      &lt;p&gt;通过隔离作用域拿到父级变量值：&#123;&#123;a&#125;&#125;&lt;/p&gt;</span></span><br><span class="line"><span class="string">      &lt;input type="</span>text<span class="string">" ng-model="</span>b<span class="string">"&gt;</span></span><br><span class="line"><span class="string">      &lt;button class="</span>btn<span class="string">" type="</span>button<span class="string">" ng-click="</span>c()<span class="string">"&gt;提交&lt;/button&gt;</span></span><br><span class="line"><span class="string">  &lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-controller</span>=<span class="string">"mainCtrl"</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">ng-model</span>=<span class="string">"mainModel"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">my-directive1</span> <span class="attr">my-child</span>=<span class="string">"&#123;&#123;mainData&#125;&#125;"</span> <span class="attr">my-model</span>=<span class="string">"mainModel"</span> <span class="attr">my-fun</span>=<span class="string">"getMsg()"</span>&gt;</span><span class="tag">&lt;/<span class="name">my-directive1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>demo<br><a href="http://zjrzpp.gitee.io/directivecase/#!/scope2" target="_blank" rel="noopener">http://zjrzpp.gitee.io/directivecase/#!/scope2</a></li>
+</ul>
+<h3 id="transclude"><a href="#transclude" class="headerlink" title="transclude"></a><a name="transclude">transclude</a></h3><ul>
+<li>作用：你要不要把你指令内部的元素(不是指令的模板)嵌入到你的模板中去，</li>
+<li>取值：Boolean值，默认是false; true或者Object: 它会将整个DOM嵌入到指令内部定义的模板中，包括DOM中的其他指令，经常和<code>ng-transclude</code>配合使用。</li>
+<li><p>transclude: true</p>
+<ul>
+<li><p>js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">  angular.module(<span class="string">'app'</span>, [])</span><br><span class="line">        .controller(<span class="string">'demoCtrl'</span>, [<span class="string">'$scope'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>)</span>&#123;</span><br><span class="line">          $scope.datas = [<span class="string">'apple'</span>, <span class="string">'orange'</span>, <span class="string">'banana'</span>];</span><br><span class="line"></span><br><span class="line">        &#125;])</span><br><span class="line">        .directive(<span class="string">'sidebox'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict: <span class="string">'EA'</span>,</span><br><span class="line">            scope: &#123;</span><br><span class="line">              title: <span class="string">'@'</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">            transclude: <span class="literal">true</span>,</span><br><span class="line">            templateUrl: <span class="string">'template.html'</span>,</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>ng-template<span class="string">" id="</span>template.html<span class="string">"&gt;</span></span><br><span class="line"><span class="string">   &lt;div class="</span>sidebox<span class="string">"&gt;</span></span><br><span class="line"><span class="string">     &lt;div class="</span>content<span class="string">"&gt;</span></span><br><span class="line"><span class="string">       &lt;h2 class="</span>header<span class="string">"&gt;&#123;&#123;title&#125;&#125;&lt;/h2&gt;</span></span><br><span class="line"><span class="string">       &lt;span class="</span>content<span class="string">" ng-transclude&gt;&lt;/span&gt;</span></span><br><span class="line"><span class="string">     &lt;/div&gt;</span></span><br><span class="line"><span class="string">   &lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">title</span>=<span class="string">"fruit"</span> <span class="attr">sidebox</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-repeat</span>=<span class="string">"item in datas"</span>&gt;</span>&#123;&#123;item&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>图解<br><img src="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/directive/transclude1.png" alt="transclude:true"></p>
+</li>
+<li>demo<br><a href="http://zjrzpp.gitee.io/directivecase/#!/transclude1" target="_blank" rel="noopener">http://zjrzpp.gitee.io/directivecase/#!/transclude1</a></li>
+</ul>
+</li>
+<li>transclude: Object<ul>
+<li>js</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">  angular.module(<span class="string">'app'</span>, [])</span><br><span class="line">        .controller(<span class="string">'demoCtrl'</span>, [<span class="string">'$scope'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>)</span>&#123;</span><br><span class="line">        &#125;])</span><br><span class="line">        .directive(<span class="string">'mainBox'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">          <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict: <span class="string">'EA'</span>,</span><br><span class="line">            scope: &#123;</span><br><span class="line">              title: <span class="string">'@'</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">            transclude: &#123;</span><br><span class="line">              <span class="comment">// content 之后是作为ng-transclude的值</span></span><br><span class="line">              <span class="comment">// contentDirective：其他嵌入指令的名字</span></span><br><span class="line">              <span class="string">'content'</span>: <span class="string">'contentDirective'</span>,</span><br><span class="line">              <span class="comment">// ？代表这个嵌入点不一定有对应的指令存在</span></span><br><span class="line">              <span class="string">'menu'</span>: <span class="string">'?menuDirective'</span></span><br><span class="line">            &#125;,</span><br><span class="line">            templateUrl: <span class="string">'template.html'</span>,</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        .directive(<span class="string">'contentDirective'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict : <span class="string">'EA'</span>,</span><br><span class="line">            template: <span class="string">'&lt;div&gt;我是内容指令的内容&lt;/div&gt;'</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        .directive(<span class="string">'menuDirective'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict : <span class="string">'EA'</span>,</span><br><span class="line">            template: <span class="string">'&lt;div&gt;我是菜单指令的内容&lt;/div&gt;'</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>ng-template<span class="string">" id="</span>template.html<span class="string">"&gt;</span></span><br><span class="line"><span class="string">   &lt;div class="</span>main<span class="string">"&gt;</span></span><br><span class="line"><span class="string">      &lt;h1&gt;&#123;&#123;title&#125;&#125;&lt;/h1&gt;</span></span><br><span class="line"><span class="string">      &lt;div ng-transclude="</span>content<span class="string">"&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">      &lt;div ng-transclude="</span>menu<span class="string">"&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">   &lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-controller</span>=<span class="string">"demoCtrl"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">main-box</span> <span class="attr">title</span>=<span class="string">"我是主指令的内容"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">content-directive</span>&gt;</span><span class="tag">&lt;/<span class="name">content-directive</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">menu-directive</span>&gt;</span><span class="tag">&lt;/<span class="name">menu-directive</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">main-box</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>图解<br><img src="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/directive/transclude2.png" alt="transclude:true"></p>
+</li>
+<li>demo<br><a href="http://zjrzpp.gitee.io/directivecase/#!/transclude2" target="_blank" rel="noopener">http://zjrzpp.gitee.io/directivecase/#!/transclude2</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Angular/" rel="tag"><i class="fa fa-tag"></i> Angular</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/13/css/css Grid Layout/" rel="next" title="css中的Grid Layout">
+                <i class="fa fa-chevron-left"></i> css中的Grid Layout
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/16/angular/angular之directive详解二/" rel="prev" title="angular之directive详解二">
+                angular之directive详解二 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/zpp.jpg"
+                alt="珈润" />
+            
+              <p class="site-author-name" itemprop="name">珈润</p>
+              <p class="site-description motion-element" itemprop="description">前端工程师</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Believel" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://gitee.com/zjrzpp" target="_blank" title="Gitee">
+                    
+                      <i class="fa fa-fw fa-github-alt"></i>Gitee</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://my.csdn.net/my/mycsdn" target="_blank" title="CSDN">
+                    
+                      <i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.jianshu.com/users/17853cbbfec9/timeline" target="_blank" title="简书">
+                    
+                      <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zhangxinxu.com/" title="张鑫旭" target="_blank">张鑫旭</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ruanyifeng.com/blog/" title="阮一峰" target="_blank">阮一峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.alloyteam.com/nav/" title="Web前端导航" target="_blank">Web前端导航</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.36zhen.com/t?id=3448" title="前端书籍资料" target="_blank">前端书籍资料</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ife.baidu.com/" title="百度前端技术学院" target="_blank">百度前端技术学院</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wf.uisdc.com/cn/" title="google前端开发基础" target="_blank">google前端开发基础</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.uisdc.com/" title="优设" target="_blank">优设</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何定义一个自定义指令"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5982;&#x4F55;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;&#x6307;&#x4EE4;" class="headerlink" title="&#x5982;&#x4F55;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;&#x6307;&#x4EE4;"></a>&#x5982;&#x4F55;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;&#x6307;&#x4EE4;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#directive中第二个参数中返回对象的配置项"><span class="nav-number">3.</span> <span class="nav-text"><a href="#directive&#x4E2D;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x4E2D;&#x8FD4;&#x56DE;&#x5BF9;&#x8C61;&#x7684;&#x914D;&#x7F6E;&#x9879;" class="headerlink" title="directive&#x4E2D;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x4E2D;&#x8FD4;&#x56DE;&#x5BF9;&#x8C61;&#x7684;&#x914D;&#x7F6E;&#x9879;"></a>directive&#x4E2D;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x4E2D;&#x8FD4;&#x56DE;&#x5BF9;&#x8C61;&#x7684;&#x914D;&#x7F6E;&#x9879;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#restrict"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#restrict" class="headerlink" title="restrict"></a><a name="restrict">restrict</a></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#priority"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#priority" class="headerlink" title="priority"></a><a name="priority">priority</a></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#terminal"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#terminal" class="headerlink" title="terminal"></a><a name="terminal">terminal</a></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#template"><span class="nav-number">3.4.</span> <span class="nav-text"><a href="#template" class="headerlink" title="template"></a><a name="template">template</a></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#templateUrl"><span class="nav-number">3.5.</span> <span class="nav-text"><a href="#templateUrl" class="headerlink" title="templateUrl"></a><a name="templateUrl">templateUrl</a></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#replace"><span class="nav-number">3.6.</span> <span class="nav-text"><a href="#replace" class="headerlink" title="replace"></a><a name="replace">replace</a></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scope"><span class="nav-number">3.7.</span> <span class="nav-text"><a href="#scope" class="headerlink" title="scope"></a><a name="scope">scope</a></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transclude"><span class="nav-number">3.8.</span> <span class="nav-text"><a href="#transclude" class="headerlink" title="transclude"></a><a name="transclude">transclude</a></span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">珈润</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+  <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+  </span>
+  </div>
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/12/14/angular/angular之directive详解一/';
+          this.page.identifier = '2017/12/14/angular/angular之directive详解一/';
+          this.page.title = 'angular之directive详解一';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>

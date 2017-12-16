@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言 由于工作中有很多常用的js代码，或者一些常用算法，自己先下时整理了出来，方便工作中用到的时候查阅，浏览提高开发效率。当然有些api或者方法的实现也借鉴了其他人的方法，自己在这里主要是为了方便。谢谢">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript api">
+<meta property="og:url" content="http://yoursite.com/2015/09/14/javascript/javascriptAPI/index.html">
+<meta property="og:site_name" content="张珈润">
+<meta property="og:description" content="前言 由于工作中有很多常用的js代码，或者一些常用算法，自己先下时整理了出来，方便工作中用到的时候查阅，浏览提高开发效率。当然有些api或者方法的实现也借鉴了其他人的方法，自己在这里主要是为了方便。谢谢">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-11T09:02:19.888Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript api">
+<meta name="twitter:description" content="前言 由于工作中有很多常用的js代码，或者一些常用算法，自己先下时整理了出来，方便工作中用到的时候查阅，浏览提高开发效率。当然有些api或者方法的实现也借鉴了其他人的方法，自己在这里主要是为了方便。谢谢">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/09/14/javascript/javascriptAPI/"/>
+
+
+
+
+
+  <title>javascript api | 张珈润</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/Believel"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张珈润</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">学无止境，聚沙成塔</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/09/14/javascript/javascriptAPI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="珈润">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/zpp.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张珈润">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">javascript api</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-09-14T18:45:10+08:00">
+                2015-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/09/14/javascript/javascriptAPI/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/09/14/javascript/javascriptAPI/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>由于工作中有很多常用的js代码，或者一些常用算法，自己先下时整理了出来，方便工作中用到的时候查阅，浏览提高开发效率。<br>当然有些api或者方法的实现也借鉴了其他人的方法，自己在这里主要是为了方便。谢谢<br><a id="more"></a></p>
+</blockquote>
+<h2 id="API文档"><a href="#API文档" class="headerlink" title="API文档"></a>API文档</h2><h4 id="常用算法"><a href="#常用算法" class="headerlink" title="常用算法"></a>常用算法</h4><ul>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/arithmetic.js" target="_blank" rel="noopener">checkPalindrom</a> &nbsp;&nbsp;&nbsp;&nbsp;  1.判断一个单词是否是回文数</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/arithmetic.js" target="_blank" rel="noopener">unique</a> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  2.去掉一组整型数组重复的值</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/arithmetic.js" target="_blank" rel="noopener">findMaxDuplicateChar</a> &nbsp;&nbsp;&nbsp;&nbsp;  3.统计一个字符串出现最多的字母</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/bubbleSort.js" target="_blank" rel="noopener">bubbleSort</a>&nbsp;&nbsp;&nbsp;&nbsp;  4.冒泡排序算法</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/arithmetic.js" target="_blank" rel="noopener">quickSort</a> &nbsp;&nbsp;&nbsp;&nbsp;   5.快速排序算法</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/arithmetic.js" target="_blank" rel="noopener">selectSort</a>&nbsp;&nbsp;&nbsp;&nbsp;   6.选择排序算法</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/arithmetic.js" target="_blank" rel="noopener">insertSort</a>  &nbsp;&nbsp;&nbsp;&nbsp; 7.插入排序算法</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/arithmetic.js" target="_blank" rel="noopener">hashSort</a> &nbsp;&nbsp;&nbsp;&nbsp;    8.希尔排序算法</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/arithmetic.js" target="_blank" rel="noopener">fibo</a> &nbsp;&nbsp;&nbsp;&nbsp;    9.斐波纳契数列</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/arithmetic.js" target="_blank" rel="noopener">factorial</a> &nbsp;&nbsp;&nbsp;&nbsp;    10.求n的阶乘</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/arithmetic.js" target="_blank" rel="noopener">exchangeNumber</a> &nbsp;&nbsp;&nbsp;&nbsp;    11.不借助临时变量，进行两个整数的交换</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/arithmetic.js" target="_blank" rel="noopener">randomString</a> &nbsp;&nbsp;&nbsp;&nbsp;    12.随机生成指定长度的字符串</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/index.js" target="_blank" rel="noopener">binary</a> &nbsp;&nbsp;&nbsp;&nbsp;    13.折半查找算法</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/index.js" target="_blank" rel="noopener">findWord</a> &nbsp;&nbsp;&nbsp;&nbsp;    14.找到数组中每一个a出现的位置</li>
+</ul>
+<h4 id="排序算法学习地址"><a href="#排序算法学习地址" class="headerlink" title="排序算法学习地址"></a>排序算法学习地址</h4><ol>
+<li>希尔排序算法 <a href="https://segmentfault.com/a/1190000009461832" target="_blank" rel="noopener">https://segmentfault.com/a/1190000009461832</a></li>
+<li>快速排序算法 <a href="https://segmentfault.com/a/1190000009426421" target="_blank" rel="noopener">https://segmentfault.com/a/1190000009426421</a></li>
+<li>选择排序算法 <a href="https://segmentfault.com/a/1190000009366805" target="_blank" rel="noopener">https://segmentfault.com/a/1190000009366805</a></li>
+<li>递归 <a href="https://segmentfault.com/a/1190000009857470" target="_blank" rel="noopener">https://segmentfault.com/a/1190000009857470</a></li>
+<li>十大经典算法排序 <a href="https://github.com/hustcc/JS-Sorting-Algorithm" target="_blank" rel="noopener">https://github.com/hustcc/JS-Sorting-Algorithm</a></li>
+</ol>
+<h4 id="功能类库"><a href="#功能类库" class="headerlink" title="功能类库"></a>功能类库</h4><ul>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/utils.js" target="_blank" rel="noopener">indexOf</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1. 返回数组指定项的索引</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/utils.js" target="_blank" rel="noopener">isFunction</a> &nbsp;&nbsp;&nbsp;&nbsp; 2. 判断是否为函数</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/utils.js" target="_blank" rel="noopener">isFunction</a> &nbsp;&nbsp;&nbsp;&nbsp; 2. 判断是否为函数</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/utils.js" target="_blank" rel="noopener">isIE</a> &nbsp;&nbsp;&nbsp;&nbsp; 3. 判断是不是ie</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/utils.js" target="_blank" rel="noopener">isArray</a> &nbsp;&nbsp;&nbsp;&nbsp; 4. 判断是否为数组</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/utils.js" target="_blank" rel="noopener">isObject</a> &nbsp;&nbsp;&nbsp;&nbsp; 5. 判断是否为对象</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/utils.js" target="_blank" rel="noopener">extend</a> &nbsp;&nbsp;&nbsp;&nbsp; 6. 对象浅复制</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/utils.js" target="_blank" rel="noopener">arrayEqual</a> &nbsp;&nbsp;&nbsp;&nbsp; 7. 判断两个数组是否相等</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/utils.js" target="_blank" rel="noopener">getName</a> &nbsp;&nbsp;&nbsp;&nbsp; 8. 获取一个随机的5位字符串</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/utils.js" target="_blank" rel="noopener">createScript</a> &nbsp;&nbsp;&nbsp;&nbsp; 9. 在页面中注入js脚本</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/utils.js" target="_blank" rel="noopener">jsonp</a> &nbsp;&nbsp;&nbsp;&nbsp; 10. 跨域jsonp</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/utils.js" target="_blank" rel="noopener">json</a> &nbsp;&nbsp;&nbsp;&nbsp; 11. 实现ajax的json</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/utils.js" target="_blank" rel="noopener">crc32</a> &nbsp;&nbsp;&nbsp;&nbsp; 12.  crc32加密</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/class/class.js" target="_blank" rel="noopener">hasClass</a> &nbsp;&nbsp;&nbsp;&nbsp; 13.  是否含有此类名</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/class/class.js" target="_blank" rel="noopener">addClass</a> &nbsp;&nbsp;&nbsp;&nbsp; 14.  给指定元素添加类名</li>
+<li><a href="https://gitee.com/zjrzpp/Worktools/blob/master/08js%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/class/class.js" target="_blank" rel="noopener">removeClass</a> &nbsp;&nbsp;&nbsp;&nbsp; 15.  删除指定元素添加类名</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"><i class="fa fa-tag"></i> javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/02/10/css/css布局常见的问题总结/" rel="next" title="css布局常见的问题总结">
+                <i class="fa fa-chevron-left"></i> css布局常见的问题总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/06/others/markdown基本的用法/" rel="prev" title="markdown基本的用法">
+                markdown基本的用法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/zpp.jpg"
+                alt="珈润" />
+            
+              <p class="site-author-name" itemprop="name">珈润</p>
+              <p class="site-description motion-element" itemprop="description">前端工程师</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Believel" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://gitee.com/zjrzpp" target="_blank" title="Gitee">
+                    
+                      <i class="fa fa-fw fa-github-alt"></i>Gitee</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://my.csdn.net/my/mycsdn" target="_blank" title="CSDN">
+                    
+                      <i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.jianshu.com/users/17853cbbfec9/timeline" target="_blank" title="简书">
+                    
+                      <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zhangxinxu.com/" title="张鑫旭" target="_blank">张鑫旭</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ruanyifeng.com/blog/" title="阮一峰" target="_blank">阮一峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.alloyteam.com/nav/" title="Web前端导航" target="_blank">Web前端导航</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.36zhen.com/t?id=3448" title="前端书籍资料" target="_blank">前端书籍资料</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ife.baidu.com/" title="百度前端技术学院" target="_blank">百度前端技术学院</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wf.uisdc.com/cn/" title="google前端开发基础" target="_blank">google前端开发基础</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.uisdc.com/" title="优设" target="_blank">优设</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API文档"><span class="nav-number">2.</span> <span class="nav-text"><a href="#API&#x6587;&#x6863;" class="headerlink" title="API&#x6587;&#x6863;"></a>API&#x6587;&#x6863;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常用算法"><span class="nav-number">2.0.1.</span> <span class="nav-text"><a href="#&#x5E38;&#x7528;&#x7B97;&#x6CD5;" class="headerlink" title="&#x5E38;&#x7528;&#x7B97;&#x6CD5;"></a>&#x5E38;&#x7528;&#x7B97;&#x6CD5;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排序算法学习地址"><span class="nav-number">2.0.2.</span> <span class="nav-text"><a href="#&#x6392;&#x5E8F;&#x7B97;&#x6CD5;&#x5B66;&#x4E60;&#x5730;&#x5740;" class="headerlink" title="&#x6392;&#x5E8F;&#x7B97;&#x6CD5;&#x5B66;&#x4E60;&#x5730;&#x5740;"></a>&#x6392;&#x5E8F;&#x7B97;&#x6CD5;&#x5B66;&#x4E60;&#x5730;&#x5740;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#功能类库"><span class="nav-number">2.0.3.</span> <span class="nav-text"><a href="#&#x529F;&#x80FD;&#x7C7B;&#x5E93;" class="headerlink" title="&#x529F;&#x80FD;&#x7C7B;&#x5E93;"></a>&#x529F;&#x80FD;&#x7C7B;&#x5E93;</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">珈润</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+  <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+  </span>
+  </div>
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2015/09/14/javascript/javascriptAPI/';
+          this.page.identifier = '2015/09/14/javascript/javascriptAPI/';
+          this.page.title = 'javascript api';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>

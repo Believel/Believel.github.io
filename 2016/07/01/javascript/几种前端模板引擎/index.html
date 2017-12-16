@@ -86,23 +86,23 @@
 
 
 
-<meta name="description" content="从事前端这一行业，那么不得不接触前端的模板引擎，所谓的模板引擎就是为了在前端更好的渲染后端的数据，前端有很多的模板引擎比如underscore、arttemplate等等，今天自己总结了一下自己平时是如何使用它们的。 javascript模板引擎实现原理原生js模板引擎内部实现原理的实质是：利用正则表达式，替换模板当中事先定义好的标签。">
+<meta name="description" content="从事前端这一行业，那么不得不接触前端的模板引擎，所谓的模板引擎就是为了在前端更好的渲染后端的数据，前端有很多的模板引擎比如underscore、arttemplate等等，今天自己总结了一下自己平时是如何使用它们的。">
 <meta name="keywords" content="javascript,前端模板引擎">
 <meta property="og:type" content="article">
 <meta property="og:title" content="几种前端模板引擎">
 <meta property="og:url" content="http://yoursite.com/2016/07/01/javascript/几种前端模板引擎/index.html">
 <meta property="og:site_name" content="张珈润">
-<meta property="og:description" content="从事前端这一行业，那么不得不接触前端的模板引擎，所谓的模板引擎就是为了在前端更好的渲染后端的数据，前端有很多的模板引擎比如underscore、arttemplate等等，今天自己总结了一下自己平时是如何使用它们的。 javascript模板引擎实现原理原生js模板引擎内部实现原理的实质是：利用正则表达式，替换模板当中事先定义好的标签。">
+<meta property="og:description" content="从事前端这一行业，那么不得不接触前端的模板引擎，所谓的模板引擎就是为了在前端更好的渲染后端的数据，前端有很多的模板引擎比如underscore、arttemplate等等，今天自己总结了一下自己平时是如何使用它们的。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/tpl1.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/tpl2.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/tpl3.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/tpl4.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/tpl5.png">
-<meta property="og:updated_time" content="2017-12-10T12:26:38.227Z">
+<meta property="og:updated_time" content="2017-12-13T02:12:04.901Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="几种前端模板引擎">
-<meta name="twitter:description" content="从事前端这一行业，那么不得不接触前端的模板引擎，所谓的模板引擎就是为了在前端更好的渲染后端的数据，前端有很多的模板引擎比如underscore、arttemplate等等，今天自己总结了一下自己平时是如何使用它们的。 javascript模板引擎实现原理原生js模板引擎内部实现原理的实质是：利用正则表达式，替换模板当中事先定义好的标签。">
+<meta name="twitter:description" content="从事前端这一行业，那么不得不接触前端的模板引擎，所谓的模板引擎就是为了在前端更好的渲染后端的数据，前端有很多的模板引擎比如underscore、arttemplate等等，今天自己总结了一下自己平时是如何使用它们的。">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/tpl1.png">
 
 
@@ -378,7 +378,9 @@
 
       
         <p>从事前端这一行业，那么不得不接触前端的模板引擎，所谓的模板引擎就是为了在前端更好的渲染后端的数据，前端有很多的模板引擎比如underscore、arttemplate等等，今天自己总结了一下自己平时是如何使用它们的。</p>
-<h2 id="javascript模板引擎实现原理"><a href="#javascript模板引擎实现原理" class="headerlink" title="javascript模板引擎实现原理"></a>javascript模板引擎实现原理</h2><p>原生js模板引擎内部实现原理的实质是：利用正则表达式，替换模板当中事先定义好的标签。<br><a id="more"></a><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"content"</span>&gt;</span><br><span class="line">  &lt;!-- 模板内容显示位置 --&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;!-- 1.创建模板 --&gt;</span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>html<span class="string">" id="</span>tpl<span class="string">"&gt;</span></span><br><span class="line"><span class="string">    &lt;h4&gt;my name is &lt;%= name %&gt;&lt;/h4&gt;</span></span><br><span class="line"><span class="string">   &lt;h5&gt;i am &lt;%= age %&gt; years old&lt;/h5&gt;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br><span class="line"><span class="string">&lt;script&gt;</span></span><br><span class="line"><span class="string">   //2.将函数进行简单封装</span></span><br><span class="line"><span class="string">   function template(id,data)&#123;</span></span><br><span class="line"><span class="string">      var tpl = document.getElementById(id);</span></span><br><span class="line"><span class="string">  //字符串</span></span><br><span class="line"><span class="string">      tpl = tpl.innerHTML;</span></span><br><span class="line"><span class="string">      //通过正则表达式查换特殊标记的内容,这里正则表达式不做介绍,网上有很多,可以查</span></span><br><span class="line"><span class="string">      var reg = /&lt;%=\s*([^%&gt;]+\S)\s*%&gt;/;</span></span><br><span class="line"><span class="string">      var match;</span></span><br><span class="line"><span class="string">      //匹配不到则为null,循环则停止</span></span><br><span class="line"><span class="string">      while(match = reg.exec(tpl))&#123;//exec匹配字符串中的正则表达式</span></span><br><span class="line"><span class="string">         //替换</span></span><br><span class="line"><span class="string">         tpl = tpl.replace(match[0],data[match[1]]);</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">      return tpl;//返回渲染值</span></span><br><span class="line"><span class="string">   &#125;</span></span><br><span class="line"><span class="string">// 3.渲染模板</span></span><br><span class="line"><span class="string">   var data = &#123;</span></span><br><span class="line"><span class="string">      name:'cici',</span></span><br><span class="line"><span class="string">      age:10</span></span><br><span class="line"><span class="string">   &#125;</span></span><br><span class="line"><span class="string">   //4.调用模板引擎</span></span><br><span class="line"><span class="string">   var html = template('tpl',data);</span></span><br><span class="line"><span class="string">   //5.输出内容</span></span><br><span class="line"><span class="string">   document.getElementById('content').innerHTML = html;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<a id="more"></a>
+<h2 id="javascript模板引擎实现原理"><a href="#javascript模板引擎实现原理" class="headerlink" title="javascript模板引擎实现原理"></a>javascript模板引擎实现原理</h2><p>原生js模板引擎内部实现原理的实质是：利用正则表达式，替换模板当中事先定义好的标签。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"content"</span>&gt;</span><br><span class="line">  &lt;!-- 模板内容显示位置 --&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;!-- 1.创建模板 --&gt;</span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>html<span class="string">" id="</span>tpl<span class="string">"&gt;</span></span><br><span class="line"><span class="string">    &lt;h4&gt;my name is &lt;%= name %&gt;&lt;/h4&gt;</span></span><br><span class="line"><span class="string">   &lt;h5&gt;i am &lt;%= age %&gt; years old&lt;/h5&gt;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br><span class="line"><span class="string">&lt;script&gt;</span></span><br><span class="line"><span class="string">   //2.将函数进行简单封装</span></span><br><span class="line"><span class="string">   function template(id,data)&#123;</span></span><br><span class="line"><span class="string">      var tpl = document.getElementById(id);</span></span><br><span class="line"><span class="string">  //字符串</span></span><br><span class="line"><span class="string">      tpl = tpl.innerHTML;</span></span><br><span class="line"><span class="string">      //通过正则表达式查换特殊标记的内容,这里正则表达式不做介绍,网上有很多,可以查</span></span><br><span class="line"><span class="string">      var reg = /&lt;%=\s*([^%&gt;]+\S)\s*%&gt;/;</span></span><br><span class="line"><span class="string">      var match;</span></span><br><span class="line"><span class="string">      //匹配不到则为null,循环则停止</span></span><br><span class="line"><span class="string">      while(match = reg.exec(tpl))&#123;//exec匹配字符串中的正则表达式</span></span><br><span class="line"><span class="string">         //替换</span></span><br><span class="line"><span class="string">         tpl = tpl.replace(match[0],data[match[1]]);</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">      return tpl;//返回渲染值</span></span><br><span class="line"><span class="string">   &#125;</span></span><br><span class="line"><span class="string">// 3.渲染模板</span></span><br><span class="line"><span class="string">   var data = &#123;</span></span><br><span class="line"><span class="string">      name:'cici',</span></span><br><span class="line"><span class="string">      age:10</span></span><br><span class="line"><span class="string">   &#125;</span></span><br><span class="line"><span class="string">   //4.调用模板引擎</span></span><br><span class="line"><span class="string">   var html = template('tpl',data);</span></span><br><span class="line"><span class="string">   //5.输出内容</span></span><br><span class="line"><span class="string">   document.getElementById('content').innerHTML = html;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>result:<br><img src="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/tpl1.png" alt="效果图"></p>
 <h2 id="1-artTemplate"><a href="#1-artTemplate" class="headerlink" title="1.artTemplate"></a>1.artTemplate</h2><p>新一代的javascript模板引擎，他有两个版本选择，一个是简洁语法版，另一个是原生语法版。</p>
 <ul>
@@ -543,7 +545,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -554,7 +556,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -565,7 +567,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -623,6 +625,10 @@
                 
                   <li class="links-of-blogroll-item">
                     <a href="http://www.ruanyifeng.com/blog/" title="阮一峰" target="_blank">阮一峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
@@ -757,17 +763,12 @@
   
 
 
-  
-
-
-
-  
-  
-
 
 
   
   
+
+
 
 
 
@@ -807,22 +808,12 @@
 
   
   
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  
-
-  
-  
     <script type="text/javascript" src="/lib/three/three.min.js"></script>
   
 
   
   
     <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
   
 
 
