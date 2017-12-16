@@ -86,13 +86,13 @@
 
 
 
-<meta name="description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;工作中使用angular1.x已经有很长一段时间了，但是有些angular上重要的难点，自己觉得是时候详细总结一下，一是对自己的总结，二是看自己那些还不熟悉。angular1.x中一大难点部分就是自定义指令，接下来我尽可能详细的对angular中的directive做总结。">
+<meta name="description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;工作中使用angular1.x已经有很长一段时间了，但是有些angular上重要的难点，自己觉得是时候详细总结一下，一是对自己的总结，二是看自己那些还不熟悉。angular1.x中一大难点部分就是自定义指令，接下来我尽可能详细的对angular中的directive做总结。  下面内容都是自己一点点写上去的，如果有什么问题">
 <meta name="keywords" content="Angular">
 <meta property="og:type" content="article">
 <meta property="og:title" content="angular之directive详解一">
 <meta property="og:url" content="http://yoursite.com/2017/12/14/angular/angular之directive详解一/index.html">
 <meta property="og:site_name" content="张珈润">
-<meta property="og:description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;工作中使用angular1.x已经有很长一段时间了，但是有些angular上重要的难点，自己觉得是时候详细总结一下，一是对自己的总结，二是看自己那些还不熟悉。angular1.x中一大难点部分就是自定义指令，接下来我尽可能详细的对angular中的directive做总结。">
+<meta property="og:description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;工作中使用angular1.x已经有很长一段时间了，但是有些angular上重要的难点，自己觉得是时候详细总结一下，一是对自己的总结，二是看自己那些还不熟悉。angular1.x中一大难点部分就是自定义指令，接下来我尽可能详细的对angular中的directive做总结。  下面内容都是自己一点点写上去的，如果有什么问题">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/directive/replace1.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/directive/replace2.png">
@@ -101,10 +101,10 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/directive/scopeObject.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/directive/transclude1.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/directive/transclude2.png">
-<meta property="og:updated_time" content="2017-12-15T08:19:02.221Z">
+<meta property="og:updated_time" content="2017-12-16T15:37:32.817Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="angular之directive详解一">
-<meta name="twitter:description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;工作中使用angular1.x已经有很长一段时间了，但是有些angular上重要的难点，自己觉得是时候详细总结一下，一是对自己的总结，二是看自己那些还不熟悉。angular1.x中一大难点部分就是自定义指令，接下来我尽可能详细的对angular中的directive做总结。">
+<meta name="twitter:description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;工作中使用angular1.x已经有很长一段时间了，但是有些angular上重要的难点，自己觉得是时候详细总结一下，一是对自己的总结，二是看自己那些还不熟悉。angular1.x中一大难点部分就是自定义指令，接下来我尽可能详细的对angular中的directive做总结。  下面内容都是自己一点点写上去的，如果有什么问题">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/directive/replace1.png">
 
 
@@ -380,6 +380,9 @@
 
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;工作中使用angular1.x已经有很长一段时间了，但是有些angular上重要的难点，自己觉得是时候详细总结一下，一是对自己的总结，二是看自己那些还不熟悉。<code>angular1.x</code>中一大难点部分就是自定义指令，接下来我尽可能详细的对angular中的<code>directive</code>做总结。</p>
+<blockquote>
+<p>下面内容都是自己一点点写上去的，如果有什么问题，请及时指正，若要转载请备注作者，谢谢配合。</p>
+</blockquote>
 <hr>
 <a id="more"></a>
 <h2 id="如何定义一个自定义指令"><a href="#如何定义一个自定义指令" class="headerlink" title="如何定义一个自定义指令"></a>如何定义一个自定义指令</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'app'</span>, [])</span><br><span class="line">      <span class="comment">// 参数1： 指令名字(驼峰命名法) &#123;String&#125;</span></span><br><span class="line">      <span class="comment">// 参数2： 指令的回调函数      &#123;Function&#125;, 这个函数一般返回的是一个对象， 也可以返回一个函数</span></span><br><span class="line">      .directive(<span class="string">'myDirective'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          <span class="comment">// 这里书写参数配置项</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br></pre></td></tr></table></figure>
