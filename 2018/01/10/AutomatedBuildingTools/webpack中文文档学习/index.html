@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="webpack," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="getStart 初始化项目：npm init -y 局部安装webpack: npm install webpack --save-dev 创建项目需要的文件，具体见项目文件">
+<meta name="keywords" content="webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack小记">
+<meta property="og:url" content="http://yoursite.com/2018/01/10/AutomatedBuildingTools/webpack中文文档学习/index.html">
+<meta property="og:site_name" content="张珈润">
+<meta property="og:description" content="getStart 初始化项目：npm init -y 局部安装webpack: npm install webpack --save-dev 创建项目需要的文件，具体见项目文件">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/webpack/runbuild.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/webpack/build1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/webpack/error.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/webpack/runserver.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/webpack/expressServer.png">
+<meta property="og:updated_time" content="2018-01-10T09:25:47.909Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webpack小记">
+<meta name="twitter:description" content="getStart 初始化项目：npm init -y 局部安装webpack: npm install webpack --save-dev 创建项目需要的文件，具体见项目文件">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/webpack/runbuild.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/10/AutomatedBuildingTools/webpack中文文档学习/"/>
+
+
+
+
+
+  <title>webpack小记 | 张珈润</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/Believel"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张珈润</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">学无止境，聚沙成塔</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/AutomatedBuildingTools/webpack中文文档学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="珈润">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/zpp.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张珈润">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">webpack小记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T09:13:18+08:00">
+                2018-01-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/自动化构建工具/" itemprop="url" rel="index">
+                    <span itemprop="name">自动化构建工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/10/AutomatedBuildingTools/webpack中文文档学习/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/01/10/AutomatedBuildingTools/webpack中文文档学习/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<h1 id="getStart"><a href="#getStart" class="headerlink" title="getStart"></a>getStart</h1><ol>
+<li>初始化项目：<code>npm init -y</code></li>
+<li>局部安装webpack: <code>npm install webpack --save-dev</code></li>
+<li>创建项目需要的文件，具体见项目文件<a id="more"></a>
+<h1 id="npm脚本"><a href="#npm脚本" class="headerlink" title="npm脚本"></a>npm脚本</h1></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// package.json</span></span><br><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"build"</span>: <span class="string">"webpack"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以使用命令：<code>npm run build</code>来代替之前的<code>npx</code><br><img src="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/webpack/runbuild.png" alt="npm run build"></p>
+<h1 id="管理资源"><a href="#管理资源" class="headerlink" title="管理资源"></a>管理资源</h1><h2 id="加载CSS"><a href="#加载CSS" class="headerlink" title="加载CSS"></a>加载CSS</h2><ol>
+<li>安装 <code>npm install --save-dev style-loader css-loader</code></li>
+<li>在<code>webpack.config.js</code>中添加<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./src/index.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'bundle.js'</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// S++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css/</span>,</span><br><span class="line">        use: [</span><br><span class="line">          <span class="string">'style-loader'</span>,</span><br><span class="line">          <span class="string">'css-loader'</span></span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">// E++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>webpack 根据正则表达式，来确定应该查找哪些文件，并将其提供给指定的 loader。在这种情况下，以 .css 结尾的全部文件，都将被提供给 style-loader 和 css-loader。</p>
+</blockquote>
+<ol>
+<li>在项目中创建<code>.css</code>文件之后，在其他文件如<code>index.js</code>中使用<code>import &#39;./stylus.css&#39;</code>引入，这样就可以使用了<h2 id="加载图片"><a href="#加载图片" class="headerlink" title="加载图片"></a>加载图片</h2></li>
+<li>安装<code>npm install --save-dev file-loader</code></li>
+<li>在<code>webpack.config.js</code>中添加<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./src/index.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'bundle.js'</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css/</span>,</span><br><span class="line">        use: [</span><br><span class="line">          <span class="string">'style-loader'</span>,</span><br><span class="line">          <span class="string">'css-loader'</span></span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">  <span class="comment">// start</span></span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(png|svg|jpg|gif)$/</span>,</span><br><span class="line">        use: [</span><br><span class="line">          <span class="string">'file-loader'</span></span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line"><span class="comment">// end</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="加载字体"><a href="#加载字体" class="headerlink" title="加载字体"></a>加载字体</h2><ol>
+<li><p>在<code>webpack.config.js</code>中添加</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="comment">// 加载字体</span></span><br><span class="line">&#123;</span><br><span class="line">  test: <span class="regexp">/\.(woff|woff2|eot|ttf|otf)$/</span>,</span><br><span class="line">  use: [</span><br><span class="line">    <span class="string">'file-loader'</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引用字体文件，在css文件中可以通过@font-face定义引入</p>
+</li>
+</ol>
+<h2 id="加载数据"><a href="#加载数据" class="headerlink" title="加载数据"></a>加载数据</h2><ol>
+<li>json文件webpack是内置的，可以正常运行；如果要导入xml,csv,tsv,可以使用<code>csv-loader</code>和<code>xml-loader</code></li>
+<li>安装命令<code>npm install --save-dev csv-loader xml-loader</code></li>
+<li><p>在<code>webpack.config.js</code>中添加如下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="comment">// 加载数据</span></span><br><span class="line">&#123;</span><br><span class="line">  test: <span class="regexp">/\.(csv|tsv)$/</span>,</span><br><span class="line">  use: [</span><br><span class="line">    <span class="string">'csv-loader'</span></span><br><span class="line">  ]</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">  test: <span class="regexp">/\.xml$/</span>,</span><br><span class="line">  use: [</span><br><span class="line">    <span class="string">'xml-loader'</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这样就可以通过<code>import</code>引入创建的数据文件了</p>
+</li>
+</ol>
+<h1 id="管理输出-动态添加bundle向html文件中"><a href="#管理输出-动态添加bundle向html文件中" class="headerlink" title="管理输出(动态添加bundle向html文件中)"></a>管理输出(动态添加bundle向html文件中)</h1><h2 id="预先准备"><a href="#预先准备" class="headerlink" title="预先准备"></a>预先准备</h2><ol>
+<li><code>webpack.config.js</code>文件更改输入和输出分别是多个<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">entry: &#123;</span><br><span class="line">  app: <span class="string">'./src/index.js'</span>,</span><br><span class="line">  print: <span class="string">'./src/print.js'</span></span><br><span class="line">&#125;,</span><br><span class="line">output: &#123;</span><br><span class="line">  <span class="comment">// filename: 'bundle.js',</span></span><br><span class="line">  filename: <span class="string">'[name].bundle.js'</span>,</span><br><span class="line">  path: path.resolve(__dirname, <span class="string">'dist'</span>)</span><br><span class="line">&#125;,</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="设定HtmlWebpackPlugin"><a href="#设定HtmlWebpackPlugin" class="headerlink" title="设定HtmlWebpackPlugin"></a>设定HtmlWebpackPlugin</h2><ol>
+<li>安装<code>npm install --save-dev html-webpack-plugin</code></li>
+<li><p>调整<code>webpack.config.js</code>文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="comment">// S++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line">  <span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>)</span><br><span class="line"><span class="comment">// E+++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line">  <span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="comment">// entry: './src/index.js',</span></span><br><span class="line">    entry: &#123;</span><br><span class="line">      app: <span class="string">'./src/index.js'</span>,</span><br><span class="line">      print: <span class="string">'./src/print.js'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// S++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line">    plugins: [</span><br><span class="line">      <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">        <span class="comment">// html中的title标签的内容</span></span><br><span class="line">        title: <span class="string">'output Management'</span></span><br><span class="line">      &#125;)</span><br><span class="line">    ],</span><br><span class="line">    <span class="comment">// E+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line">    output: &#123;</span><br><span class="line">      <span class="comment">// filename: 'bundle.js',</span></span><br><span class="line">      filename: <span class="string">'[name].bundle.js'</span>,</span><br><span class="line">      path: path.resolve(__dirname, <span class="string">'dist'</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>HtmlWebpackPlugin会默认生成 index.html 文件,替换之前存在的index.html</p>
+</li>
+</ol>
+<h2 id="清理-dist文件夹"><a href="#清理-dist文件夹" class="headerlink" title="清理/dist文件夹"></a>清理/dist文件夹</h2><ol>
+<li>通常每次构建之前会清理<code>/dist</code>文件，安装<code>npm install clean-webpack-plugin --save-dev</code></li>
+<li>调整<code>webpack.config.js</code>文件<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// S++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line"><span class="comment">// 生成index.html文件</span></span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>)</span><br><span class="line"><span class="comment">//E+++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 清理/dist文件</span></span><br><span class="line"><span class="keyword">const</span> CleanWebpackPlugin = <span class="built_in">require</span>(<span class="string">'clean-webpack-plugin'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">// entry: './src/index.js',</span></span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: <span class="string">'./src/index.js'</span>,</span><br><span class="line">    print: <span class="string">'./src/print.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="comment">// S++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin([<span class="string">'dist'</span>]),</span><br><span class="line">    <span class="comment">// E++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">      <span class="comment">// html中的title标签的内容</span></span><br><span class="line">      title: <span class="string">'output Management'</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ],</span><br><span class="line">  output: &#123;</span><br><span class="line">    <span class="comment">// filename: 'bundle.js',</span></span><br><span class="line">    filename: <span class="string">'[name].bundle.js'</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>)</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="Manifest"><a href="#Manifest" class="headerlink" title="Manifest"></a>Manifest</h2><ol>
+<li>安装<code>npm install --save-dev webpack-manifest-plugin</code></li>
+</ol>
+<h1 id="开发-使用在开发环境中"><a href="#开发-使用在开发环境中" class="headerlink" title="开发(使用在开发环境中)"></a>开发(使用在开发环境中)</h1><h2 id="使用-Source-Map-使调试更容易"><a href="#使用-Source-Map-使调试更容易" class="headerlink" title="使用 Source Map(使调试更容易)"></a>使用 Source Map(使调试更容易)</h2><h3 id="使用inline-source-map选项"><a href="#使用inline-source-map选项" class="headerlink" title="使用inline-source-map选项"></a>使用<code>inline-source-map</code>选项</h3><ol>
+<li>调整<code>webpack.config.js</code>文件<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">// entry: './src/index.js',</span></span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: <span class="string">'./src/index.js'</span>,</span><br><span class="line">    print: <span class="string">'./src/print.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// +++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line">  devtool: <span class="string">'inline-source-map'</span>,</span><br><span class="line">  <span class="comment">// +++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin([<span class="string">'dist'</span>]),</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">      <span class="comment">// html中的title标签的内容</span></span><br><span class="line">      title: <span class="string">'output Management'</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ],</span><br><span class="line">  output: &#123;</span><br><span class="line">    <span class="comment">// filename: 'bundle.js',</span></span><br><span class="line">    filename: <span class="string">'[name].bundle.js'</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>2.开始使用<code>npm run build</code>构建，不会报页面错误<br><img src="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/webpack/build1.png" alt="构建结果"></p>
+<ol>
+<li>当在页面上开始触发之后，错误的地方才会显示出来，例如本来点击按钮之后，打印的信息有误，则你在点击之后就会在控制台看到错误信息出来<br><img src="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/webpack/error.png" alt="error"></li>
+</ol>
+<h2 id="使用webpack构建本地服务器-不需要每次修改就在命令行输入npm-run-build"><a href="#使用webpack构建本地服务器-不需要每次修改就在命令行输入npm-run-build" class="headerlink" title="使用webpack构建本地服务器(不需要每次修改就在命令行输入npm run build)"></a>使用webpack构建本地服务器(不需要每次修改就在命令行输入<code>npm run build</code>)</h2><ol>
+<li>安装<code>npm install --save-dev webpack-dev-server</code></li>
+<li><p>调整<code>webpack.config.js</code>文件代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">// entry: './src/index.js',</span></span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: <span class="string">'./src/index.js'</span>,</span><br><span class="line">    print: <span class="string">'./src/print.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  devtool: <span class="string">'eval-source-map'</span>,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin([<span class="string">'dist'</span>]),</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">      <span class="comment">// html中的title标签的内容</span></span><br><span class="line">      title: <span class="string">'output Management'</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ],</span><br><span class="line">  output: &#123;</span><br><span class="line">    <span class="comment">// filename: 'bundle.js',</span></span><br><span class="line">    filename: <span class="string">'[name].bundle.js'</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// S+++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line">  devServer: &#123;</span><br><span class="line">    contentBase: <span class="string">"./dist"</span>, <span class="comment">// 本地服务器所加载的页面所在的目录</span></span><br><span class="line">    historyApiFallback: <span class="literal">true</span>, <span class="comment">//设置为true,所有的跳转指向index.html</span></span><br><span class="line">    inline: <span class="literal">true</span>, <span class="comment">//实时刷新</span></span><br><span class="line">    port: <span class="number">90</span> <span class="comment">// 设置默认监听端口，默认是8080</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// E++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改<code>package.json</code>文件中scripts对象添加如下命令,用以开启本地服务器</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>,</span><br><span class="line">  <span class="string">"start"</span>: <span class="string">"webpack"</span>,</span><br><span class="line">  <span class="string">"server"</span>: <span class="string">"webpack-dev-server --open"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在命令行中输入：<code>npm run server</code>即可在本地的<code>90</code>端口查看结果<br><img src="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/webpack/runserver.png" alt="runserver"></p>
+</li>
+</ol>
+<h2 id="使用webpack-dev-middleware"><a href="#使用webpack-dev-middleware" class="headerlink" title="使用webpack-dev-middleware"></a>使用webpack-dev-middleware</h2><ol>
+<li>介绍：是一个中间件容器(wrapper)，它将通过 webpack 处理后的文件发布到一个服务器(server)。在内部 webpack-dev-server 它使用，然而，它可以作为一个单独的包来提供。webpack-dev-middleware 配合 express server 的示例</li>
+<li>安装：<code>npm install --save-dev express webpack-dev-middleware</code></li>
+<li><p>调整<code>webpack.config.js</code>文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">output: &#123;</span><br><span class="line">  <span class="comment">// filename: 'bundle.js',</span></span><br><span class="line">  filename: <span class="string">'[name].bundle.js'</span>,</span><br><span class="line">  path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">  <span class="comment">// S++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line">  <span class="comment">// 也会在服务器脚本用到，以确保文件资源能够在 http://localhost:3000 下正确访问,端口号之后设置</span></span><br><span class="line">  publicPath: <span class="string">'/'</span></span><br><span class="line">  <span class="comment">// E+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置自定义的express服务，创建一个<code>server.js</code>文件</p>
+</li>
+<li><p>在<code>package.json</code>文件中添加一个npm script，方便运行服务</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>,</span><br><span class="line">  <span class="string">"watch"</span>: <span class="string">"webpack --progress --watch"</span>,</span><br><span class="line">  <span class="string">"build"</span>: <span class="string">"webpack"</span>,</span><br><span class="line">  <span class="string">"start"</span>: <span class="string">"webpack-dev-server --open"</span>,</span><br><span class="line">  <span class="comment">// S++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line">  <span class="string">"server"</span>: <span class="string">"node server.js"</span></span><br><span class="line"><span class="comment">// E++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在终端中执行命令<code>npm run server</code>,展示如下信息：现在可以通过浏览器输入(<a href="http://localhost:3000/)访问项目地址" target="_blank" rel="noopener">http://localhost:3000/)访问项目地址</a><br><img src="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/webpack/expressServer.png" alt="expressServer"></p>
+</li>
+</ol>
+<h1 id="模块热替换-Hot-Module-Relacement-只适用在开发环境中"><a href="#模块热替换-Hot-Module-Relacement-只适用在开发环境中" class="headerlink" title="模块热替换(Hot Module Relacement)(只适用在开发环境中)"></a>模块热替换(Hot Module Relacement)(只适用在开发环境中)</h1><p>1.作用：它允许在运行时更新各种模块，而无需进行完全刷新。</p>
+<h2 id="启用HMR"><a href="#启用HMR" class="headerlink" title="启用HMR"></a>启用HMR</h2><ol>
+<li><p>更新本地服务的配置，如果仅适用了<code>webpack-dev-server</code></p>
+<ul>
+<li><p>调整<code>webpack.config.js</code>,删除<code>print.js</code>的入口文件，因为它被<code>index.js</code>使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// S+++++++++++++++++++++++++++++++++++++</span></span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</span><br><span class="line"><span class="comment">// E++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">// entry: './src/index.js',</span></span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: <span class="string">'./src/index.js'</span>,</span><br><span class="line">    <span class="comment">// print: './src/print.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  devtool: <span class="string">'eval-source-map'</span>,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin([<span class="string">'dist'</span>]),</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">      <span class="comment">// html中的title标签的内容</span></span><br><span class="line">      title: <span class="string">'output Management'</span></span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="comment">// S+++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line">    <span class="keyword">new</span> webpack.NamedModulesPlugin(),</span><br><span class="line">    <span class="keyword">new</span> webpack.HotModuleReplacementPlugin()</span><br><span class="line">    <span class="comment">// E++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line">  ],</span><br><span class="line">  output: &#123;</span><br><span class="line">    <span class="comment">// filename: 'bundle.js',</span></span><br><span class="line">    filename: <span class="string">'[name].bundle.js'</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">    <span class="comment">// 也会在服务器脚本用到，以确保文件资源能够在 http://localhost:3000 下正确访问</span></span><br><span class="line">    publicPath: <span class="string">'/'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    contentBase: <span class="string">"./dist"</span>, <span class="comment">// 本地服务器所加载的页面所在的目录</span></span><br><span class="line">    historyApiFallback: <span class="literal">true</span>, <span class="comment">//设置为true,所有的跳转指向index.html</span></span><br><span class="line">    inline: <span class="literal">true</span>, <span class="comment">//实时刷新</span></span><br><span class="line">    port: <span class="number">90</span>, <span class="comment">// 设置默认监听端口，默认是8080</span></span><br><span class="line">    <span class="comment">// S+++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line">    hot: <span class="literal">true</span></span><br><span class="line">    <span class="comment">// E+++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line"></span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>或者通过命令更改<code>webpack-dev-server --hotOnly</code></p>
+</li>
+</ul>
+</li>
+<li>如果使用了<code>webpack-dev-middleware</code>,请看<a href="https://github.com/glenjamin/webpack-hot-middleware" target="_blank" rel="noopener">https://github.com/glenjamin/webpack-hot-middleware</a></li>
+</ol>
+<h1 id="Tree-Sharking"><a href="#Tree-Sharking" class="headerlink" title="Tree Sharking"></a>Tree Sharking</h1><h2 id="精简输出"><a href="#精简输出" class="headerlink" title="精简输出"></a>精简输出</h2><ol>
+<li>添加一个能够删除未引用代码(dead code)的压缩工具(minifier) - UglifyJSPlugin</li>
+<li>安装<code>npm i --save-dev uglifyjs-webpack-plugin</code></li>
+<li>调整<code>webpack.config.js</code>文件内容<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除未引用代码的插件</span></span><br><span class="line"><span class="keyword">const</span> UglifyJSPlugin = <span class="built_in">require</span>(<span class="string">'uglifyjs-webpack-plugin'</span>)</span><br><span class="line">...</span><br><span class="line">plugins: [</span><br><span class="line">  <span class="keyword">new</span> UglifyJSPlugin()</span><br><span class="line">],</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ol>
+<li>使用 ES2015 模块语法（即 import 和 export</li>
+<li>引入一个能够删除未引用代码(dead code)的压缩工具(minifier)（例如 UglifyJSPlugin）</li>
+</ol>
+<h1 id="生产环境构建-product"><a href="#生产环境构建-product" class="headerlink" title="生产环境构建(product)"></a>生产环境构建(product)</h1><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><ol>
+<li>安装’npm install –save-dev webpack-merge’,并将之前指南中已经成型的那些代码再次进行分离</li>
+<li>删除<code>webpack.config.js</code>,创建<code>webpack.common.js, webpack.dev.js, webpack.prod.js</code>等文件</li>
+<li><p>重新配置npm scripts</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="comment">// 生产环境脚本</span></span><br><span class="line">  <span class="string">"build"</span>: <span class="string">"webpack --config webpack.prod.js"</span>,</span><br><span class="line">  <span class="comment">// 开发环境脚本</span></span><br><span class="line">  <span class="string">"start"</span>: <span class="string">"webpack-dev-server --open --config webpack.dev.js"</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在生产环境中使用<code>source-map</code>,在开发环境中使用<code>inline-source-map</code></p>
+</li>
+</ol>
+<h2 id="指定环境"><a href="#指定环境" class="headerlink" title="指定环境"></a>指定环境</h2><ol>
+<li>许多 library 将通过与 process.env.NODE_ENV 环境变量关联，以决定 library 中应该引用哪些内容</li>
+<li>在生产环境中，调整<code>webpack.prod.js</code>文件<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// S+++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"><span class="comment">// E+++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line"><span class="keyword">const</span> merge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>);</span><br><span class="line"><span class="keyword">const</span> UglifyJSPlugin = <span class="built_in">require</span>(<span class="string">'uglifyjs-webpack-plugin'</span>);</span><br><span class="line"><span class="keyword">const</span> common = <span class="built_in">require</span>(<span class="string">'./webpack.common.js'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = merge(common, &#123;</span><br><span class="line">  devtool: <span class="string">'source-map'</span>,</span><br><span class="line">  plugins: [</span><br><span class="line">         <span class="comment">// new UglifyJSPlugin()</span></span><br><span class="line">         <span class="keyword">new</span> UglifyJSPlugin(&#123;</span><br><span class="line">           sourceMap: <span class="literal">true</span></span><br><span class="line">         &#125;),</span><br><span class="line">         <span class="comment">// S++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line">         <span class="keyword">new</span> webpack.DefinePlugin(&#123;</span><br><span class="line">           <span class="comment">// .NODE_ENV 是一个由 Node.js 暴露给执行脚本的系统环境变量。</span></span><br><span class="line">           <span class="string">'process.env.NODE_ENV'</span>: <span class="built_in">JSON</span>.stringify(<span class="string">'production'</span>)</span><br><span class="line">         &#125;)</span><br><span class="line">         <span class="comment">// E++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line">   ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="代码分离"><a href="#代码分离" class="headerlink" title="代码分离"></a>代码分离</h1><h2 id="代码分离方式一：入口起点-entry-points"><a href="#代码分离方式一：入口起点-entry-points" class="headerlink" title="代码分离方式一：入口起点(entry points)"></a>代码分离方式一：入口起点(entry points)</h2><p>  1.使用 entry 配置手动地分离代码。<br>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">entry: &#123;</span><br><span class="line">  app: <span class="string">'./src/index.js'</span>,</span><br><span class="line">  print: <span class="string">'./src/print.js'</span></span><br><span class="line">&#125;,</span><br><span class="line">output: &#123;</span><br><span class="line">  filename: <span class="string">'[name].bundle.js'</span>,</span><br><span class="line">  path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<h2 id="代码分离方式二：放置重复-prevent-duplication"><a href="#代码分离方式二：放置重复-prevent-duplication" class="headerlink" title="代码分离方式二：放置重复(prevent duplication)"></a>代码分离方式二：放置重复(prevent duplication)</h2><p>  1.在plugins选项中添加webpack内置的插件<br>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(&#123;</span><br><span class="line">    name: <span class="string">'common'</span> <span class="comment">// 指定公共 bundle 的名称。</span></span><br><span class="line">   &#125;)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/webpack/" rel="tag"><i class="fa fa-tag"></i> webpack</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/09/angular/angular中指令ng-if需要注意的问题/" rel="next" title="有关angularJS问题总结">
+                <i class="fa fa-chevron-left"></i> 有关angularJS问题总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/zpp.jpg"
+                alt="珈润" />
+            
+              <p class="site-author-name" itemprop="name">珈润</p>
+              <p class="site-description motion-element" itemprop="description">前端工程师</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Believel" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://gitee.com/zjrzpp" target="_blank" title="Gitee">
+                    
+                      <i class="fa fa-fw fa-github-alt"></i>Gitee</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://my.csdn.net/my/mycsdn" target="_blank" title="CSDN">
+                    
+                      <i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.jianshu.com/users/17853cbbfec9/timeline" target="_blank" title="简书">
+                    
+                      <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zhangxinxu.com/" title="张鑫旭" target="_blank">张鑫旭</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ruanyifeng.com/blog/" title="阮一峰" target="_blank">阮一峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.alloyteam.com/nav/" title="Web前端导航" target="_blank">Web前端导航</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.36zhen.com/t?id=3448" title="前端书籍资料" target="_blank">前端书籍资料</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ife.baidu.com/" title="百度前端技术学院" target="_blank">百度前端技术学院</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wf.uisdc.com/cn/" title="google前端开发基础" target="_blank">google前端开发基础</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.uisdc.com/" title="优设" target="_blank">优设</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#getStart"><span class="nav-number">1.</span> <span class="nav-text"><a href="#getStart" class="headerlink" title="getStart"></a>getStart</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#npm脚本"><span class="nav-number">2.</span> <span class="nav-text"><a href="#npm&#x811A;&#x672C;" class="headerlink" title="npm&#x811A;&#x672C;"></a>npm&#x811A;&#x672C;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#管理资源"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x7BA1;&#x7406;&#x8D44;&#x6E90;" class="headerlink" title="&#x7BA1;&#x7406;&#x8D44;&#x6E90;"></a>&#x7BA1;&#x7406;&#x8D44;&#x6E90;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#加载CSS"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x52A0;&#x8F7D;CSS" class="headerlink" title="&#x52A0;&#x8F7D;CSS"></a>&#x52A0;&#x8F7D;CSS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加载图片"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x52A0;&#x8F7D;&#x56FE;&#x7247;" class="headerlink" title="&#x52A0;&#x8F7D;&#x56FE;&#x7247;"></a>&#x52A0;&#x8F7D;&#x56FE;&#x7247;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加载字体"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#&#x52A0;&#x8F7D;&#x5B57;&#x4F53;" class="headerlink" title="&#x52A0;&#x8F7D;&#x5B57;&#x4F53;"></a>&#x52A0;&#x8F7D;&#x5B57;&#x4F53;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加载数据"><span class="nav-number">3.4.</span> <span class="nav-text"><a href="#&#x52A0;&#x8F7D;&#x6570;&#x636E;" class="headerlink" title="&#x52A0;&#x8F7D;&#x6570;&#x636E;"></a>&#x52A0;&#x8F7D;&#x6570;&#x636E;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#管理输出-动态添加bundle向html文件中"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x7BA1;&#x7406;&#x8F93;&#x51FA;-&#x52A8;&#x6001;&#x6DFB;&#x52A0;bundle&#x5411;html&#x6587;&#x4EF6;&#x4E2D;" class="headerlink" title="&#x7BA1;&#x7406;&#x8F93;&#x51FA;(&#x52A8;&#x6001;&#x6DFB;&#x52A0;bundle&#x5411;html&#x6587;&#x4EF6;&#x4E2D;)"></a>&#x7BA1;&#x7406;&#x8F93;&#x51FA;(&#x52A8;&#x6001;&#x6DFB;&#x52A0;bundle&#x5411;html&#x6587;&#x4EF6;&#x4E2D;)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#预先准备"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#&#x9884;&#x5148;&#x51C6;&#x5907;" class="headerlink" title="&#x9884;&#x5148;&#x51C6;&#x5907;"></a>&#x9884;&#x5148;&#x51C6;&#x5907;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设定HtmlWebpackPlugin"><span class="nav-number">4.2.</span> <span class="nav-text"><a href="#&#x8BBE;&#x5B9A;HtmlWebpackPlugin" class="headerlink" title="&#x8BBE;&#x5B9A;HtmlWebpackPlugin"></a>&#x8BBE;&#x5B9A;HtmlWebpackPlugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清理-dist文件夹"><span class="nav-number">4.3.</span> <span class="nav-text"><a href="#&#x6E05;&#x7406;-dist&#x6587;&#x4EF6;&#x5939;" class="headerlink" title="&#x6E05;&#x7406;/dist&#x6587;&#x4EF6;&#x5939;"></a>&#x6E05;&#x7406;/dist&#x6587;&#x4EF6;&#x5939;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Manifest"><span class="nav-number">4.4.</span> <span class="nav-text"><a href="#Manifest" class="headerlink" title="Manifest"></a>Manifest</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开发-使用在开发环境中"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x5F00;&#x53D1;-&#x4F7F;&#x7528;&#x5728;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x4E2D;" class="headerlink" title="&#x5F00;&#x53D1;(&#x4F7F;&#x7528;&#x5728;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x4E2D;)"></a>&#x5F00;&#x53D1;(&#x4F7F;&#x7528;&#x5728;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x4E2D;)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-Source-Map-使调试更容易"><span class="nav-number">5.1.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;-Source-Map-&#x4F7F;&#x8C03;&#x8BD5;&#x66F4;&#x5BB9;&#x6613;" class="headerlink" title="&#x4F7F;&#x7528; Source Map(&#x4F7F;&#x8C03;&#x8BD5;&#x66F4;&#x5BB9;&#x6613;)"></a>&#x4F7F;&#x7528; Source Map(&#x4F7F;&#x8C03;&#x8BD5;&#x66F4;&#x5BB9;&#x6613;)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用inline-source-map选项"><span class="nav-number">5.1.1.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;inline-source-map&#x9009;&#x9879;" class="headerlink" title="&#x4F7F;&#x7528;inline-source-map&#x9009;&#x9879;"></a>&#x4F7F;&#x7528;<code>inline-source-map</code>&#x9009;&#x9879;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用webpack构建本地服务器-不需要每次修改就在命令行输入npm-run-build"><span class="nav-number">5.2.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;webpack&#x6784;&#x5EFA;&#x672C;&#x5730;&#x670D;&#x52A1;&#x5668;-&#x4E0D;&#x9700;&#x8981;&#x6BCF;&#x6B21;&#x4FEE;&#x6539;&#x5C31;&#x5728;&#x547D;&#x4EE4;&#x884C;&#x8F93;&#x5165;npm-run-build" class="headerlink" title="&#x4F7F;&#x7528;webpack&#x6784;&#x5EFA;&#x672C;&#x5730;&#x670D;&#x52A1;&#x5668;(&#x4E0D;&#x9700;&#x8981;&#x6BCF;&#x6B21;&#x4FEE;&#x6539;&#x5C31;&#x5728;&#x547D;&#x4EE4;&#x884C;&#x8F93;&#x5165;npm run build)"></a>&#x4F7F;&#x7528;webpack&#x6784;&#x5EFA;&#x672C;&#x5730;&#x670D;&#x52A1;&#x5668;(&#x4E0D;&#x9700;&#x8981;&#x6BCF;&#x6B21;&#x4FEE;&#x6539;&#x5C31;&#x5728;&#x547D;&#x4EE4;&#x884C;&#x8F93;&#x5165;<code>npm run build</code>)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用webpack-dev-middleware"><span class="nav-number">5.3.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;webpack-dev-middleware" class="headerlink" title="&#x4F7F;&#x7528;webpack-dev-middleware"></a>&#x4F7F;&#x7528;webpack-dev-middleware</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模块热替换-Hot-Module-Relacement-只适用在开发环境中"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x6A21;&#x5757;&#x70ED;&#x66FF;&#x6362;-Hot-Module-Relacement-&#x53EA;&#x9002;&#x7528;&#x5728;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x4E2D;" class="headerlink" title="&#x6A21;&#x5757;&#x70ED;&#x66FF;&#x6362;(Hot Module Relacement)(&#x53EA;&#x9002;&#x7528;&#x5728;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x4E2D;)"></a>&#x6A21;&#x5757;&#x70ED;&#x66FF;&#x6362;(Hot Module Relacement)(&#x53EA;&#x9002;&#x7528;&#x5728;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x4E2D;)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#启用HMR"><span class="nav-number">6.1.</span> <span class="nav-text"><a href="#&#x542F;&#x7528;HMR" class="headerlink" title="&#x542F;&#x7528;HMR"></a>&#x542F;&#x7528;HMR</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tree-Sharking"><span class="nav-number">7.</span> <span class="nav-text"><a href="#Tree-Sharking" class="headerlink" title="Tree Sharking"></a>Tree Sharking</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#精简输出"><span class="nav-number">7.1.</span> <span class="nav-text"><a href="#&#x7CBE;&#x7B80;&#x8F93;&#x51FA;" class="headerlink" title="&#x7CBE;&#x7B80;&#x8F93;&#x51FA;"></a>&#x7CBE;&#x7B80;&#x8F93;&#x51FA;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">7.2.</span> <span class="nav-text"><a href="#&#x7ED3;&#x8BBA;" class="headerlink" title="&#x7ED3;&#x8BBA;"></a>&#x7ED3;&#x8BBA;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生产环境构建-product"><span class="nav-number">8.</span> <span class="nav-text"><a href="#&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x6784;&#x5EFA;-product" class="headerlink" title="&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x6784;&#x5EFA;(product)"></a>&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x6784;&#x5EFA;(product)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">8.1.</span> <span class="nav-text"><a href="#&#x914D;&#x7F6E;" class="headerlink" title="&#x914D;&#x7F6E;"></a>&#x914D;&#x7F6E;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指定环境"><span class="nav-number">8.2.</span> <span class="nav-text"><a href="#&#x6307;&#x5B9A;&#x73AF;&#x5883;" class="headerlink" title="&#x6307;&#x5B9A;&#x73AF;&#x5883;"></a>&#x6307;&#x5B9A;&#x73AF;&#x5883;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码分离"><span class="nav-number">9.</span> <span class="nav-text"><a href="#&#x4EE3;&#x7801;&#x5206;&#x79BB;" class="headerlink" title="&#x4EE3;&#x7801;&#x5206;&#x79BB;"></a>&#x4EE3;&#x7801;&#x5206;&#x79BB;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码分离方式一：入口起点-entry-points"><span class="nav-number">9.1.</span> <span class="nav-text"><a href="#&#x4EE3;&#x7801;&#x5206;&#x79BB;&#x65B9;&#x5F0F;&#x4E00;&#xFF1A;&#x5165;&#x53E3;&#x8D77;&#x70B9;-entry-points" class="headerlink" title="&#x4EE3;&#x7801;&#x5206;&#x79BB;&#x65B9;&#x5F0F;&#x4E00;&#xFF1A;&#x5165;&#x53E3;&#x8D77;&#x70B9;(entry points)"></a>&#x4EE3;&#x7801;&#x5206;&#x79BB;&#x65B9;&#x5F0F;&#x4E00;&#xFF1A;&#x5165;&#x53E3;&#x8D77;&#x70B9;(entry points)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码分离方式二：放置重复-prevent-duplication"><span class="nav-number">9.2.</span> <span class="nav-text"><a href="#&#x4EE3;&#x7801;&#x5206;&#x79BB;&#x65B9;&#x5F0F;&#x4E8C;&#xFF1A;&#x653E;&#x7F6E;&#x91CD;&#x590D;-prevent-duplication" class="headerlink" title="&#x4EE3;&#x7801;&#x5206;&#x79BB;&#x65B9;&#x5F0F;&#x4E8C;&#xFF1A;&#x653E;&#x7F6E;&#x91CD;&#x590D;(prevent duplication)"></a>&#x4EE3;&#x7801;&#x5206;&#x79BB;&#x65B9;&#x5F0F;&#x4E8C;&#xFF1A;&#x653E;&#x7F6E;&#x91CD;&#x590D;(prevent duplication)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">珈润</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+  <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+  </span>
+  </div>
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/01/10/AutomatedBuildingTools/webpack中文文档学习/';
+          this.page.identifier = '2018/01/10/AutomatedBuildingTools/webpack中文文档学习/';
+          this.page.title = 'webpack小记';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>

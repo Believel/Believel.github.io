@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ES6," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="字符串遍历器接口123for (let str of &apos;foo&apos;) &amp;#123;  console.log(str)&amp;#125; includes() 功能:返回布尔值，表示是否找到了参数字符串  startsWith() 功能：返回布尔值，表示是否在原字符串的头部  endsWith() 功能：返回布尔值，表示是否在原字符串的尾部 这三个方法只传一个参数时 1234let s = &apos;zhang">
+<meta name="keywords" content="ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6中字符串_数组_正则_函数_对象_数值">
+<meta property="og:url" content="http://yoursite.com/2018/01/08/ES6/es6中字符串_数组_正则_函数_对象_数值/index.html">
+<meta property="og:site_name" content="张珈润">
+<meta property="og:description" content="字符串遍历器接口123for (let str of &apos;foo&apos;) &amp;#123;  console.log(str)&amp;#125; includes() 功能:返回布尔值，表示是否找到了参数字符串  startsWith() 功能：返回布尔值，表示是否在原字符串的头部  endsWith() 功能：返回布尔值，表示是否在原字符串的尾部 这三个方法只传一个参数时 1234let s = &apos;zhang">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/reg/group.png">
+<meta property="og:updated_time" content="2018-01-09T05:53:22.045Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6中字符串_数组_正则_函数_对象_数值">
+<meta name="twitter:description" content="字符串遍历器接口123for (let str of &apos;foo&apos;) &amp;#123;  console.log(str)&amp;#125; includes() 功能:返回布尔值，表示是否找到了参数字符串  startsWith() 功能：返回布尔值，表示是否在原字符串的头部  endsWith() 功能：返回布尔值，表示是否在原字符串的尾部 这三个方法只传一个参数时 1234let s = &apos;zhang">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/reg/group.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/08/ES6/es6中字符串_数组_正则_函数_对象_数值/"/>
+
+
+
+
+
+  <title>ES6中字符串_数组_正则_函数_对象_数值 | 张珈润</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/Believel"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张珈润</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">学无止境，聚沙成塔</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/08/ES6/es6中字符串_数组_正则_函数_对象_数值/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="珈润">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/zpp.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张珈润">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ES6中字符串_数组_正则_函数_对象_数值</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-08T22:17:23+08:00">
+                2018-01-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ES6/" itemprop="url" rel="index">
+                    <span itemprop="name">ES6</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/08/ES6/es6中字符串_数组_正则_函数_对象_数值/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/01/08/ES6/es6中字符串_数组_正则_函数_对象_数值/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h2 id="遍历器接口"><a href="#遍历器接口" class="headerlink" title="遍历器接口"></a>遍历器接口</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> str <span class="keyword">of</span> <span class="string">'foo'</span>) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(str)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="includes"><a href="#includes" class="headerlink" title="includes()"></a>includes()</h2><ul>
+<li>功能:返回布尔值，表示是否找到了参数字符串</li>
+</ul>
+<h2 id="startsWith"><a href="#startsWith" class="headerlink" title="startsWith()"></a>startsWith()</h2><ul>
+<li>功能：返回布尔值，表示是否在原字符串的头部</li>
+</ul>
+<h2 id="endsWith"><a href="#endsWith" class="headerlink" title="endsWith()"></a>endsWith()</h2><ul>
+<li>功能：返回布尔值，表示是否在原字符串的尾部</li>
+<li><p>这三个方法只传一个参数时</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s = <span class="string">'zhangpanpan'</span></span><br><span class="line"><span class="built_in">console</span>.log(s.includes(<span class="string">'z'</span>))<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(s.startsWith(<span class="string">'zha'</span>))<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(s.endsWith(<span class="string">'pan'</span>))<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>传入第二个参数时，表示开始搜索的位置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s = <span class="string">'zhangpanpan'</span></span><br><span class="line"><span class="built_in">console</span>.log(s.includes(<span class="string">'z'</span>, <span class="number">0</span>))<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(s.startsWith(<span class="string">'zha'</span>, <span class="number">1</span>))<span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(s.endsWith(<span class="string">'pan'</span>, <span class="number">8</span>))<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="repeat"><a href="#repeat" class="headerlink" title="repeat()"></a>repeat()</h2><ul>
+<li>功能：返回一个新字符串，表示原字符串重复n次</li>
+<li>案例<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'x'</span>.repeat(<span class="number">3</span>))<span class="comment">//xxx</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'x'</span>.repeat(<span class="number">0</span>))<span class="comment">//""</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="padStart-padEnd"><a href="#padStart-padEnd" class="headerlink" title="padStart(),padEnd()"></a>padStart(),padEnd()</h2><ul>
+<li>功能：字符串补全功能</li>
+<li>案例<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 参数1：字符串的最小长度</span></span><br><span class="line"><span class="comment">// 参数2：用来补全的字符串</span></span><br><span class="line"><span class="comment">// 从头部开始补全</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'x'</span>.padStart(<span class="number">5</span>, <span class="string">'abc'</span>));<span class="comment">//abcax</span></span><br><span class="line"><span class="comment">// 从尾部开始补全</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'x'</span>.padEnd(<span class="number">6</span>, <span class="string">'abc'</span>));<span class="comment">//xabcab</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果字符串的指定长度小于原来的长度，则返回原字符串</span></span><br><span class="line"><span class="comment">// 如果省略了第二个参数，则使用空格补全</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'2'</span>.padStarts(<span class="number">2</span>, <span class="string">'0'</span>)); <span class="comment">//02</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="模板字符串"><a href="#模板字符串" class="headerlink" title="模板字符串"></a>模板字符串</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">'zpp'</span>;</span><br><span class="line"><span class="keyword">let</span> str = <span class="string">`我叫<span class="subst">$&#123;name&#125;</span>`</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str)<span class="comment">// 我叫zpp</span></span><br></pre></td></tr></table></figure>
+<h1 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h1><h2 id="正则方法"><a href="#正则方法" class="headerlink" title="正则方法"></a>正则方法</h2><ul>
+<li><p>reg.exec(str):检索字符串中指定的值，返回找到的值，并确定其位置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/\d/g</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'c2cw3'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(reg.exec(str))<span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>reg.test(str):检索字符串中指定的值。返回true或者false</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/\d/g</span></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'c2cw3'</span></span><br><span class="line"><span class="keyword">var</span> str2 = <span class="string">'qqq'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(reg.test(str))<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(reg.test(str2))<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="String对象的方法"><a href="#String对象的方法" class="headerlink" title="String对象的方法"></a>String对象的方法</h2><ul>
+<li><p>str.serach(reg)方法不执行全局匹配，它将忽略标志g。它的返回值是检索的位置，若没有返回-1</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/\d/g</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'12cd3'</span></span><br><span class="line"><span class="keyword">var</span> str2 = <span class="string">'aa'</span></span><br><span class="line"><span class="built_in">console</span>.log(str.search(reg))<span class="comment">//0</span></span><br><span class="line"><span class="built_in">console</span>.log(str2.search(reg))<span class="comment">//-1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>str.match(reg)方法找到一个或者多个正则表达式的匹配，返回是指定的值，是一个数组,若没有匹配的结果则返回null</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/\d/g</span>;</span><br><span class="line"><span class="keyword">var</span> reg2 = <span class="regexp">/\d+/g</span>;<span class="comment">//匹配多个数字，要有g</span></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'12cd3'</span></span><br><span class="line"><span class="keyword">var</span> str2 = <span class="string">'aaa'</span></span><br><span class="line"><span class="built_in">console</span>.log(str.match(reg)) <span class="comment">// ["1", "2", "3"]</span></span><br><span class="line"><span class="built_in">console</span>.log(str.match(reg2)) <span class="comment">// ["12", "3"]</span></span><br><span class="line"><span class="built_in">console</span>.log(str2.match(reg))<span class="comment">// null</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>str.replace(reg|str, str)替换与正则表达式匹配的子串</p>
+<ul>
+<li><p>一些字符替换另一些字符，或替换一个与正则表达式匹配的子串</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/\d/g</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'12cd3'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.replace(reg, <span class="string">'xx'</span>)) <span class="comment">// xxxxcdxx</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果第一个参数传入的是带分组的正则表达式。我们在第二个参数中可以使用一下来获取相应的分组<br><img src="https://raw.githubusercontent.com/Believel/MarkdownPhotos/master/imgs/reg/group.png" alt="group"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str2 = <span class="string">'&lt;%11%&gt;&lt;%4a%&gt;&lt;%3%&gt;'</span></span><br><span class="line"><span class="keyword">var</span> ret = str2.replace(<span class="regexp">/&lt;%([^%&gt;]+)%&gt;/g</span>, <span class="string">'@#$1#@'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(ret)<span class="comment">//@#11#@@#4a#@@#3#@</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>str.replace(reg, function(){})把replace方法的第二个参数传入一个function,，这个function会在每次匹配替换的时候调用，算是个每次替换的回调函数，我们使用了回调函数的第一个参数，也就是匹配内容，其实回调函数一共有四个参数:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一个参数很简单，是匹配字符串</span></span><br><span class="line"><span class="comment">// 第二个参数是正则表达式分组内容，没有分组则没有该参数</span></span><br><span class="line"><span class="comment">// 第三个参数是匹配项在字符串中的index</span></span><br><span class="line"><span class="comment">// 第四个参数则是原字符串</span></span><br><span class="line"><span class="keyword">var</span> ret2 = str2.replace(<span class="regexp">/&lt;%([^%&gt;]+)%&gt;/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">a, b, c, d</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(a)</span><br><span class="line">  <span class="built_in">console</span>.log(b)</span><br><span class="line">  <span class="built_in">console</span>.log(c)</span><br><span class="line">  <span class="built_in">console</span>.log(d)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>str.split(reg/需要分割的标识, 取返回数组的长度)用于把一个字符串分割成字符串数组，返回数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/\d/g</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'12cd3'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.split(reg, <span class="number">4</span>))<span class="comment">// ["", "", "cd", ""]</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="数值"><a href="#数值" class="headerlink" title="数值"></a>数值</h1><h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><ol>
+<li><p>扩展运算符(…)</p>
+<ul>
+<li>功能：将一个数组转为用逗号分隔的参数序列。主要用于函数调用。</li>
+<li>案例<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> item = [<span class="number">1</span>, <span class="number">20</span>]</span><br><span class="line"><span class="built_in">console</span>.log(add(...item))<span class="comment">// 21</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Array.from(object)</p>
+<ul>
+<li>功能：用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括 ES6 新增的数据结构 Set 和 Map）</li>
+<li>案例<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrayLike = &#123;</span><br><span class="line">  <span class="string">'0'</span>: <span class="string">'a'</span>,</span><br><span class="line">  <span class="string">'1'</span>: <span class="string">'b'</span>,</span><br><span class="line">  <span class="string">'2'</span>: <span class="string">'c'</span>,</span><br><span class="line">  length: <span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// es5</span></span><br><span class="line"><span class="comment">// console.log([].slice.call(arrayLike)) // ['a', 'b', 'c']</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.from(arrayLike))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Array.of()</p>
+<ul>
+<li>功能：将一组值转化为数组</li>
+<li>案例<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.of(<span class="number">1</span>, <span class="number">2</span>,<span class="number">3</span>))<span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>数组实例copyWithin</p>
+<ul>
+<li>功能：将指定位置的成员复制到指定位置(会改变原数组)</li>
+<li>案例<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="comment">// target: 开始替换位置的索引值</span></span><br><span class="line"><span class="comment">// start: 从该位置读取数据，默认是0</span></span><br><span class="line"><span class="comment">// end: 到此位置读取数据结束，默认是数组长度</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.copyWithin(<span class="number">0</span>, <span class="number">3</span>, <span class="number">5</span>)); <span class="comment">//[4, 5, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>数组实例find()和findIndex()</p>
+<ul>
+<li>功能1：find()找到第一个符合条件的数组成员，参数是callback, return: 该成员 || undefined</li>
+<li>功能2： findIndex()找到第一个符合添加的数组成员的位置，没有就返回-1</li>
+<li>案例<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> findFirst = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">-3</span>].find(<span class="function">(<span class="params">n, index, arr</span>)=&gt;</span> &#123;</span><br><span class="line">  <span class="comment">//n:当前值</span></span><br><span class="line">  <span class="comment">// index: 当前的索引</span></span><br><span class="line">	<span class="comment">// arr:原数组</span></span><br><span class="line">  <span class="keyword">return</span> n &lt; <span class="number">0</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">let</span> findFirstIndex = [<span class="number">1</span>, <span class="number">2</span>, <span class="literal">NaN</span>, <span class="number">-3</span>].findIndex(<span class="function">(<span class="params">n, index, arr</span>)=&gt;</span> &#123;</span><br><span class="line">  <span class="comment">//n:当前值</span></span><br><span class="line">  <span class="comment">// index: 当前的索引</span></span><br><span class="line">	<span class="comment">// arr:原数组</span></span><br><span class="line">  <span class="keyword">return</span> n &lt; <span class="number">0</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 弥补了indexOf的不足，可以发现NaN</span></span><br><span class="line"><span class="keyword">let</span> findNaN = [<span class="number">1</span>, <span class="literal">NaN</span>].findIndex(<span class="function"><span class="params">n</span> =&gt;</span> <span class="built_in">Object</span>.is(<span class="literal">NaN</span>, n))</span><br><span class="line"><span class="built_in">console</span>.log(findFirst)<span class="comment">// -3</span></span><br><span class="line"><span class="built_in">console</span>.log(findFirstIndex)<span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(findNaN)<span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>数组实例fill()</p>
+<ul>
+<li>功能：使用给定值，填充一个数组</li>
+<li>案例<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> sourceArr = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> targetArr = sourceArr.fill(<span class="string">'a'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(targetArr) <span class="comment">// ['a', 'a', 'a']</span></span><br><span class="line"><span class="comment">// 参数1：指定的填充数据</span></span><br><span class="line"><span class="comment">// 参数2：用于填充的起始位置</span></span><br><span class="line"><span class="comment">// 参数3：用于填充的结束位置(不包括结束位置)</span></span><br><span class="line"><span class="built_in">console</span>.log([<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>].fill(<span class="string">'a'</span>, <span class="number">1</span>, <span class="number">2</span>)) <span class="comment">// [1,'a', 4,5]</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>数组实例entries(),keys()和values()</p>
+<ul>
+<li>功能： 都是用于遍历数组，都返回一个遍历器对象。唯一的区别是keys()是对键名的遍历、values()是对键值的遍历，entries()是对键值对的遍历</li>
+<li>案例<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> index <span class="keyword">of</span> [<span class="string">'a'</span>, <span class="string">'b'</span>].keys()) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(index);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 0</span></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> elem <span class="keyword">of</span> [<span class="string">'a'</span>, <span class="string">'b'</span>].values()) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(elem);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 'a'</span></span><br><span class="line"><span class="comment">// 'b'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [index, elem] <span class="keyword">of</span> [<span class="string">'a'</span>, <span class="string">'b'</span>].entries()) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(index, elem);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 0 "a"</span></span><br><span class="line"><span class="comment">// 1 "b"</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>数组实例includes()</p>
+<ul>
+<li>功能： 表示某个数组是否包含给定的值，返回Boolean</li>
+<li>案例<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].includes(<span class="number">2</span>))<span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].includes(<span class="string">'e'</span>))<span class="comment">// false</span></span><br><span class="line"> <span class="comment">// 参数2：表示搜素的起始位置，默认为0</span></span><br><span class="line"><span class="built_in">console</span>.log([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].includes(<span class="number">2</span>, <span class="number">3</span>))<span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h1><ol>
+<li><p>对象的简便写法</p>
+<ul>
+<li>es6允许直接写入变量和函数，作为对象的属性和方法</li>
+<li>案例<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 变量</span></span><br><span class="line"><span class="keyword">const</span> foo = <span class="string">'bar'</span></span><br><span class="line"><span class="keyword">const</span> baz = &#123;foo&#125;</span><br><span class="line"><span class="built_in">console</span>.log(baz.foo)<span class="comment">// bar</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;x, y&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(foo(<span class="number">1</span>, <span class="number">2</span>)) <span class="comment">// &#123;x: 1, y: 2&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法简写</span></span><br><span class="line"><span class="keyword">const</span> o = &#123;</span><br><span class="line">    method() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello!"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>方法的name属性</p>
+<ul>
+<li>案例<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">  sayName() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Hello'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// name属性是返回函数的属性名</span></span><br><span class="line"><span class="built_in">console</span>.log(person.sayName.name)<span class="comment">// sayName</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Object.is()</p>
+<ul>
+<li>功能：它用来比较两个值是否严格相等</li>
+<li>案例<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.is(<span class="string">'foo'</span>, <span class="string">'foo'</span>)) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.is(&#123;&#125;, &#123;&#125;)) <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(+<span class="number">0</span> === <span class="number">-0</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">NaN</span> === <span class="literal">NaN</span>) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.is(<span class="number">-0</span>, +<span class="number">0</span>)) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.is(<span class="literal">NaN</span>, <span class="literal">NaN</span>)) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Object.assign()</p>
+<ul>
+<li>功能：用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）。</li>
+<li><p>案例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = &#123;<span class="attr">a</span>:<span class="number">1</span>&#125;;</span><br><span class="line"><span class="keyword">const</span> target2 = &#123;<span class="attr">b</span>:<span class="number">2</span>&#125;</span><br><span class="line"><span class="comment">// 参数1：目标对象，其他参数：原对象</span></span><br><span class="line"><span class="keyword">let</span> obj = <span class="built_in">Object</span>.assign(&#123;&#125;, target, target2);</span><br><span class="line"><span class="built_in">console</span>.log(obj) <span class="comment">// &#123;a: 1, b: 2&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>tips: 如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性。</p>
+</li>
+<li>注意点：浅拷贝，同名属性替换，</li>
+</ul>
+</li>
+<li><p>属性的可枚举性和遍历</p>
+<ul>
+<li><p>可枚举性</p>
+<ul>
+<li>Object.getOwnPropertyDescriptor方法可以获取该属性的描述对象</li>
+<li>案例<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;<span class="attr">foo</span>: <span class="number">123</span>&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyDescriptor(obj, <span class="string">'foo'</span>))</span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">// 	configuration: true,</span></span><br><span class="line"><span class="comment">//  enumerable: true,</span></span><br><span class="line"><span class="comment">// 	value: 123,</span></span><br><span class="line"><span class="comment">//  writable: true</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>属性的遍历</p>
+<ul>
+<li>for…in循环遍历对象自身的和继承的可枚举属性</li>
+<li>Object.keys(obj)返回一个数组，包括对象自身的（不含继承的）所有可枚举属性（不含 Symbol 属性）的键名。</li>
+<li>Object.getOwnPropertyNames(obj)返回一个数组，包含对象自身的所有属性（不含 Symbol 属性，但是包括不可枚举属性）的键名。</li>
+<li>Object.getOwnPropertySymbols(obj)返回一个数组，包含对象自身的所有 Symbol 属性的键名。</li>
+<li>Reflect.ownKeys(obj)返回一个数组，包含对象自身的所有键名，不管键名是 Symbol 或字符串，也不管是否可枚举。 </li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ES6/" rel="tag"><i class="fa fa-tag"></i> ES6</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/04/ES6/ES6中参数解析/" rel="next" title="ES6中参数解析">
+                <i class="fa fa-chevron-left"></i> ES6中参数解析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/09/angular/angular中指令ng-if需要注意的问题/" rel="prev" title="有关angularJS问题总结">
+                有关angularJS问题总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/zpp.jpg"
+                alt="珈润" />
+            
+              <p class="site-author-name" itemprop="name">珈润</p>
+              <p class="site-description motion-element" itemprop="description">前端工程师</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Believel" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://gitee.com/zjrzpp" target="_blank" title="Gitee">
+                    
+                      <i class="fa fa-fw fa-github-alt"></i>Gitee</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://my.csdn.net/my/mycsdn" target="_blank" title="CSDN">
+                    
+                      <i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.jianshu.com/users/17853cbbfec9/timeline" target="_blank" title="简书">
+                    
+                      <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.zhangxinxu.com/" title="张鑫旭" target="_blank">张鑫旭</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ruanyifeng.com/blog/" title="阮一峰" target="_blank">阮一峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.alloyteam.com/nav/" title="Web前端导航" target="_blank">Web前端导航</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.36zhen.com/t?id=3448" title="前端书籍资料" target="_blank">前端书籍资料</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ife.baidu.com/" title="百度前端技术学院" target="_blank">百度前端技术学院</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wf.uisdc.com/cn/" title="google前端开发基础" target="_blank">google前端开发基础</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.uisdc.com/" title="优设" target="_blank">优设</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x5B57;&#x7B26;&#x4E32;" class="headerlink" title="&#x5B57;&#x7B26;&#x4E32;"></a>&#x5B57;&#x7B26;&#x4E32;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#遍历器接口"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x904D;&#x5386;&#x5668;&#x63A5;&#x53E3;" class="headerlink" title="&#x904D;&#x5386;&#x5668;&#x63A5;&#x53E3;"></a>&#x904D;&#x5386;&#x5668;&#x63A5;&#x53E3;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#includes"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#includes" class="headerlink" title="includes()"></a>includes()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#startsWith"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#startsWith" class="headerlink" title="startsWith()"></a>startsWith()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#endsWith"><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#endsWith" class="headerlink" title="endsWith()"></a>endsWith()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#repeat"><span class="nav-number">1.5.</span> <span class="nav-text"><a href="#repeat" class="headerlink" title="repeat()"></a>repeat()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#padStart-padEnd"><span class="nav-number">1.6.</span> <span class="nav-text"><a href="#padStart-padEnd" class="headerlink" title="padStart(),padEnd()"></a>padStart(),padEnd()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板字符串"><span class="nav-number">1.7.</span> <span class="nav-text"><a href="#&#x6A21;&#x677F;&#x5B57;&#x7B26;&#x4E32;" class="headerlink" title="&#x6A21;&#x677F;&#x5B57;&#x7B26;&#x4E32;"></a>&#x6A21;&#x677F;&#x5B57;&#x7B26;&#x4E32;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正则"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x6B63;&#x5219;" class="headerlink" title="&#x6B63;&#x5219;"></a>&#x6B63;&#x5219;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#正则方法"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x6B63;&#x5219;&#x65B9;&#x6CD5;" class="headerlink" title="&#x6B63;&#x5219;&#x65B9;&#x6CD5;"></a>&#x6B63;&#x5219;&#x65B9;&#x6CD5;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String对象的方法"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#String&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;" class="headerlink" title="String&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;"></a>String&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数值"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x6570;&#x503C;" class="headerlink" title="&#x6570;&#x503C;"></a>&#x6570;&#x503C;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x51FD;&#x6570;" class="headerlink" title="&#x51FD;&#x6570;"></a>&#x51FD;&#x6570;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x6570;&#x7EC4;" class="headerlink" title="&#x6570;&#x7EC4;"></a>&#x6570;&#x7EC4;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对象"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x5BF9;&#x8C61;" class="headerlink" title="&#x5BF9;&#x8C61;"></a>&#x5BF9;&#x8C61;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">珈润</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+  <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+  </span>
+  </div>
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+-->
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/01/08/ES6/es6中字符串_数组_正则_函数_对象_数值/';
+          this.page.identifier = '2018/01/08/ES6/es6中字符串_数组_正则_函数_对象_数值/';
+          this.page.title = 'ES6中字符串_数组_正则_函数_对象_数值';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
